@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="单一职责(Single Responsibility Principle,SRP) 里氏代换原则（Liskov Substitution Principle,LSP） 依赖倒转原则（Dependence Inversion Principle,DIP） 接口隔离原则（Interface Segregation Principle） 迪米特法则（最少知道原则）(Law Of Demeter,LoD">
+  <meta name="description" content="1.单一职责(Single Responsibility Principle,SRP)    好处:    1) 类的复杂性降低,实现什么职责都有明确的定义    2) 可读性提高    3) 可维护性提高    4) 变更引起的风险降低. 变更是必不可少的,如果接口的单一职责做的好,一个接口修改只对相应的实现类有影响,对其他的接口无影响,对系统的拓展性、维护性都有非常大的帮助 单一职责原则提出一">
 <meta name="keywords" content="Java,设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式六大原则">
 <meta property="og:url" content="http://peterguo3019.github.io/2018/05/01/设计模式六大原则/index.html">
 <meta property="og:site_name" content="从前有只小叽叽">
-<meta property="og:description" content="单一职责(Single Responsibility Principle,SRP) 里氏代换原则（Liskov Substitution Principle,LSP） 依赖倒转原则（Dependence Inversion Principle,DIP） 接口隔离原则（Interface Segregation Principle） 迪米特法则（最少知道原则）(Law Of Demeter,LoD">
+<meta property="og:description" content="1.单一职责(Single Responsibility Principle,SRP)    好处:    1) 类的复杂性降低,实现什么职责都有明确的定义    2) 可读性提高    3) 可维护性提高    4) 变更引起的风险降低. 变更是必不可少的,如果接口的单一职责做的好,一个接口修改只对相应的实现类有影响,对其他的接口无影响,对系统的拓展性、维护性都有非常大的帮助 单一职责原则提出一">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-01T09:04:27.650Z">
+<meta property="og:updated_time" content="2018-06-01T09:57:50.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式六大原则">
-<meta name="twitter:description" content="单一职责(Single Responsibility Principle,SRP) 里氏代换原则（Liskov Substitution Principle,LSP） 依赖倒转原则（Dependence Inversion Principle,DIP） 接口隔离原则（Interface Segregation Principle） 迪米特法则（最少知道原则）(Law Of Demeter,LoD">
+<meta name="twitter:description" content="1.单一职责(Single Responsibility Principle,SRP)    好处:    1) 类的复杂性降低,实现什么职责都有明确的定义    2) 可读性提高    3) 可维护性提高    4) 变更引起的风险降低. 变更是必不可少的,如果接口的单一职责做的好,一个接口修改只对相应的实现类有影响,对其他的接口无影响,对系统的拓展性、维护性都有非常大的帮助 单一职责原则提出一">
 
 
 
@@ -313,7 +313,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Peter">
-      <meta itemprop="description" content="心存敬畏">
+      <meta itemprop="description" content="脚踏实地">
       <meta itemprop="image" content="/images/head.jpeg">
     </span>
 
@@ -368,11 +368,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-06-01 17:04:27" itemprop="dateModified" datetime="2018-06-01T17:04:27+08:00">2018-06-01</time>
+                <time title="修改时间：2018-06-01 17:57:50" itemprop="dateModified" datetime="2018-06-01T17:57:50+08:00">2018-06-01</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -401,16 +419,7 @@
       
 
       
-        <ol>
-<li>单一职责(Single Responsibility Principle,SRP)</li>
-<li>里氏代换原则（Liskov Substitution Principle,LSP）</li>
-<li>依赖倒转原则（Dependence Inversion Principle,DIP）</li>
-<li>接口隔离原则（Interface Segregation Principle）</li>
-<li>迪米特法则（最少知道原则）(Law Of Demeter,LoD)（Least Knowledge Principle）</li>
-<li>开闭原则（Open-Close Principle）<a id="more"></a>
-</li>
-</ol>
-<p>1.单一职责(Single Responsibility Principle,SRP)<br>    好处:<br>    1) 类的复杂性降低,实现什么职责都有明确的定义<br>    2) 可读性提高<br>    3) 可维护性提高<br>    4) 变更引起的风险降低. 变更是必不可少的,如果接口的单一职责做的好,一个接口修改只对相应的实现类有影响,对其他的接口无影响,对系统的拓展性、维护性都有非常大的帮助</p>
+        <p>1.单一职责(Single Responsibility Principle,SRP)<br>    好处:<br>    1) 类的复杂性降低,实现什么职责都有明确的定义<br>    2) 可读性提高<br>    3) 可维护性提高<br>    4) 变更引起的风险降低. 变更是必不可少的,如果接口的单一职责做的好,一个接口修改只对相应的实现类有影响,对其他的接口无影响,对系统的拓展性、维护性都有非常大的帮助</p>
 <pre><code>单一职责原则提出一个编写程序的标准,用“职责”或“变化原因”来衡量接口或类设计得是否优良, 但是“职责”或“变化原因”都是不可度量的,所以因项目而异,因环境而异.
 适用于接口、类,同时也适用于方法,接口一定要做到单一职责,类的设计尽量做到只有一个原因引起变化,一个方法尽可能做一件事情.
 </code></pre><p>2.里氏代换原则（Liskov Substitution Principle,LSP）<br>    目的  减少继承的弊端,发挥继承的最大优势<br>    定义:<br>        第一种定义,也是最正宗的定义: 如果对每一个类型为S的对象o1,都有类型为T的对象o2,使得以T定义的所有程序P在所有的对象o1都代换成o2时,程序P的行为没有发生变化,那么<br>            类型S就是类型T的子类型.<br>        第二种定义:所有引用基类的地方必须能透明地使用其子类的对象<br>        通俗的说,只要父类能出现的地方子类就可以出现,而且替换为子类也不会产生任何错误或异常,使用者可能根本不需要知道是父类还是子类,但是,有子类的出现的地方,父类未必能适应.<br>    含义:</p>
@@ -517,6 +526,35 @@ Java:
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果觉得不错,就打赏一个吧!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Peter 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Peter 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
@@ -539,8 +577,8 @@ Java:
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/24/Quartz与Spring整合/" rel="next" title="quartz与spring整合">
-                <i class="fa fa-chevron-left"></i> quartz与spring整合
+              <a href="/2018/03/24/Quartz与Spring整合/" rel="next" title="Quartz与Spring整合">
+                <i class="fa fa-chevron-left"></i> Quartz与Spring整合
               </a>
             
           </div>
@@ -606,7 +644,7 @@ Java:
                 alt="Peter" />
             
               <p class="site-author-name" itemprop="name">Peter</p>
-              <p class="site-description motion-element" itemprop="description">心存敬畏</p>
+              <p class="site-description motion-element" itemprop="description">脚踏实地</p>
           </div>
 
           
@@ -622,6 +660,23 @@ Java:
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
               
 
               
