@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Mysql官方文档 创建和删除12345678//创建表mysql&amp;gt; create table &amp;lt;table_name&amp;gt;(field[,field2,...]) comment=&amp;apos;&amp;apos;;//eg:mysql&amp;gt; create table user(&amp;gt; id int(4) not null primary key auto_increment,&amp;gt;">
+<meta name="keywords" content="MySql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql操作之表篇">
+<meta property="og:url" content="http://peterguo3019.github.io/2018/03/03/MySql操作之表篇/index.html">
+<meta property="og:site_name" content="从前有只小叽叽">
+<meta property="og:description" content="Mysql官方文档 创建和删除12345678//创建表mysql&amp;gt; create table &amp;lt;table_name&amp;gt;(field[,field2,...]) comment=&amp;apos;&amp;apos;;//eg:mysql&amp;gt; create table user(&amp;gt; id int(4) not null primary key auto_increment,&amp;gt;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-01T09:02:11.146Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql操作之表篇">
+<meta name="twitter:description" content="Mysql官方文档 创建和删除12345678//创建表mysql&amp;gt; create table &amp;lt;table_name&amp;gt;(field[,field2,...]) comment=&amp;apos;&amp;apos;;//eg:mysql&amp;gt; create table user(&amp;gt; id int(4) not null primary key auto_increment,&amp;gt;">
+
+
+
+
+
+
+  <link rel="canonical" href="http://peterguo3019.github.io/2018/03/03/MySql操作之表篇/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Mysql操作之表篇 | 从前有只小叽叽</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">从前有只小叽叽</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Peter's Blog</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://peterguo3019.github.io/2018/03/03/MySql操作之表篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="心存敬畏">
+      <meta itemprop="image" content="/images/head.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从前有只小叽叽">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mysql操作之表篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-03 13:37:02" itemprop="dateCreated datePublished" datetime="2018-03-03T13:37:02+08:00">2018-03-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-01 17:02:11" itemprop="dateModified" datetime="2018-06-01T17:02:11+08:00">2018-06-01</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://dev.mysql.com/doc/refman/5.7/en/select.html" title="Mysql官方文档" target="_blank" rel="noopener">Mysql官方文档</a></p>
+<h2 id="创建和删除"><a href="#创建和删除" class="headerlink" title="创建和删除"></a>创建和删除</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//创建表</span><br><span class="line">mysql&gt; create table &lt;table_name&gt;(field[,field2,...]) comment=&apos;&apos;;</span><br><span class="line">//eg:</span><br><span class="line">mysql&gt; create table user(</span><br><span class="line">&gt; id int(4) not null primary key auto_increment,</span><br><span class="line">&gt; name varchar(20) not null,</span><br><span class="line">&gt; sex int(1) not null default &apos;0&apos;,</span><br><span class="line">&gt; weight double(10,2)) comment=&apos;用户表&apos;;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//删除表</span><br><span class="line">mysql&gt; drop table &lt;table_name&gt;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//修改表名</span><br><span class="line">mysql&gt; rename table &lt;old_table_name&gt; to &lt;new_table_name&gt;;</span><br></pre></td></tr></table></figure>
+<h2 id="查看表"><a href="#查看表" class="headerlink" title="查看表"></a>查看表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SHOW DATABASES                                //列出 MySQL Server 数据库。</span><br><span class="line">SHOW TABLES [FROM db_name]                    //列出数据库数据表。</span><br><span class="line">SHOW TABLE STATUS [FROM db_name]              //列出数据表及表状态信息。</span><br><span class="line">SHOW COLUMNS FROM tbl_name [FROM db_name]     //列出资料表字段</span><br><span class="line">SHOW FIELDS FROM tbl_name [FROM db_name]</span><br><span class="line">DESCRIBE tbl_name [col_name]                  //可以简写为： DESC tbl_name [col_name]</span><br><span class="line">SHOW FULL COLUMNS FROM tbl_name [FROM db_name]//列出字段及详情</span><br><span class="line">SHOW FULL FIELDS FROM tbl_name [FROM db_name] //列出字段完整属性</span><br><span class="line">SHOW INDEX FROM tbl_name [FROM db_name]       //列出表索引。</span><br><span class="line">SHOW STATUS                                  //列出 DB Server 状态。</span><br><span class="line">SHOW VARIABLES                               //列出 MySQL 系统环境变量。</span><br><span class="line">SHOW PROCESSLIST                             //列出执行命令。</span><br><span class="line">SHOW GRANTS FOR user                         //列出某用户权限</span><br></pre></td></tr></table></figure>
+<h2 id="表字段"><a href="#表字段" class="headerlink" title="表字段"></a>表字段</h2><h3 id="常用字段属性"><a href="#常用字段属性" class="headerlink" title="常用字段属性:"></a>常用字段属性:</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auto_increment</td>
+<td>为新插入的行赋一个唯一的整数标识符,自动递增,作为主键列，每个表只允许有一个自动递增列</td>
+</tr>
+<tr>
+<td>binary</td>
+<td>区分大小写的方式排序</td>
+</tr>
+<tr>
+<td>default</td>
+<td>属性确保在没有任何值可用的情况下，赋予某个常量值，这个值必须是常量，因为MySQL不允许插入函数或表达式值。此外，此属性无法用于BLOB或TEXT列。如果已经为此列指定了NULL属性，没有指定默认值时默认值将为NULL，否则默认值将依赖于字段的数据类型</td>
+</tr>
+<tr>
+<td>index</td>
+<td>如果所有其他因素都相同，要加速数据库查询，使用索引通常是最重要的一个步骤。索引一个列会为该列创建一个有序的键数组，每个键指向其相应的表行。以后针对输入条件可以搜索这个有序的键数组，与搜索整个未索引的表相比，这将在性能方面得到极大的提升。<strong>在实践中尽量使用小的索引。</strong></td>
+</tr>
+<tr>
+<td>not null</td>
+<td>如果将一个列定义为not null，将不允许向该列插入null值。<strong>建议在重要情况下始终使用not null属性</strong>，因为它提供了一个基本验证，确保已经向查询传递了所有必要的值。</td>
+</tr>
+<tr>
+<td>null</td>
+<td>为列指定null属性时，该列可以保持为空，而不论行中其它列是否已经被填充。记住，<strong>null精确的说法是“无”，而不是空字符串或0。</strong></td>
+</tr>
+<tr>
+<td>primary key</td>
+<td>用于确保指定行的唯一性。指定为主键的列中，值不能重复，也不能为空。为指定为主键的列赋予auto_increment属性是很常见的，因为此列不必与行数据有任何关系，而只是作为一个唯一标识符。作为主键又分两种：<br>(1) 单字段主键 如果输入到数据库中的每行都已经有不可修改的唯一标识符，一般会使用单字段主键。注意，此主键一旦设置就不能再修改。<br>(2) 多字段主键如果记录中任何一个字段都不可能保证唯一性，就可以使用多字段主键。这时，多个字段联合起来确保唯一性。如果出现这种情况，指定一个auto_increment整数作为主键是更好的办法。</td>
+</tr>
+<tr>
+<td>unique</td>
+<td>被赋予unique属性的列将确保所有值都有不同的值，只是null值可以重复。一般会指定一个列为unique，以确保该列的所有值都不同。</td>
+</tr>
+<tr>
+<td>zerofill</td>
+<td>可用于任何数值类型，用0填充所有剩余字段空间。例如，无符号int的默认宽度是10；因此，当“零填充”的int值为4时，将表示它为0000000004。</td>
+</tr>
+<tr>
+<td>character set</td>
+<td>指定一个字符集</td>
+</tr>
+</tbody>
+</table>
+<h3 id="添加字段"><a href="#添加字段" class="headerlink" title="添加字段"></a>添加字段</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table &lt;table_name&gt; add &lt;field_name&gt; &lt;field_type&gt; comment=&quot;&quot;;</span><br><span class="line">//eg:在表user添加了一个字段update_time，类型为timestamp，设置创建时间和默认时间</span><br><span class="line">mysql&gt; alter table user add update_time timestamp default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment=&apos;更新时间&apos;;</span><br></pre></td></tr></table></figure>
+<h3 id="修改字段"><a href="#修改字段" class="headerlink" title="修改字段"></a>修改字段</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table &lt;table_name&gt; change &lt;old_table&gt; &lt;new_table&gt; &lt;field_type&gt;;</span><br><span class="line">//eg:</span><br><span class="line">mysql&gt; alter table user change weight height double(8,2);</span><br></pre></td></tr></table></figure>
+<h3 id="删除字段"><a href="#删除字段" class="headerlink" title="删除字段"></a>删除字段</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">删除字段：</span><br><span class="line">mysql&gt; alter table &lt;table_name&gt; drop &lt;field_name&gt;;</span><br></pre></td></tr></table></figure>
+<h3 id="添加索引"><a href="#添加索引" class="headerlink" title="添加索引"></a>添加索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//一般索引</span><br><span class="line">mysql&gt; alter table &lt;table_name&gt; add index &lt;index_name&gt; (field_name[,field_name2,...]);</span><br><span class="line">//eg:</span><br><span class="line">mysql&gt; alter table user add index u_name (name,sex);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//加主关键字的索引</span><br><span class="line">mysql&gt; alter table &lt;table_name&gt; add primary key &lt;field_name&gt;;</span><br><span class="line">//eg:</span><br><span class="line">mysql&gt; alter table user add primary key(id);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//加唯一限制条件的索引</span><br><span class="line">mysql&gt; alter table &lt;table_name&gt; add unique &lt;index_name&gt; (field_name);</span><br><span class="line">//eg:</span><br><span class="line">mysql&gt; alter table user add unique u_name(cardnumber);</span><br></pre></td></tr></table></figure>
+<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; alter table &lt;table_name&gt; drop index &lt;index_name&gt;;</span><br><span class="line">//eg:</span><br><span class="line">mysql&gt; alter table user drop index u_name;</span><br></pre></td></tr></table></figure>
+<h2 id="insert语法"><a href="#insert语法" class="headerlink" title="insert语法"></a>insert语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">INSERT [ LOW_PRIORITY | DELAYED | HIGH_PRIORITY ] [ IGNORE ] [ INTO ] tbl_name [ PARTITION (</span><br><span class="line">	partition_name ,...) ] [ (</span><br><span class="line">		col_name ,...) ] &#123;</span><br><span class="line">		VALUES</span><br><span class="line">			|</span><br><span class="line">		VALUE</span><br><span class="line">			&#125; (&#123; expr | DEFAULT &#125;,...),(...) ,...[ ON DUPLICATE KEY UPDATE col_name = expr [, col_name = expr ]...]</span><br><span class="line"></span><br><span class="line">//eg1 单条插入:</span><br><span class="line">mysql&gt; INSERT INTO user(name, age) VALUE (&quot;张三&quot;,18);</span><br><span class="line">//eg2 多条插入:</span><br><span class="line">mysql&gt; INSERT INTO user(name, age) VALUES (&quot;张三&quot;,18),(&quot;李四&quot;,19),(&quot;王五&quot;,20);</span><br></pre></td></tr></table></figure>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//只能插入一条</span><br><span class="line">INSERT [ LOW_PRIORITY | DELAYED | HIGH_PRIORITY ] [ IGNORE ] [ INTO ] tbl_name [ PARTITION (</span><br><span class="line">	partition_name ,...) ]</span><br><span class="line">	SET col_name =&#123; expr | DEFAULT &#125;,...[ ON DUPLICATE KEY UPDATE col_name = expr [, col_name = expr ]...]</span><br><span class="line"></span><br><span class="line">//eg:</span><br><span class="line">mysql&gt; INSERT INTO user set name=&quot;张三&quot;, age=18;</span><br></pre></td></tr></table></figure></p>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//用于表复制</span><br><span class="line">INSERT [ LOW_PRIORITY | HIGH_PRIORITY ] [ IGNORE ] [ INTO ] tbl_name [ PARTITION (</span><br><span class="line">	partition_name ,...) ] [ (</span><br><span class="line">		col_name ,...) ] SELECT</span><br><span class="line">			...[ ON DUPLICATE KEY UPDATE col_name = expr [, col_name = expr ]...]</span><br><span class="line">			</span><br><span class="line">//eg1 两个表数据互通:</span><br><span class="line">mysql&gt; INSERT INTO a(a_field1,a_field2) SELECT b_field1,b_field2 FROM b;</span><br><span class="line">//eg2 多张表进行复制,需要先使用关联查询查出数据后再插入,嵌套部分需要设置别名！！:</span><br><span class="line">mysql&gt; INSERT INTO a(a_field1,a_field2) SELECT * FROM(SELECT f1,f2 FROM b JOIN c) AS tb;</span><br></pre></td></tr></table></figure></p>
+<h2 id="update语法"><a href="#update语法" class="headerlink" title="update语法"></a>update语法</h2><h3 id="单条更新："><a href="#单条更新：" class="headerlink" title="单条更新："></a>单条更新：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">UPDATE [ LOW_PRIORITY ] [ IGNORE ] table_reference</span><br><span class="line">SET col_name1 =&#123; expr1 | DEFAULT &#125; [, col_name2 =&#123; expr2 | DEFAULT &#125;]...[</span><br><span class="line">WHERE</span><br><span class="line">	where_condition ] [</span><br><span class="line">ORDER BY</span><br><span class="line">	...] [</span><br><span class="line">LIMIT row_count ]</span><br><span class="line"></span><br><span class="line"># eg1 单表更新:</span><br><span class="line">UPDATE user SET name=&quot;李四&quot;,age=19 WHERE id=1;</span><br><span class="line"></span><br><span class="line"># eg2 多表更新:</span><br><span class="line">UPDATE USER u</span><br><span class="line">INNER JOIN user_info ui ON u.user_id = ui_user_id</span><br><span class="line">SET ui_age = 20</span><br><span class="line">WHERE</span><br><span class="line">	u.sex = 1;</span><br></pre></td></tr></table></figure>
+<h3 id="多条更新："><a href="#多条更新：" class="headerlink" title="多条更新："></a>多条更新：</h3><p>由于mysql并没有提供多条更新语句，所以进行批量更新网上有三种方法：</p>
+<ol>
+<li>在程序中批量update，一条记录update一次，性能很差</li>
+<li><p>使用replace into 或者insert into …on duplicate key update，性能较好</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//eg1：replace into (操作本质是对重复的记录先delete后insert，如果更新的字段不全会将缺失的字段置为缺省值)</span><br><span class="line">mysql&gt; replace into user (name,age) values (&quot;张三&quot;,15),(&quot;李四&quot;,20),(&quot;王五&quot;,17);</span><br><span class="line">//eg2：insert into (操作本质是只update重复记录，不会改变其它字段。)</span><br><span class="line">mysql&gt; insert into user (id, name, age) values (1,&quot;张三&quot;,15),(2,&quot;李四&quot;,20),(3,&quot;王五&quot;,17) on duplicate key update name=values(name), age=values(age);</span><br></pre></td></tr></table></figure>
+<p> <a href="http://www.itpub.net/forum.php?mod=viewthread&amp;tid=1770206" title="原文地址" target="_blank" rel="noopener">两者异同</a><br> 相同之处:</p>
+<blockquote>
+<p>(1) 没有key的时候，replace与insert .. on deplicate udpate相同。<br> (2) 有key的时候，都保留主键值，并且auto_increment自动+1</p>
+</blockquote>
+<p> 不同之处：</p>
+<blockquote>
+<p>有key的时候，replace是delete老记录，而录入新的记录，所以原有的所有记录会被清除，这个时候，如果replace语句的字段不全的话，有些原有的字段的值会被自动填充为默认值。<br> 而insert .. duplicate update则只执行update标记之后的sql，从表象上来看相当于一个简单的update语句。所以两者的区别只有一个，insert .. on duplicate udpate保留了所有字段的旧值，再覆盖然后一起insert进去，而replace没有保留旧值，直接删除再insert新值。</p>
+</blockquote>
+<p> 从底层执行效率上来讲，replace要比insert .. on duplicate update效率要高，但是在写replace的时候，字段要写全，防止老的字段数据被删除。</p>
+</li>
+<li><p>创建临时表，先更新临时表，然后从临时表中update，性能最好</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//注意：这种方法需要用户有temporary 表的create 权限。</span><br><span class="line">mysql&gt; create temporary table tmp(id int(4) primary key,name varchar(50), age int(4));</span><br><span class="line">mysql&gt; insert into tmp values (1,&quot;张三&quot;,15),(2,&quot;李四&quot;,20),(3,&quot;王五&quot;,17);</span><br><span class="line">mysql&gt; update user, tmp set user.name=tmp.name, user.age=tmp.age where user.id=tmp.id;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>补充：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 批量替换字段内容的一部分</span><br><span class="line">mysql&gt; UPDATE article SET content = REPLACE(content, &apos;abc&apos;, &apos;123&apos;);</span><br><span class="line">//效果： &quot;AabcB&quot; =》&quot;A123B&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="delete语法"><a href="#delete语法" class="headerlink" title="delete语法"></a>delete语法</h2><h3 id="普通删除："><a href="#普通删除：" class="headerlink" title="普通删除："></a>普通删除：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DELETE [ LOW_PRIORITY ] [ QUICK ] [ IGNORE ]</span><br><span class="line">FROM</span><br><span class="line">	tbl_name [ PARTITION (</span><br><span class="line">		partition_name ,...) ] [</span><br><span class="line">		WHERE</span><br><span class="line">			where_condition ] [</span><br><span class="line">		ORDER BY</span><br><span class="line">			...] [</span><br><span class="line">		LIMIT row_count ]</span><br><span class="line"></span><br><span class="line">//eg1 删除单条:</span><br><span class="line">mysql&gt; DELETE FROM user where user_id = 1;</span><br><span class="line">//eg2 删除多条:</span><br><span class="line">mysql&gt; DELETE FROM user where user_id in (1,2,3,4);</span><br></pre></td></tr></table></figure>
+<h3 id="多表删除："><a href="#多表删除：" class="headerlink" title="多表删除："></a>多表删除：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DELETE [ LOW_PRIORITY ] [ QUICK ] [ IGNORE ] tbl_name [.*] [, tbl_name [.*]]...</span><br><span class="line">FROM</span><br><span class="line">	table_references [</span><br><span class="line">WHERE</span><br><span class="line">	where_condition ]</span><br><span class="line"></span><br><span class="line">//eg:</span><br><span class="line">DELETE t1,t2</span><br><span class="line">FROM t1</span><br><span class="line">INNER JOIN t2</span><br><span class="line">INNER JOIN t3</span><br><span class="line">WHERE</span><br><span class="line">	t1.id = t2.id</span><br><span class="line">AND t2.id = t3.id;</span><br></pre></td></tr></table></figure>
+<p>or:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">DELETE [ LOW_PRIORITY ] [ QUICK ] [ IGNORE ]</span><br><span class="line">FROM</span><br><span class="line">	tbl_name [.*] [, tbl_name [.*]]... USING table_references [</span><br><span class="line">WHERE</span><br><span class="line">	where_condition ]</span><br><span class="line">	</span><br><span class="line"># eg：</span><br><span class="line">DELETE</span><br><span class="line">FROM</span><br><span class="line">	t1,</span><br><span class="line">	t2 USING t1</span><br><span class="line">INNER JOIN t2</span><br><span class="line">INNER JOIN t3</span><br><span class="line">WHERE</span><br><span class="line">	t1.id = t2.id</span><br><span class="line">AND t2.id = t3.id;</span><br></pre></td></tr></table></figure></p>
+<h3 id="截断表："><a href="#截断表：" class="headerlink" title="截断表："></a>截断表：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; truncate table &lt;table_name&gt;;</span><br><span class="line">/*</span><br><span class="line">截断表可以用于删除表中的所有数据。截断表命令还会回收所有索引的分配页。截断表的执行速度与不带where子句的delete（删除）命令相同，甚至比它还要快。delete（删除）一次删除一行数据，并且将每一行被删除的数据都作为一个事务记录日志；而truncate （截断）表则回收整个数据页，只记录很少的日志项。delete（删除）和truncate（截断）都会回收被数据占用的空间，以及相关的索引。只有表的拥有者可以截断表。</span><br><span class="line">另外，truncate表之后，如果有自动主键的话，会恢复成默认值。</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<h2 id="select语法"><a href="#select语法" class="headerlink" title="select语法"></a>select语法</h2><h3 id="基本语法："><a href="#基本语法：" class="headerlink" title="基本语法："></a>基本语法：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	[ ALL | DISTINCT | DISTINCTROW ] [ HIGH_PRIORITY ] [ STRAIGHT_JOIN ] [ SQL_SMALL_RESULT ] [ SQL_BIG_RESULT ] [ SQL_BUFFER_RESULT ] [ SQL_CACHE | SQL_NO_CACHE ] [ SQL_CALC_FOUND_ROWS ] select_expr [, select_expr...] [</span><br><span class="line">FROM</span><br><span class="line">	table_references [ PARTITION partition_list ] [</span><br><span class="line">WHERE</span><br><span class="line">	where_condition ] [</span><br><span class="line">GROUP BY</span><br><span class="line">	&#123; col_name | expr | position &#125; [ ASC | DESC ],...[ WITH ROLLUP ]] [</span><br><span class="line">HAVING</span><br><span class="line">	where_condition ] [</span><br><span class="line">ORDER BY</span><br><span class="line">	&#123; col_name | expr | position &#125; [ ASC | DESC ],...] [</span><br><span class="line">LIMIT &#123;[ OFFSET ,] row_count | row_count OFFSET OFFSET &#125;] [ PROCEDURE procedure_name (argument_list) ] [ INTO OUTFILE &apos;file_name&apos; [ CHARACTER</span><br><span class="line">SET charset_name ] export_options | INTO DUMPFILE &apos;file_name&apos; | INTO var_name [, var_name ]] [ FOR UPDATE | LOCK IN SHARE MODE ]]</span><br><span class="line"></span><br><span class="line">#eg:</span><br><span class="line">#查询总条数</span><br><span class="line">mysql&gt; SELECT COUNT(*) FROM test_table WHERE tf_b = 1;</span><br><span class="line">#倒序分页查询</span><br><span class="line">mysql&gt; SELECT tf_a, tf_b FROM test_table WHERE tf_b = 1 ORDER BY tf_a DESC LIMIT 100,10;</span><br></pre></td></tr></table></figure>
+<h3 id="花式操作"><a href="#花式操作" class="headerlink" title="花式操作"></a>花式操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># 创建学生表1</span><br><span class="line">CREATE TABLE `student1` (</span><br><span class="line">  `STUDENT_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT &apos;学生自增长ID&apos;,</span><br><span class="line">  `STUDENT_NAME` varchar(30) DEFAULT NULL COMMENT &apos;学生名称&apos;,</span><br><span class="line">  `STUDENT_COURSE` varchar(30) DEFAULT NULL COMMENT &apos;学科&apos;,</span><br><span class="line">  `STUDENT_SCORE` int(11) DEFAULT NULL COMMENT &apos;成绩&apos;,</span><br><span class="line">  PRIMARY KEY (`STUDENT_ID`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT=&apos;学生表&apos;;</span><br><span class="line"></span><br><span class="line"># 插入数据</span><br><span class="line">INSERT INTO student1 (</span><br><span class="line">	STUDENT_NAME,</span><br><span class="line">	STUDENT_COURSE,</span><br><span class="line">	STUDENT_SCORE</span><br><span class="line">)</span><br><span class="line">VALUES</span><br><span class="line">	(&quot;张三&quot;, &quot;语文&quot;, 80),</span><br><span class="line">	(&quot;张三&quot;, &quot;数学&quot;, 90),</span><br><span class="line">	(&quot;张三&quot;, &quot;英语&quot;, 85),</span><br><span class="line">	(&quot;李四&quot;, &quot;语文&quot;, 30),</span><br><span class="line">	(&quot;李四&quot;, &quot;数学&quot;, 90),</span><br><span class="line">	(&quot;李四&quot;, &quot;英语&quot;, 100);</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">STUDENT_ID</th>
+<th style="text-align:right">STUDENT_NAME</th>
+<th style="text-align:right">STUDENT_COURSE</th>
+<th style="text-align:right">STUDENT_SCORE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">张三</td>
+<td style="text-align:right">语文</td>
+<td style="text-align:right">80</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">张三</td>
+<td style="text-align:right">数学</td>
+<td style="text-align:right">90</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">张三</td>
+<td style="text-align:right">英语</td>
+<td style="text-align:right">85</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">李四</td>
+<td style="text-align:right">语文</td>
+<td style="text-align:right">30</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">李四</td>
+<td style="text-align:right">数学</td>
+<td style="text-align:right">90</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">李四</td>
+<td style="text-align:right">英语</td>
+<td style="text-align:right">100</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 创建学生表2</span><br><span class="line">CREATE TABLE `student2` (</span><br><span class="line">  `STUDENT_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT &apos;学生自增长ID&apos;,</span><br><span class="line">  `STUDENT_NAME` varchar(30) DEFAULT NULL COMMENT &apos;学生名称&apos;,</span><br><span class="line">  `STUDENT_TOTAL_SCORE` int(1) DEFAULT NULL COMMENT &apos;总成绩&apos;,</span><br><span class="line">  PRIMARY KEY (`STUDENT_ID`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT=&apos;学生总成绩&apos;;</span><br></pre></td></tr></table></figure>
+<h4 id="查询并插入"><a href="#查询并插入" class="headerlink" title="查询并插入"></a>查询并插入</h4><p>语法格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名1(字段列表1) SELECT 字段列表2 FROM 表名2 WHERE 条件表达式;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># eg 用一条语句查询出student1表中学生总成绩并且降序插入student2表中</span><br><span class="line">INSERT INTO student2 (</span><br><span class="line">	STUDENT_NAME,</span><br><span class="line">	STUDENT_TOTAL_SCORE</span><br><span class="line">) SELECT</span><br><span class="line">	STUDENT_NAME,</span><br><span class="line">	SUM(STUDENT_SCORE) AS STUDENT_TOTAL_SCORE</span><br><span class="line">FROM</span><br><span class="line">	student1</span><br><span class="line">GROUP BY</span><br><span class="line">	STUDENT_NAME</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">STUDENT_ID</th>
+<th style="text-align:right">STUDENT_NAME</th>
+<th style="text-align:right">STUDENT_TOTAL_SCORE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">张三</td>
+<td style="text-align:right">255</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">李四</td>
+<td style="text-align:right">220</td>
+</tr>
+</tbody>
+</table>
+<h4 id="查询并更新"><a href="#查询并更新" class="headerlink" title="查询并更新"></a>查询并更新</h4><p>update时，更新的表不能在set和where中用于子查询,但是可以对多个表进行更新(INNER JOIN)，所以根据这个特性我们来做查询并更新<br>语法格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE table1 a INNER JOIN table2 b on a.id = b.id set ... where ...</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># eg: 用一条语句将所有人的语文成绩改成95</span><br><span class="line">UPDATE student1 a</span><br><span class="line">INNER JOIN (</span><br><span class="line">	SELECT</span><br><span class="line">		STUDENT_ID,</span><br><span class="line">		STUDENT_NAME,</span><br><span class="line">		STUDENT_COURSE,</span><br><span class="line">		STUDENT_SCORE</span><br><span class="line">	FROM</span><br><span class="line">		student1</span><br><span class="line">	WHERE</span><br><span class="line">		STUDENT_COURSE LIKE &apos;%英语%&apos;</span><br><span class="line">) b ON a.STUDENT_ID = b.STUDENT_ID</span><br><span class="line">SET a.STUDENT_SCORE = 95</span><br></pre></td></tr></table></figure>
+<h4 id="查询并删除"><a href="#查询并删除" class="headerlink" title="查询并删除"></a>查询并删除</h4><p>通常查询并删除针对的是表中的重复记录，所以我们首先要查找到重复的记录：</p>
+<h5 id="查找记录"><a href="#查找记录" class="headerlink" title="查找记录"></a>查找记录</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">方法一(推荐)：</span><br><span class="line">SELECT * FROM</span><br><span class="line">	table a</span><br><span class="line">WHERE</span><br><span class="line">	[(a.field1,a.field2,...)] IN (</span><br><span class="line">		SELECT</span><br><span class="line">			[field1,field2,...]</span><br><span class="line">		FROM</span><br><span class="line">			table</span><br><span class="line">		GROUP BY</span><br><span class="line">			[field1 ,field2,...]</span><br><span class="line">		HAVING</span><br><span class="line">			Count(*) &gt; 1</span><br><span class="line">	) </span><br><span class="line">方法二：</span><br><span class="line">SELECT * FROM</span><br><span class="line">	table a</span><br><span class="line">WHERE</span><br><span class="line">((  SELECT</span><br><span class="line">    	COUNT(*)</span><br><span class="line">    FROM</span><br><span class="line">    	table</span><br><span class="line">    WHERE</span><br><span class="line">    	field1 = a.field1</span><br><span class="line">        AND field2 = a.field2</span><br><span class="line">        AND ...</span><br><span class="line">)&gt; 1)</span><br></pre></td></tr></table></figure>
+<p>eg： ps. 如果需要只显示一条最新记录，则添加a.STUDENT_ID和MAX(STUDENT_ID)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># 根据多个字段查询student1</span><br><span class="line">SELECT</span><br><span class="line">	STUDENT_ID,</span><br><span class="line">	STUDENT_NAME,</span><br><span class="line">	STUDENT_COURSE,</span><br><span class="line">	STUDENT_SCORE</span><br><span class="line">FROM</span><br><span class="line">	student1 a</span><br><span class="line">WHERE</span><br><span class="line">	(a.STUDENT_NAME, a.STUDENT_COURSE) IN (</span><br><span class="line">	# (a.STUDENT_NAME, a.STUDENT_COURSE,a.STUDENT_ID) IN (</span><br><span class="line">		SELECT</span><br><span class="line">		    # MAX(STUDENT_ID)</span><br><span class="line">			STUDENT_NAME,</span><br><span class="line">			STUDENT_COURSE</span><br><span class="line">		FROM</span><br><span class="line">			student1</span><br><span class="line">		GROUP BY</span><br><span class="line">			STUDENT_NAME,</span><br><span class="line">			STUDENT_COURSE</span><br><span class="line">		HAVING</span><br><span class="line">			count(*) &gt; 1</span><br><span class="line">	)</span><br><span class="line">ORDER BY</span><br><span class="line">	STUDENT_COURSE DESC</span><br></pre></td></tr></table></figure></p>
+<h5 id="删除记录"><a href="#删除记录" class="headerlink" title="删除记录"></a>删除记录</h5><p>如上所提，可以得到最新的一条数据，那只保留id最大的一条数据:<br>两种方法目前手头没有大的数据无法做测试，等以后再比较性能差异。<br>方法一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM student1</span><br><span class="line">WHERE</span><br><span class="line">    # 将最后插入的数据保留 其他数据删除</span><br><span class="line">	STUDENT_ID  NOT IN (</span><br><span class="line"> 		# 查询最后插入的数据</span><br><span class="line">		SELECT</span><br><span class="line">			MAX(STUDENT_ID)</span><br><span class="line">		FROM</span><br><span class="line">			(</span><br><span class="line">				#  查询出重复数据</span><br><span class="line">				SELECT</span><br><span class="line">					STUDENT_ID,</span><br><span class="line">					STUDENT_NAME,</span><br><span class="line">					STUDENT_COURSE,</span><br><span class="line">					STUDENT_SCORE</span><br><span class="line">				FROM</span><br><span class="line">					student1 a</span><br><span class="line">				WHERE</span><br><span class="line">					(</span><br><span class="line">						a.STUDENT_NAME,</span><br><span class="line">						a.STUDENT_COURSE</span><br><span class="line">					) IN (</span><br><span class="line">						SELECT</span><br><span class="line">							STUDENT_NAME,</span><br><span class="line">							STUDENT_COURSE</span><br><span class="line">						FROM</span><br><span class="line">							student1</span><br><span class="line">						GROUP BY</span><br><span class="line">							STUDENT_NAME,</span><br><span class="line">							STUDENT_COURSE</span><br><span class="line">						HAVING</span><br><span class="line">							count(*) &gt; 1</span><br><span class="line">					)</span><br><span class="line">			) AS tmp</span><br><span class="line">		GROUP BY</span><br><span class="line">			STUDENT_NAME,</span><br><span class="line">			STUDENT_COURSE</span><br><span class="line">		HAVING</span><br><span class="line">			count(*) &gt; 1</span><br><span class="line">	)</span><br></pre></td></tr></table></figure></p>
+<p>方法二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">DELETE</span><br><span class="line">FROM</span><br><span class="line">	student1</span><br><span class="line">WHERE</span><br><span class="line">    #查出重复数据</span><br><span class="line">	(</span><br><span class="line">		STUDENT_NAME,</span><br><span class="line">		STUDENT_COURSE</span><br><span class="line">	) IN (</span><br><span class="line">		SELECT</span><br><span class="line">			STUDENT_NAME,</span><br><span class="line">			STUDENT_COURSE</span><br><span class="line">		FROM</span><br><span class="line">			(</span><br><span class="line">				SELECT</span><br><span class="line">					STUDENT_NAME,</span><br><span class="line">					STUDENT_COURSE</span><br><span class="line">				FROM</span><br><span class="line">					student1</span><br><span class="line">				GROUP BY</span><br><span class="line">					STUDENT_NAME,</span><br><span class="line">					STUDENT_COURSE</span><br><span class="line">				HAVING</span><br><span class="line">					COUNT(*) &gt; 1</span><br><span class="line">			) s1</span><br><span class="line">	)</span><br><span class="line"># 排除最后插入的数据保留</span><br><span class="line">AND STUDENT_ID NOT IN (</span><br><span class="line">	SELECT</span><br><span class="line">		STUDENT_ID</span><br><span class="line">	FROM</span><br><span class="line">		(</span><br><span class="line">			SELECT</span><br><span class="line">				MAX(STUDENT_ID)</span><br><span class="line">			FROM</span><br><span class="line">				student1</span><br><span class="line">			GROUP BY</span><br><span class="line">				STUDENT_NAME,</span><br><span class="line">				STUDENT_COURSE</span><br><span class="line">			HAVING</span><br><span class="line">				COUNT(*) &gt; 1</span><br><span class="line">		) s2</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySql/" rel="tag"># MySql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/16/MySql操作之用户篇/" rel="next" title="MySql操作之用户篇">
+                <i class="fa fa-chevron-left"></i> MySql操作之用户篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/05/MySql之存储过程,函数,触发器,视图/" rel="prev" title="Mysql之存储过程,函数,触发器,视图">
+                Mysql之存储过程,函数,触发器,视图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpeg"
+                alt="Peter" />
+            
+              <p class="site-author-name" itemprop="name">Peter</p>
+              <p class="site-description motion-element" itemprop="description">心存敬畏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/peterguo3019" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建和删除"><span class="nav-number">1.</span> <span class="nav-text">创建和删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看表"><span class="nav-number">2.</span> <span class="nav-text">查看表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表字段"><span class="nav-number">3.</span> <span class="nav-text">表字段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用字段属性"><span class="nav-number">3.1.</span> <span class="nav-text">常用字段属性:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加字段"><span class="nav-number">3.2.</span> <span class="nav-text">添加字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改字段"><span class="nav-number">3.3.</span> <span class="nav-text">修改字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除字段"><span class="nav-number">3.4.</span> <span class="nav-text">删除字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加索引"><span class="nav-number">3.5.</span> <span class="nav-text">添加索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除索引"><span class="nav-number">3.6.</span> <span class="nav-text">删除索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#insert语法"><span class="nav-number">4.</span> <span class="nav-text">insert语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#update语法"><span class="nav-number">5.</span> <span class="nav-text">update语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单条更新："><span class="nav-number">5.1.</span> <span class="nav-text">单条更新：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多条更新："><span class="nav-number">5.2.</span> <span class="nav-text">多条更新：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#delete语法"><span class="nav-number">6.</span> <span class="nav-text">delete语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#普通删除："><span class="nav-number">6.1.</span> <span class="nav-text">普通删除：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多表删除："><span class="nav-number">6.2.</span> <span class="nav-text">多表删除：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#截断表："><span class="nav-number">6.3.</span> <span class="nav-text">截断表：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#select语法"><span class="nav-number">7.</span> <span class="nav-text">select语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本语法："><span class="nav-number">7.1.</span> <span class="nav-text">基本语法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#花式操作"><span class="nav-number">7.2.</span> <span class="nav-text">花式操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询并插入"><span class="nav-number">7.2.1.</span> <span class="nav-text">查询并插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询并更新"><span class="nav-number">7.2.2.</span> <span class="nav-text">查询并更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询并删除"><span class="nav-number">7.2.3.</span> <span class="nav-text">查询并删除</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查找记录"><span class="nav-number">7.2.3.1.</span> <span class="nav-text">查找记录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除记录"><span class="nav-number">7.2.3.2.</span> <span class="nav-text">删除记录</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peter</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

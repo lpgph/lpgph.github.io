@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="MySQL分为普通用户与root用户。这两种用户的权限不一样。">
+<meta name="keywords" content="MySql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySql操作之用户篇">
+<meta property="og:url" content="http://peterguo3019.github.io/2017/04/16/MySql操作之用户篇/index.html">
+<meta property="og:site_name" content="从前有只小叽叽">
+<meta property="og:description" content="MySQL分为普通用户与root用户。这两种用户的权限不一样。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-01T09:07:30.490Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySql操作之用户篇">
+<meta name="twitter:description" content="MySQL分为普通用户与root用户。这两种用户的权限不一样。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://peterguo3019.github.io/2017/04/16/MySql操作之用户篇/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MySql操作之用户篇 | 从前有只小叽叽</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">从前有只小叽叽</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Peter's Blog</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://peterguo3019.github.io/2017/04/16/MySql操作之用户篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="心存敬畏">
+      <meta itemprop="image" content="/images/head.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从前有只小叽叽">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySql操作之用户篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-04-16 10:59:34" itemprop="dateCreated datePublished" datetime="2017-04-16T10:59:34+08:00">2017-04-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-01 17:07:30" itemprop="dateModified" datetime="2018-06-01T17:07:30+08:00">2018-06-01</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>MySQL分为普通用户与root用户。这两种用户的权限不一样。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="权限表"><a href="#权限表" class="headerlink" title="权限表"></a>权限表</h2><blockquote>
+<p>安装MySQL时会自动安装一个名为mysql的数据库。mysql数据库里面存储的都是权限表。</p>
+</blockquote>
+<h3 id="User表"><a href="#User表" class="headerlink" title="User表"></a>User表</h3><blockquote>
+<p>user表有39个字段。这些字段可以分为4类：用户列，权限列，安全列，资源控制列；</p>
+</blockquote>
+<h4 id="用户列"><a href="#用户列" class="headerlink" title="用户列"></a>用户列</h4><p>用户列包括Host、User、Password，分别表示主机名、用户名和密码。登录用的就是这个用户名与密码；</p>
+<h4 id="权限列"><a href="#权限列" class="headerlink" title="权限列"></a>权限列</h4><p>user表的权限列包括Select_priv、Insert_priv等以priv结尾的字段。<br>这些字段的值只有Y和N。Y表示该权限可以用到所有数据库上；N表示该权限不能用到所有数据库上；<br>通常，可以使用GRANT语句Wie用户赋予一些权限，也可以通过Update语句更新user表的方式来设置权限；<br>不过，修改user表之后，一定要执行一下 <strong>FLUSH PRIVILEGES</strong>，否则可能会出现如下错误：<br><strong>Error (1133): Can’t find any matching row in the user table</strong></p>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>权限名称</th>
+<th>权限范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Select_priv</td>
+<td>SELECT</td>
+<td>查询表</td>
+<td>确定用户是否可以通过SELECT命令选择数据</td>
+</tr>
+<tr>
+<td>Insert_priv</td>
+<td>INSERT</td>
+<td>插入表</td>
+<td>确定用户是否可以通过INSERT命令插入数据</td>
+</tr>
+<tr>
+<td>Update_priv</td>
+<td>UPDATE</td>
+<td>修改表</td>
+<td>确定用户是否可以通过UPDATE命令修改现有数据</td>
+</tr>
+<tr>
+<td>Delete_priv</td>
+<td>DELETE</td>
+<td>删除表</td>
+<td>确定用户是否可以通过DELETE命令删除现有数据</td>
+</tr>
+<tr>
+<td>Create_priv</td>
+<td>CREATE</td>
+<td>数据库、表或索引</td>
+<td>确定用户是否可以创建新的数据库和表</td>
+</tr>
+<tr>
+<td>Drop_priv</td>
+<td>DROP</td>
+<td>数据库或表</td>
+<td>确定用户是否可以删除现有数据库和表</td>
+</tr>
+<tr>
+<td>Reload_priv</td>
+<td>RELOAD</td>
+<td>重新加载权限表</td>
+<td>确定用户是否可以执行刷新和重新加载MySQL所用各种内部缓存的特定命令，包括日志、权限、主机、查询和表</td>
+</tr>
+<tr>
+<td>Shutdown_priv</td>
+<td>SHUTDOWN</td>
+<td>关闭服务器</td>
+<td>确定用户是否可以关闭MySQL服务器。在将此权限提供给root账户之外的任何用户时，都应当非常谨慎</td>
+</tr>
+<tr>
+<td>Process_priv</td>
+<td>PROCESS</td>
+<td>服务器管理</td>
+<td>确定用户是否可以通过SHOW PROCESSLIST命令查看其他用户的进程</td>
+</tr>
+<tr>
+<td>File_priv</td>
+<td>FILE</td>
+<td>加载服务器主机上的文件</td>
+<td>确定用户是否可以执行SELECT INTO OUTFILE和LOAD DATA INFILE命令</td>
+</tr>
+<tr>
+<td>Grant_priv</td>
+<td>GRANT OPTION</td>
+<td>数据库、表、存储过程或函数</td>
+<td>确定用户是否可以将已经授予给该用户自己的权限再授予其他用户</td>
+</tr>
+<tr>
+<td>References_priv</td>
+<td>REFERENCES</td>
+<td>数据库或表</td>
+<td>目前只是某些未来功能的占位符；现在没有作用</td>
+</tr>
+<tr>
+<td>Index_priv</td>
+<td>INDEX</td>
+<td>用索引查询表</td>
+<td>确定用户是否可以创建和删除表索引</td>
+</tr>
+<tr>
+<td>Alter_priv</td>
+<td>ALTER</td>
+<td>修改表</td>
+<td>确定用户是否可以重命名和修改表结构</td>
+</tr>
+<tr>
+<td>Show_db_priv</td>
+<td>SHOW DATABASES</td>
+<td>查看数据库</td>
+<td>确定用户是否可以查看服务器上所有数据库的名字，包括用户拥有足够访问权限的数据库</td>
+</tr>
+<tr>
+<td>Super_priv</td>
+<td>SUPER</td>
+<td>超级权限</td>
+<td>确定用户是否可以执行某些强大的管理功能，例如通过KILL命令删除用户进程，使用SET GLOBAL修改全局MySQL变量，执行关于复制和日志的各种命令</td>
+</tr>
+<tr>
+<td>Create_tmp_table_priv</td>
+<td>TEMPORARY</td>
+<td>表</td>
+<td>确定用户是否可以创建临时表</td>
+</tr>
+<tr>
+<td>Lock_tables_priv</td>
+<td>LOCK TABLES</td>
+<td>锁定表</td>
+<td>确定用户是否可以使用LOCK TABLES命令阻止对表的访问/修改</td>
+</tr>
+<tr>
+<td>Execute_priv</td>
+<td>EXECUTE</td>
+<td>执行存储过程或存储函数</td>
+<td>确定用户是否可以执行存储过程</td>
+</tr>
+<tr>
+<td>Repl_slave_priv</td>
+<td>REPLICATION SLAVE</td>
+<td>服务器管理</td>
+<td>确定用户是否可以读取用于维护复制数据库环境的二进制日志文件。此用户位于主系统中，有利于主机和客户机之间的通信</td>
+</tr>
+<tr>
+<td>Repl_client_priv</td>
+<td>REPLICATION CLIENT</td>
+<td>服务器管理</td>
+<td>确定用户是否可以确定复制从服务器和主服务器的位置</td>
+</tr>
+<tr>
+<td>Create_view_priv</td>
+<td>CREATE VIEW</td>
+<td>创建视图</td>
+<td>确定用户是否可以创建视图</td>
+</tr>
+<tr>
+<td>Show_view_priv</td>
+<td>SHOW VIEW</td>
+<td>查看视图</td>
+<td>确定用户是否可以查看视图或了解视图如何执行</td>
+</tr>
+<tr>
+<td>Create_routine_priv</td>
+<td>CREATE ROUTINE</td>
+<td>创建存储过程或存储函数</td>
+<td>确定用户是否可以更改或放弃存储过程和函数</td>
+</tr>
+<tr>
+<td>Alter_routine_priv</td>
+<td>ALTER ROUTINE</td>
+<td>修改存储过程或存储函数</td>
+<td>确定用户是否可以修改或删除存储函数及函数</td>
+</tr>
+<tr>
+<td>Create_user_priv</td>
+<td>CREATE USER</td>
+<td>创建用户</td>
+<td>确定用户是否可以执行CREATE USER命令，这个命令用于创建新的MySQL账户</td>
+</tr>
+<tr>
+<td>Event_priv</td>
+<td></td>
+<td></td>
+<td>确定用户能否创建、修改和删除事件</td>
+</tr>
+<tr>
+<td>Trigger_priv</td>
+<td></td>
+<td></td>
+<td>确定用户能否创建和删除触发器</td>
+</tr>
+</tbody>
+</table>
+<h4 id="安全列"><a href="#安全列" class="headerlink" title="安全列"></a>安全列</h4><table>
+<thead>
+<tr>
+<th>列</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ssl_type</td>
+<td></td>
+</tr>
+<tr>
+<td>ssl_cipher</td>
+<td></td>
+</tr>
+<tr>
+<td>x509_issuer</td>
+<td></td>
+</tr>
+<tr>
+<td>x509_subject</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>ssl用于加密；x509标准可以用来标识用户。普通的发行版都没有加密功能。可以使用SHOW VARIABLES LIKE ‘have_openssl’语句来查看是否具有ssl功能。如果取值为DISABLED，那么则没有ssl加密功能。</p>
+</blockquote>
+<h4 id="资源控制列"><a href="#资源控制列" class="headerlink" title="资源控制列"></a>资源控制列</h4><table>
+<thead>
+<tr>
+<th>列</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>max_questions</td>
+<td>每小时可以允许执行多少次查询</td>
+</tr>
+<tr>
+<td>max_updates</td>
+<td>每小时可以允许执行多少次更新</td>
+</tr>
+<tr>
+<td>max_connections</td>
+<td>每小时可以建立多少连接</td>
+</tr>
+<tr>
+<td>max_user_connections</td>
+<td>单个用户可以同时具有的连接数。默认值为0，表示无限制。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="db表"><a href="#db表" class="headerlink" title="db表"></a>db表</h3><p>db表存储了某个用户对一个数据库的权限。</p>
+<h4 id="用户列-1"><a href="#用户列-1" class="headerlink" title="用户列"></a>用户列</h4><table>
+<thead>
+<tr>
+<th>列</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host</td>
+<td>主机名</td>
+</tr>
+<tr>
+<td>Db</td>
+<td>数据库名</td>
+</tr>
+<tr>
+<td>User</td>
+<td>用户名</td>
+</tr>
+</tbody>
+</table>
+<h4 id="权限列-1"><a href="#权限列-1" class="headerlink" title="权限列"></a>权限列</h4><table>
+<thead>
+<tr>
+<th>列</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create_routine_priv</td>
+<td>是否具有创建存储过程权限</td>
+</tr>
+<tr>
+<td>Alter_routine_priv</td>
+<td>是否具有修改存储过程权限</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>user表中的权限是针对所有数据库的</strong>，如果user表中的Select_priv字段取值为Y，那么该用户可以查询所有数据库中的表；<br>如果为某个用户值设置了查询test表的权限，那么user表的Select_priv字段的取值为N。而这个SELECT权限则记录在db表中。db表中的Select_priv字段的取值将会是Y。<br><strong>用户先根据user表的内容获取权限，然后再根据db表的内容获取权限。</strong></p>
+</blockquote>
+<h4 id="tables-priv表和columns-priv表"><a href="#tables-priv表和columns-priv表" class="headerlink" title="tables_priv表和columns_priv表"></a>tables_priv表和columns_priv表</h4><p>tables_priv：可以对单个表进行权限设置：</p>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host</td>
+<td>主机名</td>
+</tr>
+<tr>
+<td>DB</td>
+<td>数据库名</td>
+</tr>
+<tr>
+<td>User</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>Table_name</td>
+<td>表名</td>
+</tr>
+<tr>
+<td>Table_priv</td>
+<td>对表进行操作的权限(Select,Insert,Update,Delete,Create,Drop,Grant,References,Index,Alter)</td>
+</tr>
+<tr>
+<td>Column_priv</td>
+<td>对表中的数据列进行操作的权限(Select,Insert,Update,Rederences)；</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>修改权限的事件</td>
+</tr>
+<tr>
+<td>Grantor</td>
+<td>权限的设置者</td>
+</tr>
+</tbody>
+</table>
+<p>columns_priv：可以对单个数据列进行权限设置：</p>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host</td>
+<td>主机名</td>
+</tr>
+<tr>
+<td>DB</td>
+<td>数据库名</td>
+</tr>
+<tr>
+<td>User</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>Table_name</td>
+<td>表名</td>
+</tr>
+<tr>
+<td>Column_name</td>
+<td>列明</td>
+</tr>
+<tr>
+<td>Column_priv</td>
+<td>对表中的数据列进行操作的权限(Select,Insert,Update,Rederences)；</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>修改权限的事件</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>MySQL权限分配是按照user表-&gt; db表 -&gt; table_priv表 -&gt; columns_priv表的顺序进行分配的。</strong><br><strong>在数据库系统中，先判断user表中的值是否为’Y’，如果user表中的值是’Y’，就不需要检查后面的表。如果user表为N，则一次检查后面的表。</strong></p>
+</blockquote>
+<h4 id="procs-priv表"><a href="#procs-priv表" class="headerlink" title="procs_priv表"></a>procs_priv表</h4><p>procs_priv表可以对存储过程和存储函数进行权限设置。<br>|列|说明|<br>| —- | —- |<br>|Host|主机名|<br>|Db|数据库名|<br>|User|用户名|<br>|Routine_name|存储过程或函数名称|<br>|Routine_type|类型(取值有：FUNCTION或PROCEDURE)|<br>|Proc_priv|拥有的权限(Execute：执行；Alter Routine：修改；Grant：权限赋予)|<br>|Timestamp|字段存储更新的时间|<br>|Grantor|字段设置者|</p>
+<h2 id="账户管理"><a href="#账户管理" class="headerlink" title="账户管理"></a>账户管理</h2><p>　　账户管理是MySQL用户管理最基本的内容。包括登录，退出MySQL服务器、创建用户、删除用户、密码管理和权限管理等内容。</p>
+<h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@&gt; mysql -h localhost -u root -p</span><br><span class="line">/*</span><br><span class="line">-h:IP地址；本地登录可以省略</span><br><span class="line">-u:用户名；</span><br><span class="line">-p:密码</span><br><span class="line">database:数据库名（可以省略，如果有，跟在-p后面）；</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<h3 id="新建普通用户"><a href="#新建普通用户" class="headerlink" title="新建普通用户"></a>新建普通用户</h3><blockquote>
+<p>在MySQL数据库中，建立用户有3种方式：<br>使用CREATE USER语句来创建新的用户；<br>直接在mysql.user表中INSERT用户；<br>使用GRANT语句来新建用户；</p>
+</blockquote>
+<ol>
+<li><p>CREATE USER</p>
+<p> 使用CREATE USER语句创建用户，必须要拥有CREATE USER权限。其格式如下：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER user[IDENTIFIED BY [PASSWORD] &apos;password&apos;],</span><br><span class="line">[user[IDENTIFIED BY [PASSWORD] &apos;password&apos;]]...</span><br><span class="line"></span><br><span class="line">user：参数表示新建用户的账户，user由用户名(User)和主机名(Host)构成；</span><br><span class="line">IDENTIFIED BY：关键字用来设置用户的密码；</span><br><span class="line">password：参数表示用户的密码；如果密码是一个普通的字符串，就不需要使用PASSWORD关键字。可以没有初始密码</span><br></pre></td></tr></table></figure>
+<p> 示例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE USER &apos;admin&apos;@&apos;%&apos; IDENTIFIED BY &apos;admin&apos;;</span><br><span class="line">//执行之后user表会增加一行记录，但权限暂时全部为‘N’。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用INSERT语句新建普通用户</p>
+<p> 可以使用INSERT语句直接将用户的信息添加到mysql.user表。但必须拥有mysql.user表的INSERT权限。<br> 另外，ssl_cipher、x509_issuer、x509_subject没有值，必须要设置值，否则INSERT语句无法执行。<br> 示例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO mysql.user(Host,User,Password,ssl_cipher,x509_issuer,x509_subject) VALUES(&apos;%&apos;,&apos;newuser1&apos;,PASSWORD(&apos;123456&apos;),&apos;&apos;,&apos;&apos;,&apos;&apos;);</span><br><span class="line">//使用户生效</span><br><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用GRANT语句来新建普通用户<br> 用GRANT来创建新的用户时，能够在创建用户时为用户授权。但需要拥有GRANT权限。<br> 语法如下：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GRANT priv_type ON database.table</span><br><span class="line">TO user[IDENTIFIED BY [PASSWORD] &apos;password&apos;]</span><br><span class="line">[,user [IDENTIFIED BY [PASSWORD] &apos;password&apos;]...]</span><br><span class="line"></span><br><span class="line">priv_type：参数表示新用户的权限；</span><br><span class="line">databse.table：参数表示新用户的权限范围；</span><br><span class="line">user：参数新用户的账户，由用户名和主机构成；</span><br><span class="line">IDENTIFIED BY：关键字用来设置密码；</span><br><span class="line">password：新用户密码；</span><br></pre></td></tr></table></figure>
+<p> GRANT语句可以同时创建多个用户。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; GRANT SELECT ON *.* TO netUser@&apos;%&apos; Identified by &quot;password&quot;;</span><br><span class="line">//*.*与db.*的区别在于。*.*对所有数据库生效，所以user表的SELECT会变为Y。而db.*user表为&apos;N&apos;，更改的是Db表。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="删除普通用户"><a href="#删除普通用户" class="headerlink" title="删除普通用户"></a>删除普通用户</h3><ol>
+<li><p>DROP USER语句删除普通用户<br> 需要拥有DROP USER权限。语法如下：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DROP USER user[,user]...</span><br><span class="line">user是需要删除的用户，由用户名(User)和主机名(Host)构成。</span><br></pre></td></tr></table></figure>
+<p> 示例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; DROP USER &apos;newuser1&apos;@&apos;%&apos;;</span><br><span class="line">&gt; FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DELETE语句删除普通用户<br> 可以使用DELETE语句直接将用户的信息从mysql.user表中删除。但必须拥有对mysql.user表的DELETE权限。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM mysql.user WHERE Host = &apos;%&apos; AND User = &apos;admin&apos;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><ol>
+<li><p>使用mysqladmin命令来修改root用户的密码<br> 语法：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@&gt; mysqladmin -uroot -p password &quot;new_password&quot;</span><br></pre></td></tr></table></figure>
+<p> 示例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@&gt; mysqladmin -uroot -p password &quot;123456&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改user表<br> UPDATE user表的passwor字段的值，也可以达到修改密码的目的；</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; UPDATE user SET Password = PASSWORD(&apos;123&apos;) WHERE USER = &apos;myuser&apos;</span><br><span class="line">&gt; FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用SET语句来修改密码<br>　　使用root用户登录到MySQL服务器后，可以使用SET语句来修改密码：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//修改自己的密码，不需要用户名:</span><br><span class="line">mysql&gt; SET PASSWORD = PASSWORD(&quot;123&quot;);</span><br><span class="line">//修改其他用户密码：</span><br><span class="line">mysql&gt; SET PASSWORD FOR &apos;myuser&apos;@&apos;%&apos;=PASSWORD(&quot;123456&quot;) FOR 用户名@主机名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>GRANT语句来修改普通用户的密码<br> 使用GRANT语句修改普通用户的密码，必须拥有GRANT权限。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT priv_type ON database.table TO user [IDENTIFIED BY [PASSWORD] &apos;password&apos;]</span><br></pre></td></tr></table></figure>
+<p> 示例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; GRANT SELECT ON *.* TO &apos;test3&apos;@&apos;%&apos; IDENTIFIED BY &apos;123&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="忘记密码的解决方案"><a href="#忘记密码的解决方案" class="headerlink" title="忘记密码的解决方案"></a>忘记密码的解决方案</h3><p>如果root用户密码丢失了，会给用户造成很大的麻烦。但是，可以通过某种特殊方法登录到root用户下，然后修改密码。<br>首先，使用–skip-grant-tables选项启动MySQL服务，该选项将使MySQL服务器停止权限判断，任何用户都能够访问数据库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//mysqld命令：</span><br><span class="line">@&gt; mysqld --skip-grant-tables</span><br><span class="line">//mysqld-nt命令：</span><br><span class="line">@&gt; mysqld-nt --skip-grant-tables</span><br></pre></td></tr></table></figure></p>
+<p>其次，登录root用户，并且设置新密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@&gt; mysql -u root</span><br></pre></td></tr></table></figure></p>
+<p>必须使用UPDATE语句更新mysql数据库下的user表，而不能使用SET语句，因为–skip-grant-tables不能使用SET语句。<br>修改完密码以后，FLUSH PRIVILEGES语句加载权限表，使新密码生效。</p>
+<h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><h3 id="使用GRANT授权"><a href="#使用GRANT授权" class="headerlink" title="使用GRANT授权"></a>使用GRANT授权</h3><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">GRANT priv_type [(column_list)] ON database.table</span><br><span class="line">TO user [IDENTIFIED BY [PASSWORD] &apos;password&apos;]</span><br><span class="line">[,user [IDENTIFIED BY [PASSWORD] &apos;password&apos;]]...</span><br><span class="line">WITH with_option[with_option]</span><br><span class="line"></span><br><span class="line">priv_type：参数表示权限类型；</span><br><span class="line">column_list：参数表示权限作用于哪些列上，没设置则位于整个表上；</span><br><span class="line">database.table：表示权限作用于那个数据库上，*.* 所有数据库，tb_1.* 指定tb_1数据库</span><br><span class="line">user：参数由用户名和主机名构成；形式是&quot;&apos;username&apos;@&apos;hostname&apos;&quot;；</span><br><span class="line">IDENTIFIED BY：参数用于为用户设置密码；</span><br><span class="line">password：用户新密码；</span><br><span class="line">WITH关键字后面带有一个或多个with_option参数。有5个选项：</span><br><span class="line">    GRANT OPTION：被授权的用户可以将这些权限赋予给别的用户；</span><br><span class="line">    MAX_QUERIES_PER_HOUR count：设置没消失可以允许执行count次查询；</span><br><span class="line">    MAX_UPDATES_PER_HOUR count：设置每个消失可以允许执行count次更新；</span><br><span class="line">    MAX_CONNECTIONS_PER_HOUR count：设置每小时可以建立count个连接；</span><br><span class="line">    MAX_USER_CONNECTIONS count：设置单个用户可以同时具有的count个连接数；</span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; GRANT SELECT,UPDATE ON *.* TO &apos;myuser&apos;@&apos;%&apos; WITH GRANT OPTION;</span><br></pre></td></tr></table></figure></p>
+<h3 id="收回权限"><a href="#收回权限" class="headerlink" title="收回权限"></a>收回权限</h3><p>收回权限，就是取消某个用户的某些权限。MySQL中使用REVOKE关键字来为用户设置权限。<br>语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">REVOKE priv_type[(column_list)]</span><br><span class="line">ON database.table</span><br><span class="line">FROM user[,user]</span><br></pre></td></tr></table></figure></p>
+<p>收回全部权限的REVOKE语句的基本语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REVOKE ALL PRIVILEGES,GRANT OPTION FROM user[,user]...</span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//回收用户myuser的SELECT权限</span><br><span class="line">mysql&gt; REVOKE SELECT ON *.*FROM &apos;myuser&apos;@&apos;%&apos;;</span><br><span class="line">//收回myuser的所有权限：</span><br><span class="line">mysql&gt; REVOKE ALL PRIVILEGES,GRANT OPTION FROM &apos;myuser&apos;@&apos;%&apos;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="查看权限"><a href="#查看权限" class="headerlink" title="查看权限"></a>查看权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//查看所有用户的基本权限</span><br><span class="line">mysql&gt; SELECT * FROM mysql.user;</span><br><span class="line">//查看当前用户权限</span><br><span class="line">mysql&gt; SHOW GRANTS;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySql/" rel="tag"># MySql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/15/MySql函数详解/" rel="next" title="Mysql函数详解">
+                <i class="fa fa-chevron-left"></i> Mysql函数详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/03/MySql操作之表篇/" rel="prev" title="Mysql操作之表篇">
+                Mysql操作之表篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpeg"
+                alt="Peter" />
+            
+              <p class="site-author-name" itemprop="name">Peter</p>
+              <p class="site-description motion-element" itemprop="description">心存敬畏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/peterguo3019" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#权限表"><span class="nav-number">1.</span> <span class="nav-text">权限表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#User表"><span class="nav-number">1.1.</span> <span class="nav-text">User表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户列"><span class="nav-number">1.1.1.</span> <span class="nav-text">用户列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#权限列"><span class="nav-number">1.1.2.</span> <span class="nav-text">权限列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全列"><span class="nav-number">1.1.3.</span> <span class="nav-text">安全列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#资源控制列"><span class="nav-number">1.1.4.</span> <span class="nav-text">资源控制列</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#db表"><span class="nav-number">1.2.</span> <span class="nav-text">db表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户列-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">用户列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#权限列-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">权限列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tables-priv表和columns-priv表"><span class="nav-number">1.2.3.</span> <span class="nav-text">tables_priv表和columns_priv表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#procs-priv表"><span class="nav-number">1.2.4.</span> <span class="nav-text">procs_priv表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#账户管理"><span class="nav-number">2.</span> <span class="nav-text">账户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录"><span class="nav-number">2.1.</span> <span class="nav-text">登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建普通用户"><span class="nav-number">2.2.</span> <span class="nav-text">新建普通用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除普通用户"><span class="nav-number">2.3.</span> <span class="nav-text">删除普通用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改密码"><span class="nav-number">2.4.</span> <span class="nav-text">修改密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#忘记密码的解决方案"><span class="nav-number">2.5.</span> <span class="nav-text">忘记密码的解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限管理"><span class="nav-number">3.</span> <span class="nav-text">权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用GRANT授权"><span class="nav-number">3.1.</span> <span class="nav-text">使用GRANT授权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#收回权限"><span class="nav-number">3.2.</span> <span class="nav-text">收回权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看权限"><span class="nav-number">3.3.</span> <span class="nav-text">查看权限</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peter</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

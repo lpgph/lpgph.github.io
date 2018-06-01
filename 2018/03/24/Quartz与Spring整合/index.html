@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="以下基本是在配置中遇到或考虑到的问题  末尾附代码 做之前先考虑好Quartz的Job,JobGroud,Trigger,TriggerGroup之间的关系  Job与Trigger之间是一对多的关系Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的">
+<meta name="keywords" content="Quartz,Spring,Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="quartz与spring整合">
+<meta property="og:url" content="http://peterguo3019.github.io/2018/03/24/Quartz与Spring整合/index.html">
+<meta property="og:site_name" content="从前有只小叽叽">
+<meta property="og:description" content="以下基本是在配置中遇到或考虑到的问题  末尾附代码 做之前先考虑好Quartz的Job,JobGroud,Trigger,TriggerGroup之间的关系  Job与Trigger之间是一对多的关系Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-01T09:03:58.773Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="quartz与spring整合">
+<meta name="twitter:description" content="以下基本是在配置中遇到或考虑到的问题  末尾附代码 做之前先考虑好Quartz的Job,JobGroud,Trigger,TriggerGroup之间的关系  Job与Trigger之间是一对多的关系Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的">
+
+
+
+
+
+
+  <link rel="canonical" href="http://peterguo3019.github.io/2018/03/24/Quartz与Spring整合/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>quartz与spring整合 | 从前有只小叽叽</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">从前有只小叽叽</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Peter's Blog</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://peterguo3019.github.io/2018/03/24/Quartz与Spring整合/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="心存敬畏">
+      <meta itemprop="image" content="/images/head.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="从前有只小叽叽">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">quartz与spring整合
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-24 19:01:56" itemprop="dateCreated datePublished" datetime="2018-03-24T19:01:56+08:00">2018-03-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-01 17:03:58" itemprop="dateModified" datetime="2018-06-01T17:03:58+08:00">2018-06-01</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>以下基本是在配置中遇到或考虑到的问题  末尾附代码</p>
+<p><strong>做之前先考虑好Quartz的Job,JobGroud,Trigger,TriggerGroup之间的关系</strong></p>
+<blockquote>
+<p>Job与Trigger之间是一对多的关系<br>Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="执行任务无法注入Service接口"><a href="#执行任务无法注入Service接口" class="headerlink" title="执行任务无法注入Service接口"></a>执行任务无法注入Service接口</h2><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一:"></a>方式一:</h3><p>通过Spring的ClassPathXmlApplicationContext获取配置文件来得到bean<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> Object <span class="title">getBean</span><span class="params">(String beanName)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring.xml"</span>, <span class="string">"spring-mybatis.xml"</span>).getBean(beanName);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>调用:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// testService必须在bean中扫描有</span></span><br><span class="line">TestService testService = <span class="keyword">this</span>.getBean(<span class="string">"testService"</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二:"></a>方式二:</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.quartz.spi.TriggerFiredBundle;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.config.AutowireCapableBeanFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.quartz.SpringBeanJobFactory;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 解决Spring quartz Job不能依赖注入 &lt;br/&gt;</span></span><br><span class="line"><span class="comment"> * Create Date: 3/20/18 10:09 PM &lt;br/&gt;</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Peter Guo</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> 0.1</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomJobFactory</span> <span class="keyword">extends</span> <span class="title">SpringBeanJobFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * slf4j日志记录</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(<span class="keyword">this</span>.getClass());</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AutowireCapableBeanFactory capableBeanFactory;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 覆盖super的createJobInstance方法，对其创建出来的类再进行autowire。</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> bundle</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">createJobInstance</span><span class="params">(TriggerFiredBundle bundle)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//调用父类的方法</span></span><br><span class="line">        Object jobInstance = <span class="keyword">super</span>.createJobInstance(bundle);</span><br><span class="line">        logger.debug(<span class="string">"SpringBeanJobFactory 开始注入=============================================="</span>);</span><br><span class="line">        <span class="comment">//进行注入</span></span><br><span class="line">        capableBeanFactory.autowireBean(jobInstance);</span><br><span class="line">        <span class="keyword">return</span> jobInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在XML中配置,执行任务中直接调用注解即可<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"scheduler"</span> <span class="attr">class</span>=<span class="string">"org.springframework.scheduling.quartz.SchedulerFactoryBean"</span> <span class="attr">lazy-init</span>=<span class="string">"false"</span> <span class="attr">autowire</span>=<span class="string">"no"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jobFactory"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 在job定时任务中调用service注解无效解决方案 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.refill.base.job.CustomJobFactory"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Quartz如何交给Spring托管"><a href="#Quartz如何交给Spring托管" class="headerlink" title="Quartz如何交给Spring托管"></a>Quartz如何交给Spring托管</h2><h3 id="Quartz的配置"><a href="#Quartz的配置" class="headerlink" title="Quartz的配置"></a>Quartz的配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">##配置见：http://www.quartz-scheduler.org/documentation/quartz-2.2.x/configuration/ConfigJDBCJobStoreClustering.html</span><br><span class="line">#============================================================================</span><br><span class="line"># Configure Main Scheduler Properties</span><br><span class="line">#============================================================================</span><br><span class="line">#可为任何值,用在jdbc jobstrore中来唯一标识实例，但是在所有集群中必须相同</span><br><span class="line">org.quartz.scheduler.instanceName=scheduler</span><br><span class="line">#AUTO即可，基于主机名和时间戳来产生实例ID</span><br><span class="line">#集群中的每一个实例都必须有一个唯一的&quot;instance id&quot;,应该有相同的&quot;scheduler instance name&quot;</span><br><span class="line">org.quartz.scheduler.instanceId=AUTO</span><br><span class="line">#禁用quartz软件更新</span><br><span class="line">org.quartz.scheduler.skipUpdateCheck:true</span><br><span class="line">#============================================================================</span><br><span class="line"># Configure ThreadPool 执行任务线程池配置</span><br><span class="line">#============================================================================</span><br><span class="line">#线程池类型，执行任务的线程</span><br><span class="line">org.quartz.threadPool.class=org.quartz.simpl.SimpleThreadPool</span><br><span class="line"># 指定多少个线程被创建用来处理 Job</span><br><span class="line">org.quartz.threadPool.threadCount=25</span><br><span class="line">#设置工作者线程的优先级（最大值10，最小值1，常用值5）</span><br><span class="line">org.quartz.threadPool.threadPriority=5</span><br><span class="line"># 加载任务代码的ClassLoader是否从外部继承</span><br><span class="line">org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread:true</span><br><span class="line">#============================================================================</span><br><span class="line"># Configure JobStore  任务存储方式</span><br><span class="line">#============================================================================</span><br><span class="line">org.quartz.jobStore.misfireThreshold=60000</span><br><span class="line"># 默认配置，数据保存到内存(调度程序信息是存储在被分配给JVM的内存里面，运行速度快)</span><br><span class="line">#org.quartz.jobStore.class = org.quartz.simpl.RAMJobStore</span><br><span class="line">#可以设置两种属性，存储在内存的RAMJobStore和存储在数据库的JobStoreSupport</span><br><span class="line">#(包括JobStoreTX和JobStoreCMT两种实现JobStoreCMT是依赖于容器来进行事务的管理，而JobStoreTX是自己管理事务)</span><br><span class="line">#这里的属性为 JobStoreTX，将任务持久化到数据中。</span><br><span class="line">#因为集群中节点依赖于数据库来传播 Scheduler 实例的状态，你只能在使用 JDBC JobStore 时应用Quartz 集群。</span><br><span class="line">#这意味着你必须使用 JobStoreTX 或是 JobStoreCMT 作为 Job 存储；你不能在集群中使用 RAMJobStore。</span><br><span class="line">#org.quartz.jobStore.class=org.quartz.impl.jdbcjobstore.JobStoreTX</span><br><span class="line">org.quartz.jobStore.class=org.springframework.scheduling.quartz.LocalDataSourceJobStore</span><br><span class="line"># 使用一个驱动代理来操作 trigger 和 job 的数据存储</span><br><span class="line">org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.StdJDBCDelegate</span><br><span class="line">#若要设置为true，则将JobDataMaps中的值当作string</span><br><span class="line">org.quartz.jobStore.useProperties=true</span><br><span class="line"># 数据库类型  与spring 结合不需要</span><br><span class="line">#org.quartz.jobStore.dataSource=myDS</span><br><span class="line">#数据库中quartz表的表名前缀   与spring 结合不需要</span><br><span class="line">#org.quartz.jobStore.tablePrefix=QRTZ_</span><br><span class="line">#告诉了Scheduler实例要它参与到一个集群当中。这一属性会贯穿于调度框架的始终，用于修改集群环境中操作的默认行为。</span><br><span class="line">org.quartz.jobStore.isClustered=true</span><br><span class="line">#属性定义了Scheduler实例检入到数据库中的频率(单位：毫秒)。默认值是 15000 (即15 秒)。</span><br><span class="line">org.quartz.jobStore.clusterCheckinInterval=20000</span><br><span class="line">#这是 JobStore 能处理的错过触发的 Trigger 的最大数量。</span><br><span class="line">#处理太多(超过两打) 很快会导致数据库表被锁定够长的时间，这样就妨碍了触发别的(还未错过触发) trigger 执行的性能。</span><br><span class="line">org.quartz.jobStore.maxMisfiresToHandleAtATime = 1</span><br><span class="line">org.quartz.jobStore.txIsolationLevelSerializable = false</span><br><span class="line"></span><br><span class="line">#============================================================================</span><br><span class="line"># Configure Datasources 数据源配置，与spring结合不需要这个配置</span><br><span class="line">#============================================================================</span><br><span class="line">#org.quartz.dataSource.myDS.connectionProvider.class:com.refill.base.job.DruidConnectionProvider</span><br><span class="line">#org.quartz.dataSource.myDS.driver=org.mariadb.jdbc.Driver</span><br><span class="line">#org.quartz.dataSource.myDS.URL=jdbc:mariadb://localhost:3306/refill_quartz?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</span><br><span class="line">#org.quartz.dataSource.myDS.user=root</span><br><span class="line">#org.quartz.dataSource.myDS.password=guoph</span><br><span class="line">#org.quartz.dataSource.myDS.maxConnections=20</span><br><span class="line">#org.quartz.dataSource.myDS.validationQuery=select 0 from dual</span><br><span class="line"></span><br><span class="line">#============================================================================</span><br><span class="line"># Configure Plugins</span><br><span class="line">#============================================================================</span><br><span class="line">#当事件的JVM终止后，在调度器上也将此事件终止</span><br><span class="line">#the shutdown-hook plugin catches the event of the JVM terminating, and calls shutdown on the scheduler.</span><br><span class="line">org.quartz.plugin.shutdownHook.class: org.quartz.plugins.management.ShutdownHookPlugin</span><br><span class="line">org.quartz.plugin.shutdownHook.cleanShutdown: true</span><br><span class="line">#记录trigger历史的日志插件</span><br><span class="line">#org.quartz.plugin.triggHistory.class: org.quartz.plugins.history.LoggingJobHistoryPlugin</span><br></pre></td></tr></table></figure>
+<p>其实有用的只有这些:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">org.quartz.scheduler.instanceName=scheduler</span><br><span class="line">org.quartz.scheduler.instanceId=AUTO</span><br><span class="line">org.quartz.scheduler.skipUpdateCheck:true</span><br><span class="line"></span><br><span class="line">org.quartz.threadPool.class=org.quartz.simpl.SimpleThreadPool</span><br><span class="line">org.quartz.threadPool.threadCount=25</span><br><span class="line">org.quartz.threadPool.threadPriority=5</span><br><span class="line">org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread:true</span><br><span class="line"></span><br><span class="line">org.quartz.jobStore.misfireThreshold=60000</span><br><span class="line">org.quartz.jobStore.class=org.springframework.scheduling.quartz.LocalDataSourceJobStore</span><br><span class="line">org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.StdJDBCDelegate</span><br><span class="line">org.quartz.jobStore.useProperties=true</span><br><span class="line">org.quartz.jobStore.isClustered=true</span><br><span class="line">org.quartz.jobStore.clusterCheckinInterval=20000</span><br><span class="line">org.quartz.jobStore.maxMisfiresToHandleAtATime = 1</span><br><span class="line">org.quartz.jobStore.txIsolationLevelSerializable = false</span><br><span class="line"></span><br><span class="line">org.quartz.plugin.shutdownHook.class: org.quartz.plugins.management.ShutdownHookPlugin</span><br><span class="line">org.quartz.plugin.shutdownHook.cleanShutdown: true</span><br></pre></td></tr></table></figure></p>
+<h3 id="Spring配置"><a href="#Spring配置" class="headerlink" title="Spring配置"></a>Spring配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 定时任务配置 start --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"scheduler"</span> <span class="attr">class</span>=<span class="string">"org.springframework.scheduling.quartz.SchedulerFactoryBean"</span> <span class="attr">lazy-init</span>=<span class="string">"false"</span> <span class="attr">autowire</span>=<span class="string">"no"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 获取quartz配置文件 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"configLocation"</span> <span class="attr">value</span>=<span class="string">"classpath:spring-quartz.properties"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jobFactory"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 在job定时任务中调用service注解无效解决方案 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.refill.base.job.CustomJobFactory"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- scheduler的名称 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"schedulerName"</span> <span class="attr">value</span>=<span class="string">"scheduler"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--使用配置的数据源--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--使用spring的事务管理--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"transactionManager"</span> <span class="attr">ref</span>=<span class="string">"txManager"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--可选，QuartzScheduler 启动时更新己存在的Job，这样就不用每次修改targetObject后删除qrtz_job_details表对应记录了--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"overwriteExistingJobs"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 必须的，QuartzScheduler 延时启动，应用启动完后 QuartzScheduler 再启动  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"startupDelay"</span> <span class="attr">value</span>=<span class="string">"5"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 设置自动启动  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"autoStartup"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 把spring上下 文以key/value的方式存放在了quartz的上下文中了 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"applicationContextSchedulerContextKey"</span> <span class="attr">value</span>=<span class="string">"applicationContextKey"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意！！！！！！</strong><br>在类中一定要使用这个scheduler,否则无法托付给Spring管理</p>
+<p>方式一:<br>在可以扫描到的类中,如在Service接口的实现类中直接添加Scheduler就可以了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> Scheduler scheduler;</span><br></pre></td></tr></table></figure></p>
+<p>方式二:<br>如果是在Spring中扫描不到的类中,那么在Spring添加bean进行引入即可<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置scheduler --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.refill.basic.bean.JobBeanUtil"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"scheduler"</span> <span class="attr">ref</span>=<span class="string">"scheduler"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JobBeanUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    @Autowired</span></span><br><span class="line"><span class="comment">//    private Scheduler scheduler;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//静态</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Scheduler scheduler;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setScheduler</span><span class="params">(Scheduler scheduler)</span> </span>&#123;</span><br><span class="line">        JobBeanUtil.scheduler = scheduler;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="如何对Quartz进行管理"><a href="#如何对Quartz进行管理" class="headerlink" title="如何对Quartz进行管理"></a>如何对Quartz进行管理</h2><p>主要有中考虑,如果公司中使用的定时器数量较少,且短时间内不会有很多定时器任务的考虑,可以使用第一种,如果长远考虑,方便后期的管理和维护</p>
+<h3 id="短期"><a href="#短期" class="headerlink" title="短期"></a>短期</h3><p>直接对quartz的表进行操作,可以进行基本的添删改查,但是,仅适用于定时器任务不复杂的情况,该方法会将所有的任务一次性全部查询出来<br>仅需要添加job名和执行类名,一级cron表达式,jobGroup和triggerGroup采取默认,triggerName使用jobName.<br>大约只需要3个类文件,一张bean做实体,一张工具类做与bean相关的方法(也可放到Service层),一个Controller提供给页面</p>
+<p>GitHub <a href="https://github.com/peterguo3019/java.git" target="_blank" rel="noopener">quartz1</a> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取所有任务</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> list</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> SchedulerException</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;JobBean&gt; <span class="title">getAllJobs</span><span class="params">()</span> <span class="keyword">throws</span> SchedulerException </span>&#123;</span><br><span class="line">    GroupMatcher&lt;JobKey&gt; matcher = GroupMatcher.anyJobGroup();</span><br><span class="line">    Set&lt;JobKey&gt; jobKeys = scheduler.getJobKeys(matcher);</span><br><span class="line">    List&lt;JobBean&gt; jobList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="comment">//一个任务可以有多个触发器</span></span><br><span class="line">    <span class="keyword">for</span> (JobKey jobKey : jobKeys) &#123;</span><br><span class="line">        List&lt;? extends Trigger&gt; triggers = scheduler.getTriggersOfJob(jobKey);</span><br><span class="line">        <span class="keyword">for</span> (Trigger trigger : triggers) &#123;</span><br><span class="line">            jobList.add(getJobBean( jobKey, trigger.getKey()));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> jobList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="长远"><a href="#长远" class="headerlink" title="长远"></a>长远</h3><p>适用于定时任务复杂,数量较多.  如实现卖家自定义商品限时抢购,定义限时限价等等,这就意味这对jobGroup,trigger进行更多的使用,所以这里的思路是在数据库中建立三张表,一张job,一张trigger,一张group,方便后期拓展,如控制到用户,对job添加多个trigger.</p>
+<h2 id="将Quartz持久到数据库时-Spring无法管理Quartz事务"><a href="#将Quartz持久到数据库时-Spring无法管理Quartz事务" class="headerlink" title="将Quartz持久到数据库时,Spring无法管理Quartz事务"></a>将Quartz持久到数据库时,Spring无法管理Quartz事务</h2><p>这里我到现在还不是很明白,因为我在Spring配置文件中SchedulerFactoryBean中已经将quartz托管给Spring了,但还是当我在service中一个方法内添加完quartz后再插入到另一张表报错时,quartz竟然没有回滚,后来没办法只能修改类的事务的传播行为为REQUIRES_NEW,  才可以正常回滚.</p>
+<p>###方案一<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* xml中spring的事务管理器</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Resource</span>(name = <span class="string">"txManager"</span>)</span><br><span class="line"><span class="keyword">private</span> DataSourceTransactionManager transactionManager;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 添加单个工作</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> jobEntity 调度实体</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> paramMap 在execute中获取到的参数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> ResultJsonBean</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResultJsonBean <span class="title">saveEntity</span><span class="params">(JobEntity jobEntity, Map&lt;String, Object&gt; paramMap)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (jobDao.getEntityByJobName(jobEntity.getJobName()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResultJsonBean(<span class="keyword">null</span>, <span class="keyword">false</span>, <span class="string">"任务名称已经存在,不要重复添加!!!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (jobDao.getEntityByTriggerName(jobEntity.getJobTriggerName()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResultJsonBean(<span class="keyword">null</span>, <span class="keyword">false</span>, <span class="string">"触发器名称已经存在,不要重复添加!!!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    DefaultTransactionDefinition def = <span class="keyword">new</span> DefaultTransactionDefinition();</span><br><span class="line">    def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW); <span class="comment">// 事物隔离级别，开启新事务，这样会比较安全些。</span></span><br><span class="line">    TransactionStatus status = transactionManager.getTransaction(def); <span class="comment">// 获得事务状态</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        jobEntity.setJobTriggerStatus(JobTriggerStatusEnum.OPEN.toInt());</span><br><span class="line">        QuartzUtil.addJob(scheduler, jobEntity, paramMap);</span><br><span class="line">        jobDao.saveEntity(jobEntity);</span><br><span class="line">        transactionManager.commit(status);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResultJsonBean(<span class="keyword">null</span>, jobEntity, <span class="keyword">true</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        QuartzUtil.shutdownJobs(scheduler);</span><br><span class="line">        transactionManager.rollback(status);</span><br><span class="line">        QuartzUtil.startJobs(scheduler);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResultJsonBean(<span class="keyword">null</span>, <span class="keyword">false</span>, <span class="string">"添加计划任务失败,程序异常,请连续管理员!!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###方案二<br>使用Spring事务注解<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 添加单个工作</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> jobEntity 调度实体</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> paramMap 在execute中获取到的参数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> ResultJsonBean</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="meta">@Transactional</span>(value = <span class="string">"txManager"</span>,propagation =Propagation.REQUIRES_NEW)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ResultJsonBean <span class="title">saveEntity</span><span class="params">(JobEntity jobEntity, Map&lt;String, Object&gt; paramMap)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (jobDao.getEntityByJobName(jobEntity.getJobName()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResultJsonBean(<span class="keyword">null</span>, <span class="keyword">false</span>, <span class="string">"任务名称已经存在,不要重复添加!!!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (jobDao.getEntityByTriggerName(jobEntity.getJobTriggerName()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResultJsonBean(<span class="keyword">null</span>, <span class="keyword">false</span>, <span class="string">"触发器名称已经存在,不要重复添加!!!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    QuartzUtil.addJob(scheduler, jobEntity, paramMap);</span><br><span class="line">    jobEntity.setJobTriggerStatus(JobTriggerStatusEnum.OPEN.toInt());</span><br><span class="line">    jobDao.saveEntity(jobEntity);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ResultJsonBean(<span class="keyword">null</span>, jobEntity, <span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Quartz/" rel="tag"># Quartz</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/05/MySql之存储过程,函数,触发器,视图/" rel="next" title="Mysql之存储过程,函数,触发器,视图">
+                <i class="fa fa-chevron-left"></i> Mysql之存储过程,函数,触发器,视图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/01/设计模式六大原则/" rel="prev" title="设计模式六大原则">
+                设计模式六大原则 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpeg"
+                alt="Peter" />
+            
+              <p class="site-author-name" itemprop="name">Peter</p>
+              <p class="site-description motion-element" itemprop="description">心存敬畏</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/peterguo3019" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行任务无法注入Service接口"><span class="nav-number">1.</span> <span class="nav-text">执行任务无法注入Service接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方式一"><span class="nav-number">1.1.</span> <span class="nav-text">方式一:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式二"><span class="nav-number">1.2.</span> <span class="nav-text">方式二:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quartz如何交给Spring托管"><span class="nav-number">2.</span> <span class="nav-text">Quartz如何交给Spring托管</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Quartz的配置"><span class="nav-number">2.1.</span> <span class="nav-text">Quartz的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring配置"><span class="nav-number">2.2.</span> <span class="nav-text">Spring配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何对Quartz进行管理"><span class="nav-number">3.</span> <span class="nav-text">如何对Quartz进行管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#短期"><span class="nav-number">3.1.</span> <span class="nav-text">短期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长远"><span class="nav-number">3.2.</span> <span class="nav-text">长远</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将Quartz持久到数据库时-Spring无法管理Quartz事务"><span class="nav-number">4.</span> <span class="nav-text">将Quartz持久到数据库时,Spring无法管理Quartz事务</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peter</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
