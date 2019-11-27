@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MySql on Dreamcatcher</title>
+    <link>/tags/mysql/</link>
+    <description>Recent content in MySql on Dreamcatcher</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Mar 2018 11:09:02 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MySql之存储过程,函数,触发器,视图</title>
+      <link>/post/mysql_procedure_function_trigger_view/</link>
+      <pubDate>Mon, 05 Mar 2018 11:09:02 +0000</pubDate>
+      
+      <guid>/post/mysql_procedure_function_trigger_view/</guid>
+      <description>&lt;h2 id=&#34;运算&#34;&gt;运算&lt;/h2&gt;
+
+&lt;h3 id=&#34;定义变量&#34;&gt;定义变量&lt;/h3&gt;
+
+&lt;p&gt;使用DECLARE来声明，DEFAULT赋默认值，SET赋值&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-mysql&#34;&gt;DECLARE counter INT DEFAULT 0;   
+SET counter = counter+1;  
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySql操作之表篇</title>
+      <link>/post/mysql_table/</link>
+      <pubDate>Sat, 03 Mar 2018 13:37:02 +0000</pubDate>
+      
+      <guid>/post/mysql_table/</guid>
+      <description>&lt;p&gt;一些基本的操作&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySql操作之用户篇</title>
+      <link>/post/mysql_users/</link>
+      <pubDate>Sun, 16 Apr 2017 10:59:34 +0000</pubDate>
+      
+      <guid>/post/mysql_users/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;MySQL分为普通用户与root用户。这两种用户的权限不一样。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySql函数详解</title>
+      <link>/post/mysql_function/</link>
+      <pubDate>Sat, 15 Apr 2017 23:21:33 +0000</pubDate>
+      
+      <guid>/post/mysql_function/</guid>
+      <description>&lt;p&gt;MySQL数据库提供了很多函数包括：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;数学函数；&lt;/li&gt;
+&lt;li&gt;字符串函数；&lt;/li&gt;
+&lt;li&gt;日期和时间函数；&lt;/li&gt;
+&lt;li&gt;条件判断函数；&lt;/li&gt;
+&lt;li&gt;系统信息函数；&lt;/li&gt;
+&lt;li&gt;加密函数；&lt;/li&gt;
+&lt;li&gt;格式化函数；&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySql之Join语法解析与性能分析</title>
+      <link>/post/mysql_join/</link>
+      <pubDate>Fri, 14 Apr 2017 19:37:11 +0000</pubDate>
+      
+      <guid>/post/mysql_join/</guid>
+      <description>&lt;h2 id=&#34;join语法概述&#34;&gt;JOIN语法概述&lt;/h2&gt;
+
+&lt;p&gt;JOIN 用于多表中字段之间的联系，语法如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-mysql&#34;&gt;... FROM table1 INNER|LEFT|RIGHT JOIN table2 ON conditiona
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySql操作之数据库篇</title>
+      <link>/post/mysql_database/</link>
+      <pubDate>Thu, 13 Apr 2017 13:31:57 +0000</pubDate>
+      
+      <guid>/post/mysql_database/</guid>
+      <description>&lt;h2 id=&#34;创建&#34;&gt;创建&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-mysql&#34;&gt;mysql&amp;gt; create database &amp;lt;数据库名&amp;gt;;
+mysql&amp;gt; show databases;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

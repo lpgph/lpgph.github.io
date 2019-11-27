@@ -1,0 +1,1049 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <title>Quartz与Spring整合 - Dreamcatcher</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+  
+  <meta name="description" content="以下基本是在配置中遇到或考虑到的问题  末尾附代码
+
+做之前先考虑好Quartz的Job,JobGroud,Trigger,TriggerGroup之间的关系
+&gt; Job与Trigger之间是一对多的关系
+&gt; Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的">
+  
+  <meta itemprop="name" content="Quartz与Spring整合 - Dreamcatcher">
+  <meta itemprop="description" content="以下基本是在配置中遇到或考虑到的问题  末尾附代码
+
+做之前先考虑好Quartz的Job,JobGroud,Trigger,TriggerGroup之间的关系
+&gt; Job与Trigger之间是一对多的关系
+&gt; Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的">
+  
+  <meta itemprop="image" content="https://lpgph.github.io/img/author.jpg">
+
+  
+  
+  <meta name="twitter:description" content="曾梦想仗剑走天涯">
+  
+  
+  <link rel="shortcut icon" href="https://lpgph.github.io/img/favicon.ico"/>
+  <link rel="apple-touch-icon" href="https://lpgph.github.io/img/apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="https://lpgph.github.io/img/apple-touch-icon.png" />
+
+  
+  
+  <link rel="stylesheet" href="https://lpgph.github.io/font/hack/css/hack.min.css">
+  <link rel="stylesheet" href="https://lpgph.github.io/font/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://lpgph.github.io/font/playball/playball.css">
+
+  <link rel="stylesheet" href="https://lpgph.github.io/css/style.css">	
+
+  <script src="https://lpgph.github.io/plugin/live2d-widget/js/L2Dwidget.min.js"></script>
+  <script src="https://lpgph.github.io/js/spring-loaders.js"></script>
+  
+  
+  <link rel="stylesheet" href="https://lpgph.github.io/plugin/highlight/styles/github.css">
+  <script src="https://lpgph.github.io/plugin/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="https://lpgph.github.io/js/jquery-3.3.1.min.js"></script>
+  
+  <script type="text/javascript" src="/js/click_show_text.js"></script>
+  
+  <script src="https://lpgph.github.io/js/motto-show.js"></script>
+
+</head>
+<body>
+  <div id="home" class="app-home">
+    <div>
+      <button class="navbutton"  id="openaside" title="显示侧边栏">
+  <i class="fa fa-navicon"></i>  
+  <span id="nav-btn-title" style="padding-left: 10px;">MENU</span>
+</button>
+<div id="asidepart" class="asidepart">
+  <button class="close-button"  id="closeaside" title="隐藏侧边栏">
+    <i class="fa fa-close"></i>
+  </button>
+  <div class="aside-info">
+    <div class="blog-info">
+  
+  <div class="blog-avatar">
+    <a href="https://lpgph.github.io/">
+      <img src="https://lpgph.github.io/img/avatar.jpg" alt="lpgph" title="lpgph"/>
+    </a>
+  </div>
+  
+  <div class="blog-author-info">
+    <h1 class="blog-author"><a href="https://lpgph.github.io/" title="lpgph">lpgph</a></h1>
+    <h2 class="blog-motto" id="blog-motto"></h2>
+
+    <script>
+     
+      binft(document.getElementById('blog-motto'),["青青陵上柏，磊磊涧中石","人生天地间，忽如远行客","斗酒相娱乐，聊厚不为薄","驱车策驽马，游戏宛与洛","洛中何郁郁，冠带自相索","长衢罗夹巷，王侯多第宅","两宫遥相望，双阙百余尺","极宴娱心意，戚戚何所迫？"]);
+    
+    </script>
+  </div>
+  <nav class="animated">
+    <ul>
+      
+      <li><a href="/">主页</a></li>
+      
+      <li><a href="/post/">归档</a></li>
+      
+      <li><a href="/tags/">标签云</a></li>
+      
+      <li><a href="/categories/learn/">笔记</a></li>
+      
+      <li><a href="/categories/notes/">记录</a></li>
+      
+      <li><a href="/categories/booklist/">书单</a></li>
+      
+      <li><a href="/about/">关于我</a></li>
+      
+    </ul>
+    <h1 class="asidetitle">搜索</h1>
+    <form class="search" method="get" action="https://www.google.com/search">
+        <input type="text" id="search" name="q" placeholder="搜索">
+    </form>
+  </nav>
+</div>
+    
+
+<div class="categorieslist">
+  <h1 class="asidetitle">分类</h1>
+  <ul class="side-info-list">
+    
+    <li><a href="https://lpgph.github.io/categories/java" title="java">java<sup>(1)</sup></a></li>
+    
+    <li><a href="https://lpgph.github.io/categories/mysql" title="mysql">mysql<sup>(6)</sup></a></li>
+    
+    <li><a href="https://lpgph.github.io/categories/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" title="设计模式">设计模式<sup>(1)</sup></a></li>
+    
+  </ul>
+</div>
+
+
+
+    
+
+<div class="tagslist">
+	<h1 class="asidetitle">标签</h1>
+	<ul class="side-info-list">
+		
+		<li><a href="https://lpgph.github.io/tags/java" title="java">java<sup>(2)</sup></a></li>
+		
+		<li><a href="https://lpgph.github.io/tags/mysql" title="mysql">mysql<sup>(6)</sup></a></li>
+		
+		<li><a href="https://lpgph.github.io/tags/quartz" title="quartz">quartz<sup>(1)</sup></a></li>
+		
+		<li><a href="https://lpgph.github.io/tags/spring" title="spring">spring<sup>(1)</sup></a></li>
+		
+		<li><a href="https://lpgph.github.io/tags/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" title="设计模式">设计模式<sup>(1)</sup></a></li>
+		
+	</ul>
+</div>
+
+
+    
+
+  <div class="social-list">
+  	<h1 class="asidetitle">社交</h1>
+    <div class="social-info">
+      
+      
+      
+        <a href="https://github.com/lpgph" target="_blank" title="github"></a>
+      
+      
+      
+    </div>
+  </div>
+  
+
+  </div>
+</div>
+<div id="sideBar" class="app-menu"></div>
+    </div>
+    <header class="app-header article-header" id="app-header">
+      
+<div class="vertical">
+  <div class="inner">
+      <h1 itemprop="name" class="article-title">
+        <a href="https://lpgph.github.io/post/java_spring_quartz/" title="Quartz与Spring整合" itemprop="url">Quartz与Spring整合</a>
+      </h1>
+      <h2 class="article-info">
+        <p class="article-info-text">
+          Posted by
+          
+            <a href="http://localhost:1313/" title="lpgph">lpgph</a>
+          
+          on <time datetime="2018-03-24 19:01:56 &#43;0000 UTC" itemprop="datePublished">2018-03-24</time>
+        </p>
+
+        
+        
+          
+          <span class="article-tag  article-category-color">
+            <a href="https://lpgph.github.io/categories/java">Java</a>
+          </span>
+          
+        
+        
+
+        
+        
+          
+          <span class="article-tag  article-tag-color">
+            <a href="https://lpgph.github.io/tags/quartz">Quartz</a>
+          </span>
+          
+          <span class="article-tag  article-tag-color">
+            <a href="https://lpgph.github.io/tags/spring">Spring</a>
+          </span>
+          
+          <span class="article-tag  article-tag-color">
+            <a href="https://lpgph.github.io/tags/java">Java</a>
+          </span>
+          
+        
+        
+
+
+
+      </h2>
+  </div>
+</div>
+    </header>
+
+    <div id="container"  class="app container">
+      
+       <div id="main" class="post"> 
+
+        
+	<article class="article-content">
+    <p>以下基本是在配置中遇到或考虑到的问题  末尾附代码</p>
+
+<p><strong>做之前先考虑好Quartz的Job,JobGroud,Trigger,TriggerGroup之间的关系</strong>
+&gt; Job与Trigger之间是一对多的关系
+&gt; Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的</p>
+
+<h2 id="执行任务无法注入service接口">执行任务无法注入Service接口</h2>
+
+<h3 id="方式一">方式一:</h3>
+
+<p>通过Spring的ClassPathXmlApplicationContext获取配置文件来得到bean</p>
+
+<pre><code class="language-java">protected Object getBean(String beanName) {
+	return new ClassPathXmlApplicationContext(&quot;spring.xml&quot;, &quot;spring-mybatis.xml&quot;).getBean(beanName);
+}
+</code></pre>
+
+<p>调用:</p>
+
+<pre><code class="language-java">// testService必须在bean中扫描有
+TestService testService = this.getBean(&quot;testService&quot;);	
+</code></pre>
+
+<h3 id="方式二">方式二:</h3>
+
+<pre><code class="language-java">import org.quartz.spi.TriggerFiredBundle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
+import org.springframework.scheduling.quartz.SpringBeanJobFactory;
+
+/**
+ * 解决Spring quartz Job不能依赖注入 &lt;br/&gt;
+ * Create Date: 3/20/18 10:09 PM &lt;br/&gt;
+ * 
+ * @author Peter Guo
+ * @version 0.1
+ **/
+public class CustomJobFactory extends SpringBeanJobFactory {
+
+    /**
+     * slf4j日志记录
+     */
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private AutowireCapableBeanFactory capableBeanFactory;
+
+    /**
+     * 覆盖super的createJobInstance方法，对其创建出来的类再进行autowire。
+     * @param bundle
+     * @return
+     * @throws Exception
+     */
+    @Override
+    protected Object createJobInstance(TriggerFiredBundle bundle) throws Exception {
+        //调用父类的方法
+        Object jobInstance = super.createJobInstance(bundle);
+        logger.debug(&quot;SpringBeanJobFactory 开始注入==============================================&quot;);
+        //进行注入
+        capableBeanFactory.autowireBean(jobInstance);
+        return jobInstance;
+    }
+}
+</code></pre>
+
+<p>在XML中配置,执行任务中直接调用注解即可</p>
+
+<pre><code class="language-xml">&lt;bean id=&quot;scheduler&quot; class=&quot;org.springframework.scheduling.quartz.SchedulerFactoryBean&quot; lazy-init=&quot;false&quot; autowire=&quot;no&quot;&gt;
+    &lt;property name=&quot;jobFactory&quot;&gt;
+        &lt;!-- 在job定时任务中调用service注解无效解决方案 --&gt;
+        &lt;bean class=&quot;com.refill.base.job.CustomJobFactory&quot;/&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<h2 id="quartz如何交给spring托管">Quartz如何交给Spring托管</h2>
+
+<h3 id="quartz的配置">Quartz的配置</h3>
+
+<pre><code class="language-properties">##配置见：http://www.quartz-scheduler.org/documentation/quartz-2.2.x/configuration/ConfigJDBCJobStoreClustering.html
+#============================================================================
+# Configure Main Scheduler Properties
+#============================================================================
+#可为任何值,用在jdbc jobstrore中来唯一标识实例，但是在所有集群中必须相同
+org.quartz.scheduler.instanceName=scheduler
+#AUTO即可，基于主机名和时间戳来产生实例ID
+#集群中的每一个实例都必须有一个唯一的&quot;instance id&quot;,应该有相同的&quot;scheduler instance name&quot;
+org.quartz.scheduler.instanceId=AUTO
+#禁用quartz软件更新
+org.quartz.scheduler.skipUpdateCheck:true
+#============================================================================
+# Configure ThreadPool 执行任务线程池配置
+#============================================================================
+#线程池类型，执行任务的线程
+org.quartz.threadPool.class=org.quartz.simpl.SimpleThreadPool
+# 指定多少个线程被创建用来处理 Job
+org.quartz.threadPool.threadCount=25
+#设置工作者线程的优先级（最大值10，最小值1，常用值5）
+org.quartz.threadPool.threadPriority=5
+# 加载任务代码的ClassLoader是否从外部继承
+org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread:true
+#============================================================================
+# Configure JobStore  任务存储方式
+#============================================================================
+org.quartz.jobStore.misfireThreshold=60000
+# 默认配置，数据保存到内存(调度程序信息是存储在被分配给JVM的内存里面，运行速度快)
+#org.quartz.jobStore.class = org.quartz.simpl.RAMJobStore
+#可以设置两种属性，存储在内存的RAMJobStore和存储在数据库的JobStoreSupport
+#(包括JobStoreTX和JobStoreCMT两种实现JobStoreCMT是依赖于容器来进行事务的管理，而JobStoreTX是自己管理事务)
+#这里的属性为 JobStoreTX，将任务持久化到数据中。
+#因为集群中节点依赖于数据库来传播 Scheduler 实例的状态，你只能在使用 JDBC JobStore 时应用Quartz 集群。
+#这意味着你必须使用 JobStoreTX 或是 JobStoreCMT 作为 Job 存储；你不能在集群中使用 RAMJobStore。
+#org.quartz.jobStore.class=org.quartz.impl.jdbcjobstore.JobStoreTX
+org.quartz.jobStore.class=org.springframework.scheduling.quartz.LocalDataSourceJobStore
+# 使用一个驱动代理来操作 trigger 和 job 的数据存储
+org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+#若要设置为true，则将JobDataMaps中的值当作string
+org.quartz.jobStore.useProperties=true
+# 数据库类型  与spring 结合不需要
+#org.quartz.jobStore.dataSource=myDS
+#数据库中quartz表的表名前缀   与spring 结合不需要
+#org.quartz.jobStore.tablePrefix=QRTZ_
+#告诉了Scheduler实例要它参与到一个集群当中。这一属性会贯穿于调度框架的始终，用于修改集群环境中操作的默认行为。
+org.quartz.jobStore.isClustered=true
+#属性定义了Scheduler实例检入到数据库中的频率(单位：毫秒)。默认值是 15000 (即15 秒)。
+org.quartz.jobStore.clusterCheckinInterval=20000
+#这是 JobStore 能处理的错过触发的 Trigger 的最大数量。
+#处理太多(超过两打) 很快会导致数据库表被锁定够长的时间，这样就妨碍了触发别的(还未错过触发) trigger 执行的性能。
+org.quartz.jobStore.maxMisfiresToHandleAtATime = 1
+org.quartz.jobStore.txIsolationLevelSerializable = false
+
+#============================================================================
+# Configure Datasources 数据源配置，与spring结合不需要这个配置
+#============================================================================
+#org.quartz.dataSource.myDS.connectionProvider.class:com.refill.base.job.DruidConnectionProvider
+#org.quartz.dataSource.myDS.driver=org.mariadb.jdbc.Driver
+#org.quartz.dataSource.myDS.URL=jdbc:mariadb://localhost:3306/refill_quartz?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull
+#org.quartz.dataSource.myDS.user=root
+#org.quartz.dataSource.myDS.password=guoph
+#org.quartz.dataSource.myDS.maxConnections=20
+#org.quartz.dataSource.myDS.validationQuery=select 0 from dual
+
+#============================================================================
+# Configure Plugins
+#============================================================================
+#当事件的JVM终止后，在调度器上也将此事件终止
+#the shutdown-hook plugin catches the event of the JVM terminating, and calls shutdown on the scheduler.
+org.quartz.plugin.shutdownHook.class: org.quartz.plugins.management.ShutdownHookPlugin
+org.quartz.plugin.shutdownHook.cleanShutdown: true
+#记录trigger历史的日志插件
+#org.quartz.plugin.triggHistory.class: org.quartz.plugins.history.LoggingJobHistoryPlugin
+</code></pre>
+
+<h3 id="spring配置">Spring配置</h3>
+
+<pre><code class="language-xml">&lt;!-- 定时任务配置 start --&gt;
+&lt;bean id=&quot;scheduler&quot; class=&quot;org.springframework.scheduling.quartz.SchedulerFactoryBean&quot; lazy-init=&quot;false&quot; autowire=&quot;no&quot;&gt;
+    &lt;!-- 获取quartz配置文件 --&gt;
+    &lt;property name=&quot;configLocation&quot; value=&quot;classpath:spring-quartz.properties&quot; /&gt;
+    &lt;property name=&quot;jobFactory&quot;&gt;
+        &lt;!-- 在job定时任务中调用service注解无效解决方案 --&gt;
+        &lt;bean class=&quot;com.refill.base.job.CustomJobFactory&quot;/&gt;
+    &lt;/property&gt;
+    &lt;!-- scheduler的名称 --&gt;
+    &lt;property name=&quot;schedulerName&quot; value=&quot;scheduler&quot;/&gt;
+    &lt;!--使用配置的数据源--&gt;
+    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;
+    &lt;!--使用spring的事务管理--&gt;
+    &lt;property name=&quot;transactionManager&quot; ref=&quot;txManager&quot;/&gt;
+    &lt;!--可选，QuartzScheduler 启动时更新己存在的Job，这样就不用每次修改targetObject后删除qrtz_job_details表对应记录了--&gt;
+    &lt;property name=&quot;overwriteExistingJobs&quot; value=&quot;true&quot; /&gt;
+    &lt;!-- 必须的，QuartzScheduler 延时启动，应用启动完后 QuartzScheduler 再启动  --&gt;
+    &lt;property name=&quot;startupDelay&quot; value=&quot;5&quot; /&gt;
+    &lt;!-- 设置自动启动  --&gt;
+    &lt;property name=&quot;autoStartup&quot; value=&quot;true&quot; /&gt;
+    &lt;!-- 把spring上下 文以key/value的方式存放在了quartz的上下文中了 --&gt;
+    &lt;property name=&quot;applicationContextSchedulerContextKey&quot; value=&quot;applicationContextKey&quot; /&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p><strong>注意！！！！！！</strong>
+在类中一定要使用这个scheduler,否则无法托付给Spring管理</p>
+
+<p>方式一:
+在可以扫描到的类中,如在Service接口的实现类中直接添加Scheduler就可以了</p>
+
+<pre><code class="language-java">@Autowired
+private Scheduler scheduler;
+</code></pre>
+
+<p>方式二:
+如果是在Spring中扫描不到的类中,那么在Spring添加bean进行引入即可</p>
+
+<pre><code class="language-XML">&lt;!-- 配置scheduler --&gt;
+&lt;bean class=&quot;com.refill.basic.bean.JobBeanUtil&quot;&gt;
+    &lt;property name=&quot;scheduler&quot; ref=&quot;scheduler&quot;/&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<pre><code class="language-java">public class JobBeanUtil {
+
+//    @Autowired
+//    private Scheduler scheduler;
+
+    //静态
+    private static Scheduler scheduler;
+    public void setScheduler(Scheduler scheduler) {
+        JobBeanUtil.scheduler = scheduler;
+    }
+}
+</code></pre>
+
+<h2 id="如何对quartz进行管理">如何对Quartz进行管理</h2>
+
+<p>主要有中考虑,如果公司中使用的定时器数量较少,且短时间内不会有很多定时器任务的考虑,可以使用第一种,如果长远考虑,方便后期的管理和维护</p>
+
+<h3 id="短期">短期</h3>
+
+<p>直接对quartz的表进行操作,可以进行基本的添删改查,但是,仅适用于定时器任务不复杂的情况,该方法会将所有的任务一次性全部查询出来
+仅需要添加job名和执行类名,一级cron表达式,jobGroup和triggerGroup采取默认,triggerName使用jobName.
+大约只需要3个类文件,一张bean做实体,一张工具类做与bean相关的方法(也可放到Service层),一个Controller提供给页面</p>
+
+<p>GitHub <a href="https://github.com/peterguo3019/java.git">quartz1</a></p>
+
+<pre><code class="language-java">/**
+ * 获取所有任务
+ *
+ * @return list
+ * @throws SchedulerException
+ */
+public static List&lt;JobBean&gt; getAllJobs() throws SchedulerException {
+    GroupMatcher&lt;JobKey&gt; matcher = GroupMatcher.anyJobGroup();
+    Set&lt;JobKey&gt; jobKeys = scheduler.getJobKeys(matcher);
+    List&lt;JobBean&gt; jobList = new ArrayList&lt;&gt;();
+    //一个任务可以有多个触发器
+    for (JobKey jobKey : jobKeys) {
+        List&lt;? extends Trigger&gt; triggers = scheduler.getTriggersOfJob(jobKey);
+        for (Trigger trigger : triggers) {
+            jobList.add(getJobBean( jobKey, trigger.getKey()));
+        }
+    }
+    return jobList;
+}
+
+</code></pre>
+
+<h3 id="长远">长远</h3>
+
+<p>适用于定时任务复杂,数量较多.  如实现卖家自定义商品限时抢购,定义限时限价等等,这就意味这对jobGroup,trigger进行更多的使用,所以这里的思路是在数据库中建立三张表,一张job,一张trigger,一张group,方便后期拓展,如控制到用户,对job添加多个trigger.</p>
+
+<h2 id="将quartz持久到数据库时-spring无法管理quartz事务">将Quartz持久到数据库时,Spring无法管理Quartz事务</h2>
+
+<p>这里我到现在还不是很明白,因为我在Spring配置文件中SchedulerFactoryBean中已经将quartz托管给Spring了,但还是当我在service中一个方法内添加完quartz后再插入到另一张表报错时,quartz竟然没有回滚,后来没办法只能修改类的事务的传播行为为REQUIRES_NEW,  才可以正常回滚.
+###方案一</p>
+
+<pre><code class="language-java">/**
+* xml中spring的事务管理器
+*/
+@Resource(name = &quot;txManager&quot;)
+private DataSourceTransactionManager transactionManager;
+
+/**
+ * 添加单个工作
+ *
+ * @param jobEntity 调度实体
+ * @param paramMap 在execute中获取到的参数
+ * @return ResultJsonBean
+ */
+@Override
+public ResultJsonBean saveEntity(JobEntity jobEntity, Map&lt;String, Object&gt; paramMap){
+    if (jobDao.getEntityByJobName(jobEntity.getJobName()) != null) {
+        return new ResultJsonBean(null, false, &quot;任务名称已经存在,不要重复添加!!!!&quot;);
+    }
+    if (jobDao.getEntityByTriggerName(jobEntity.getJobTriggerName()) != null) {
+        return new ResultJsonBean(null, false, &quot;触发器名称已经存在,不要重复添加!!!!&quot;);
+    }
+    DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+    def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW); // 事物隔离级别，开启新事务，这样会比较安全些。
+    TransactionStatus status = transactionManager.getTransaction(def); // 获得事务状态
+    try {
+        jobEntity.setJobTriggerStatus(JobTriggerStatusEnum.OPEN.toInt());
+        QuartzUtil.addJob(scheduler, jobEntity, paramMap);
+        jobDao.saveEntity(jobEntity);
+        transactionManager.commit(status);
+        return new ResultJsonBean(null, jobEntity, true);
+    } catch (Exception e) {
+        QuartzUtil.shutdownJobs(scheduler);
+        transactionManager.rollback(status);
+        QuartzUtil.startJobs(scheduler);
+        return new ResultJsonBean(null, false, &quot;添加计划任务失败,程序异常,请连续管理员!!!&quot;);
+    }
+}
+</code></pre>
+
+<p>###方案二
+使用Spring事务注解</p>
+
+<pre><code class="language-java">
+/**
+ * 添加单个工作
+ *
+ * @param jobEntity 调度实体
+ * @param paramMap 在execute中获取到的参数
+ * @return ResultJsonBean
+ */
+@Override
+@Transactional(value = &quot;txManager&quot;,propagation =Propagation.REQUIRES_NEW)
+public ResultJsonBean saveEntity(JobEntity jobEntity, Map&lt;String, Object&gt; paramMap){
+    if (jobDao.getEntityByJobName(jobEntity.getJobName()) != null) {
+        return new ResultJsonBean(null, false, &quot;任务名称已经存在,不要重复添加!!!!&quot;);
+    }
+
+    if (jobDao.getEntityByTriggerName(jobEntity.getJobTriggerName()) != null) {
+        return new ResultJsonBean(null, false, &quot;触发器名称已经存在,不要重复添加!!!!&quot;);
+    }
+    QuartzUtil.addJob(scheduler, jobEntity, paramMap);
+    jobEntity.setJobTriggerStatus(JobTriggerStatusEnum.OPEN.toInt());
+    jobDao.saveEntity(jobEntity);
+    return new ResultJsonBean(null, jobEntity, true);
+}
+</code></pre>
+  </article>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+<script>
+var gitalk = new Gitalk({
+  clientID: '86c61da5bfaea99e9f10',
+  clientSecret: '3c0524cd32fbe175601f5b964c6a34b6d31b0975',
+  repo: 'lpgph.github.io',
+  owner: 'lpgph',
+  admin: ['lpgph'],
+  id: window.location.pathname,      
+  distractionFreeMode: true  
+})
+gitalk.render('gitalk-container')
+</script>
+
+
+        <div class="article-toc-panel">
+          <div class="article-toc" id="article-toc">
+            <strong class="toc-title">文章目录</strong>
+            <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#执行任务无法注入service接口">执行任务无法注入Service接口</a>
+<ul>
+<li><a href="#方式一">方式一:</a></li>
+<li><a href="#方式二">方式二:</a></li>
+</ul></li>
+<li><a href="#quartz如何交给spring托管">Quartz如何交给Spring托管</a>
+<ul>
+<li><a href="#quartz的配置">Quartz的配置</a></li>
+<li><a href="#spring配置">Spring配置</a></li>
+</ul></li>
+<li><a href="#如何对quartz进行管理">如何对Quartz进行管理</a>
+<ul>
+<li><a href="#短期">短期</a></li>
+<li><a href="#长远">长远</a></li>
+</ul></li>
+<li><a href="#将quartz持久到数据库时-spring无法管理quartz事务">将Quartz持久到数据库时,Spring无法管理Quartz事务</a></li>
+</ul></li>
+</ul>
+</nav>
+          </div>
+
+        </div>
+
+        <div class="btn-panel" id="btn-panel">
+           
+            <div class="btn-toc" id="btn-toc">
+              <button class="btn" onclick="showToc()" title="文章目录" >
+                <i class="fa fa-expand"></i>
+              </button>
+              <aside class="article-toc" id="panel-article-toc">
+                <strong class="toc-title">文章目录</strong>
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#执行任务无法注入service接口">执行任务无法注入Service接口</a>
+<ul>
+<li><a href="#方式一">方式一:</a></li>
+<li><a href="#方式二">方式二:</a></li>
+</ul></li>
+<li><a href="#quartz如何交给spring托管">Quartz如何交给Spring托管</a>
+<ul>
+<li><a href="#quartz的配置">Quartz的配置</a></li>
+<li><a href="#spring配置">Spring配置</a></li>
+</ul></li>
+<li><a href="#如何对quartz进行管理">如何对Quartz进行管理</a>
+<ul>
+<li><a href="#短期">短期</a></li>
+<li><a href="#长远">长远</a></li>
+</ul></li>
+<li><a href="#将quartz持久到数据库时-spring无法管理quartz事务">将Quartz持久到数据库时,Spring无法管理Quartz事务</a></li>
+</ul></li>
+</ul>
+</nav>
+              </aside>
+            </div>
+            
+
+            <div class="btn-share" id="btn-share">
+              <button class="btn" title="分享">
+                <i class="fa fa-share-alt"></i>
+              </button>
+            </div>
+            <div class="btn-top" id="btn-top" >
+              <button class="btn" onclick="backToTop()" title="返回顶部" >
+                <i class="fa fa-arrow-up"></i>
+              </button>
+            </div>
+        </div>
+          <script src="https://lpgph.github.io/js/nav-scroll.js"></script>
+          <script>
+          $("#article-toc").navScrollSpy({
+            navContainer: '#article-toc',
+            current:"active",
+            scrollSpeed: 50
+          });
+
+          $("#panel-article-toc").navScrollSpy({
+            navContainer: '#panel-article-toc',
+            current:"active",
+            scrollSpeed: 50
+          });
+
+
+          
+          </script>
+      </div>
+      <footer><div class="footer-background">
+  <figure class="clouds"></figure>
+  <figure class="background"></figure>
+  <figure class="foreground"></figure>
+</div>
+
+<div class="footer" >
+  <p class="copyright">
+    Copyright © 2017-2019 <a href="https://lpgph.github.io/" title="Dreamcatcher">Dreamcatcher</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+  </p>
+  <br/>
+  <script>
+      var now = new Date(); 
+      function createtime() { 
+          var grt= new Date("2017-01-07T00:00:00Z");
+          now.setTime(now.getTime()+250); 
+          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+          document.getElementById("timeDate").innerHTML = "本站已勉强存活 "+dnum+" 天 "; 
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+      } 
+      setInterval("createtime()",250);
+  </script>
+
+  <ul class="github-badge">
+    <li>
+      <a style="color: #fff" rel="license" href="https://hexo.io/" target="_blank" title="由 Hugo 强力驱动">
+      <span class="badge-subject">Powered</span><span class="badge-value bg-blue">Hugo</span></a>
+    </li>
+    <li>
+      <a style="color: #fff" rel="license" href="https://github.com/" target="_blank" title="静态网页托管于 GitHub Pages 和 Coding Pages">
+      <span class="badge-subject">Hosted</span><span class="badge-value bg-brightgreen">GitHub &amp; Coding</span></a>
+    </li>
+    
+    
+    <li>
+      <a style="color: #fff" rel="license" href="https://github.com/lpgph/hugo-theme-young" target="_blank" title="站点使用 hugo-theme-young 主题">
+      <span class="badge-subject">Theme</span><span class="badge-value bg-blue">hugo-theme-young</span></a>
+    </li>
+    <li>
+      <a style="color: #fff" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="本站点采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可">
+      <span class="badge-subject"><i class="fa fa-copyright"></i></span><span class="badge-value bg-lightgrey">BY-NC-SA 4.0</span></a>
+    </li>
+    <li>
+      <a style="color: #fff" rel="license" href="https://996.icu/" target="_blank" title="支持 996.ICU">
+      <span class="badge-subject">Link</span><span class="badge-value bg-red">996.ICU</span></a>
+    </li>
+    
+    
+  </ul>
+</div>
+</footer>
+      
+
+
+
+<script src="https://lpgph.github.io/js/main.js"></script>
+
+
+<script type="text/javascript" color="220,220,220" opacity='1' zIndex="1" count="200" src="https://lpgph.github.io//js/canvas-nest.min.js"></script>
+<script src="https://lpgph.github.io//js/piao.js" type="text/javascript"></script>
+<script src="https://lpgph.github.io//js/circleMagic.js" type="text/javascript"></script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.querySelectorAll('pre code').forEach((block) => {
+    hljs.highlightBlock(block);
+  });
+});
+
+$(function(){ 
+  $('#app-header').circleMagic({
+      radius: 20,
+      density: 0.2,
+      color: 'rgba(255,255,255, .2)',
+      
+      clearOffset: 0.3
+  });
+
+  
+  $('#scroll-down').click(function () {
+      backToTop();
+  });
+})
+
+function backToTop() {
+   let endScroll;
+    endScroll = $('#app-header').height()+10,
+    $('html,body').stop().animate({scrollTop: endScroll}, 1000);
+}
+
+function showToc() {
+   var  btnToc = $("#btn-toc"), 
+      
+     tocIcon = $(".btn-toc .btn .fa");
+
+    if(btnToc.hasClass("show")){
+      btnToc.removeClass("show");
+      tocIcon.removeClass("fa-expand");
+      tocIcon.addClass("fa-compress");
+    }else{
+      btnToc.addClass('show');
+      tocIcon.removeClass("fa-compress");
+      tocIcon.addClass("fa-expand");
+    }
+}
+
+
+
+
+var resizeTimer = null;
+$(window).resize(function(){
+  var homeScroll     = $('#app-header').height()-40,
+      docScroll      = $(document).scrollTop(),
+       articleToc     = $('#article-toc');
+
+    if(resizeTimer){
+        clearTimeout(resizeTimer);
+    }
+    resizeTimer = setTimeout(function(){
+        var showToc = document.body.scrollWidth>1800;
+        if (showToc) {
+          $('#btn-toc').hide();
+            if(homeScroll+50<=docScroll) {
+              if (!articleToc.hasClass('fixed')) {
+                  articleToc.addClass('fixed')
+                  $(".article-toc-panel").addClass('fixed');
+              }
+            }
+        }else{
+          $('#btn-toc').show();
+            if( homeScroll+50 >= docScroll) {
+            if (articleToc.hasClass('fixed')) {
+                articleToc.removeClass('fixed');
+                $(".article-toc-panel").removeClass('fixed');
+            } 
+          }
+        }
+
+        if (document.body.scrollWidth<720) {
+          $("#live2d-widget").css("opacity","0");
+        }else{
+          $("#live2d-widget").css("opacity","1");
+        }
+
+    },100)
+})
+
+
+var temScroll   = 0;
+
+var scrollTimer = null;
+
+  
+  
+$(window).scroll( function() { 
+
+var homeScroll     = $('#app-header').height()-40,
+    docScroll      = $(document).scrollTop();
+    openButton     = $('#openaside'),
+    navBtnTitle    = $('#nav-btn-title'),
+    articleToc     = $('#article-toc');
+
+    if(scrollTimer){
+        clearTimeout(scrollTimer);
+    }
+    scrollTimer = setTimeout(function(){
+          
+      if (temScroll < docScroll) { 
+        if (homeScroll <= docScroll) { 
+            
+            if (!openButton.hasClass('navbutton-scroll')) {
+                openButton.addClass('navbutton-scroll');
+                navBtnTitle.hide();
+            }
+        }
+        var showToc = document.body.scrollWidth>1800;
+
+        if (showToc)
+          if(homeScroll+50<=docScroll) {
+          if (!articleToc.hasClass('fixed')) {
+              articleToc.addClass('fixed')
+              $(".article-toc-panel").addClass('fixed');
+          }
+        }
+        if (homeScroll+100<=docScroll) {
+          if (!showToc) {
+            $('#btn-toc').show();
+          }
+          $('#btn-share').show();
+          $('#btn-top').show();
+        }
+      } else { 
+        if (homeScroll >= docScroll) { 
+          
+          if (openButton.hasClass('navbutton-scroll')) {
+            openButton.removeClass('navbutton-scroll');
+            navBtnTitle.show();
+          }
+        }
+
+        var showToc = document.body.scrollWidth > 1800;
+
+        if (showToc){
+          if( homeScroll+70 >= docScroll) {
+            if (articleToc.hasClass('fixed')) {
+                articleToc.removeClass('fixed');
+                $(".article-toc-panel").removeClass('fixed');
+            } 
+          }
+        }
+
+        if (homeScroll+100>=docScroll) {
+          if (!showToc) {
+            $('#btn-toc').hide();
+          }
+          $('#btn-share').hide();
+          $('#btn-top').hide();
+        }
+
+      }
+      temScroll = docScroll;
+    },100)
+
+});
+</script>
+
+<script type="text/javascript">
+done = false;
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('#app-header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('#closeaside'),
+      o = $('#openaside');
+      u = $("#sideBar")
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+    
+    }else
+    {
+      
+      
+      
+    }
+  });
+
+  u.click(function(){
+    $('.morph-shape').removeClass('show');
+    a.removeClass('show-menu');
+    u.css('display', 'none');
+    o.css('display', 'block');
+    $('body').css("overflow","auto");
+  })
+  c.click(function(){
+    $('.morph-shape').removeClass('show');
+    a.removeClass('show-menu');
+    u.css('display', 'none');
+    o.css('display', 'block');
+    $('body').css("overflow","auto");
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.addClass('show-menu');
+    $('.morph-shape').addClass('show');
+    u.css('display', 'block');
+    $('body').css("overflow","hidden");
+    m.removeClass('moveMain');
+  });
+  
+
+  $('form.search').on('submit', function (event) {
+    if (false === done) {
+      event.preventDefault();
+      var orgVal = $(this).find('#search').val();
+      $(this).find('#search').val('site:https:\/\/lpgph.github.io\/ ' + orgVal);
+      done = true;
+      $(this).submit();
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('#openaside'),
+      c  = $('#closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+   
+     
+    
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://b.bshare.cn/barCode?site=weixin&url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});
+</script>
+
+
+<link rel="stylesheet" href="https://lpgph.github.io/plugin/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="https://lpgph.github.io/plugin/fancybox/jquery.fancybox.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+
+
+    </div>
+  </div>
+</body>
+</html>
