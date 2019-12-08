@@ -17,12 +17,9 @@
       <pubDate>Mon, 05 Mar 2018 11:09:02 +0000</pubDate>
       
       <guid>https://lpgph.github.io/post/mysql_procedure_function_trigger_view/</guid>
-      <description>&lt;h2 id=&#34;运算&#34;&gt;运算&lt;/h2&gt;
-
-&lt;h3 id=&#34;定义变量&#34;&gt;定义变量&lt;/h3&gt;
-
+      <description>&lt;h2 id=&#34;heading&#34;&gt;运算&lt;/h2&gt;
+&lt;h3 id=&#34;heading1&#34;&gt;定义变量&lt;/h3&gt;
 &lt;p&gt;使用DECLARE来声明，DEFAULT赋默认值，SET赋值&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;DECLARE counter INT DEFAULT 0;   
 SET counter = counter+1;  
 &lt;/code&gt;&lt;/pre&gt;</description>
@@ -55,7 +52,6 @@ SET counter = counter+1;
       
       <guid>https://lpgph.github.io/post/mysql_function/</guid>
       <description>&lt;p&gt;MySQL数据库提供了很多函数包括：&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;数学函数；&lt;/li&gt;
 &lt;li&gt;字符串函数；&lt;/li&gt;
@@ -73,12 +69,19 @@ SET counter = counter+1;
       <pubDate>Fri, 14 Apr 2017 19:37:11 +0000</pubDate>
       
       <guid>https://lpgph.github.io/post/mysql_join/</guid>
-      <description>&lt;h2 id=&#34;join语法概述&#34;&gt;JOIN语法概述&lt;/h2&gt;
-
+      <description>&lt;h2 id=&#34;join&#34;&gt;JOIN语法概述&lt;/h2&gt;
 &lt;p&gt;JOIN 用于多表中字段之间的联系，语法如下：&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;... FROM table1 INNER|LEFT|RIGHT JOIN table2 ON conditiona
 &lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Test</title>
+      <link>https://lpgph.github.io/post/mysql_test/</link>
+      <pubDate>Fri, 14 Apr 2017 19:37:11 +0000</pubDate>
+      
+      <guid>https://lpgph.github.io/post/mysql_test/</guid>
+      <description>Test</description>
     </item>
     
     <item>
@@ -87,8 +90,7 @@ SET counter = counter+1;
       <pubDate>Thu, 13 Apr 2017 13:31:57 +0000</pubDate>
       
       <guid>https://lpgph.github.io/post/mysql_database/</guid>
-      <description>&lt;h2 id=&#34;创建&#34;&gt;创建&lt;/h2&gt;
-
+      <description>&lt;h2 id=&#34;heading&#34;&gt;创建&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;mysql&amp;gt; create database &amp;lt;数据库名&amp;gt;;
 mysql&amp;gt; show databases;
 &lt;/code&gt;&lt;/pre&gt;</description>

@@ -1751,6 +1751,15 @@ document.onreadystatechange = function() {
           }
         });
 
+      if (document.body.scrollWidth<720) {
+        $("#live2d-widget").css("opacity","0");
+        $("#c_n14").css("opacity","0");
+      }else{
+        $("#live2d-widget").css("opacity","1");
+        $("#c_n14").css("opacity","1");
+      }
+
+
       setTimeout(function () {
           demo.spinner.setComplete();
           document.getElementById("home").classList.add("show");

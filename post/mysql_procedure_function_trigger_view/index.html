@@ -6,22 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
   <meta name="description" content="运算
-
 定义变量
-
 使用DECLARE来声明，DEFAULT赋默认值，SET赋值
-
 DECLARE counter INT DEFAULT 0;   
 SET counter = counter&#43;1;  
 ">
   
   <meta itemprop="name" content="MySql之存储过程,函数,触发器,视图 - Dreamcatcher">
   <meta itemprop="description" content="运算
-
 定义变量
-
 使用DECLARE来声明，DEFAULT赋默认值，SET赋值
-
 DECLARE counter INT DEFAULT 0;   
 SET counter = counter&#43;1;  
 ">
@@ -44,8 +38,17 @@ SET counter = counter&#43;1;
   <link rel="stylesheet" href="https://lpgph.github.io/font/playball/playball.css">
 
   <link rel="stylesheet" href="https://lpgph.github.io/css/style.css">	
-
+  <script type="text/javascript"> 
+    var $BaseURL = "https://lpgph.github.io/";
+  </script>
+  
+  
+  <script type="text/javascript"> 
+    var $live2d_widget_model = "/plugin/live2d-widget/model/kesyoban/kesyoban.model.json";
+  </script>
   <script src="https://lpgph.github.io/plugin/live2d-widget/js/L2Dwidget.min.js"></script>
+   
+
   <script src="https://lpgph.github.io/js/spring-loaders.js"></script>
   
   
@@ -55,24 +58,27 @@ SET counter = counter&#43;1;
 
   <script src="https://lpgph.github.io/js/jquery-3.3.1.min.js"></script>
   
-  <script type="text/javascript" src="/js/click_show_text.js"></script>
+  
+  <script type="text/javascript" src="https://lpgph.github.io/js/click_show_text.js"></script>
+  
   
   <script src="https://lpgph.github.io/js/motto-show.js"></script>
 
 </head>
 <body>
-  <div id="home" class="app-home">
-    <div>
-      <button class="navbutton"  id="openaside" title="显示侧边栏">
-  <i class="fa fa-navicon"></i>  
-  <span id="nav-btn-title" style="padding-left: 10px;">MENU</span>
-</button>
-<div id="asidepart" class="asidepart">
-  <button class="close-button"  id="closeaside" title="隐藏侧边栏">
-    <i class="fa fa-close"></i>
+    <div id="home" class="app-home">
+        <aside>
+             
+  <button class="navbutton"  id="openaside" title="显示侧边栏">
+    <i class="fa fa-navicon"></i>  
+    <span id="nav-btn-title" style="padding-left: 10px;">MENU</span>
   </button>
-  <div class="aside-info">
-    <div class="blog-info">
+  <div id="asidepart" class="asidepart">
+    <button class="close-button"  id="closeaside" title="隐藏侧边栏">
+      <i class="fa fa-close"></i>
+    </button>
+    <div class="aside-info">
+      <div class="blog-info">
   
   <div class="blog-avatar">
     <a href="https://lpgph.github.io/">
@@ -97,6 +103,8 @@ SET counter = counter&#43;1;
       
       <li><a href="/post/">归档</a></li>
       
+      <li><a href="/categories/">分类</a></li>
+      
       <li><a href="/tags/">标签云</a></li>
       
       <li><a href="/categories/learn/">笔记</a></li>
@@ -114,7 +122,7 @@ SET counter = counter&#43;1;
     </form>
   </nav>
 </div>
-    
+      
 
 <div class="categorieslist">
   <h1 class="asidetitle">分类</h1>
@@ -122,7 +130,7 @@ SET counter = counter&#43;1;
     
     <li><a href="https://lpgph.github.io/categories/java" title="java">java<sup>(1)</sup></a></li>
     
-    <li><a href="https://lpgph.github.io/categories/mysql" title="mysql">mysql<sup>(6)</sup></a></li>
+    <li><a href="https://lpgph.github.io/categories/mysql" title="mysql">mysql<sup>(7)</sup></a></li>
     
     <li><a href="https://lpgph.github.io/categories/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" title="设计模式">设计模式<sup>(1)</sup></a></li>
     
@@ -131,27 +139,28 @@ SET counter = counter&#43;1;
 
 
 
-    
+      
 
-<div class="tagslist">
-	<h1 class="asidetitle">标签</h1>
-	<ul class="side-info-list">
-		
-		<li><a href="https://lpgph.github.io/tags/java" title="java">java<sup>(2)</sup></a></li>
-		
-		<li><a href="https://lpgph.github.io/tags/mysql" title="mysql">mysql<sup>(6)</sup></a></li>
-		
-		<li><a href="https://lpgph.github.io/tags/quartz" title="quartz">quartz<sup>(1)</sup></a></li>
-		
-		<li><a href="https://lpgph.github.io/tags/spring" title="spring">spring<sup>(1)</sup></a></li>
-		
-		<li><a href="https://lpgph.github.io/tags/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" title="设计模式">设计模式<sup>(1)</sup></a></li>
-		
-	</ul>
-</div>
+	
+	<div class="tagslist">
+		<h1 class="asidetitle">标签</h1>
+		<ul class="side-info-list">
+			
+			<li><a href="https://lpgph.github.io/tags/java" title="java">java<sup>(2)</sup></a></li>
+			
+			<li><a href="https://lpgph.github.io/tags/mysql" title="mysql">mysql<sup>(7)</sup></a></li>
+			
+			<li><a href="https://lpgph.github.io/tags/quartz" title="quartz">quartz<sup>(1)</sup></a></li>
+			
+			<li><a href="https://lpgph.github.io/tags/spring" title="spring">spring<sup>(1)</sup></a></li>
+			
+			<li><a href="https://lpgph.github.io/tags/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" title="设计模式">设计模式<sup>(1)</sup></a></li>
+			
+		</ul>
+	</div>
+	
 
-
-    
+      
 
   <div class="social-list">
   	<h1 class="asidetitle">社交</h1>
@@ -167,10 +176,13 @@ SET counter = counter&#43;1;
   </div>
   
 
-  </div>
-</div>
-<div id="sideBar" class="app-menu"></div>
     </div>
+  </div>
+  <div id="sideBar" class="app-menu"></div>
+        </aside>
+
+        <header>
+         
     <header class="app-header article-header" id="app-header">
       
 <div class="vertical">
@@ -186,56 +198,52 @@ SET counter = counter&#43;1;
           
           on <time datetime="2018-03-05 11:09:02 &#43;0000 UTC" itemprop="datePublished">2018-03-05</time>
         </p>
-
-        
-        
+        <p class="article-tags">
           
-          <span class="article-tag  article-category-color">
-            <a href="https://lpgph.github.io/categories/mysql">MySql</a>
-          </span>
           
-        
-        
-
-        
-        
+            
+            <span class="article-tag  article-category-color">
+              <i class="fa fa-th-large" aria-hidden="true"></i>
+              <a href="https://lpgph.github.io/categories/mysql">MySql</a>
+            </span>
+            
           
-          <span class="article-tag  article-tag-color">
-            <a href="https://lpgph.github.io/tags/mysql">MySql</a>
-          </span>
           
-        
-        
 
-
-
+          
+          
+            
+            <span class="article-tag  article-tag-color">
+              <i class="fa fa-tag" aria-hidden="true"></i>
+              <a href="https://lpgph.github.io/tags/mysql">MySql</a>
+            </span>
+            
+          
+          
+        </p>
       </h2>
   </div>
 </div>
     </header>
 
-    <div id="container"  class="app container">
-      
-       <div id="main" class="post"> 
-
+        </header>
         
-	<article class="article-content">
-    <h2 id="运算">运算</h2>
+        <main id="main-content" class="app container">
+            
+      
+  <div id="main" class="post"> 
 
-<h3 id="定义变量">定义变量</h3>
-
+    
+  <div  class="article-content box-style box-first">
+    <article>
+      <h2 id="heading">运算</h2>
+<h3 id="heading1">定义变量</h3>
 <p>使用DECLARE来声明，DEFAULT赋默认值，SET赋值</p>
-
 <pre><code>DECLARE counter INT DEFAULT 0;   
 SET counter = counter+1;  
-</code></pre>
-
-<h3 id="控制语句">控制语句</h3>
-
-<h4 id="条件语句">条件语句</h4>
-
+</code></pre><h3 id="heading2">控制语句</h3>
+<h4 id="heading3">条件语句</h4>
 <p>IF THEN、ELSEIF、ELSE、END IF</p>
-
 <pre><code>DECLARE type int;
 DECLARE c varchar(50);
 SET type=10;
@@ -246,21 +254,14 @@ ELSEIF type = 1 THEN
 ELSE
     set c = 'param is others, not 0 or 1';
 END IF;
-</code></pre>
-
-<h4 id="循环语句">循环语句</h4>
-
+</code></pre><h4 id="heading4">循环语句</h4>
 <p>WHILE DO、END WHILE</p>
-
 <pre><code>DECLARE n int DEFAULT 10;
 DECLARE s int DEFAULT 0;
 WHILE i &lt;= n DO
     set s = s + i;
 END WHILE;
-</code></pre>
-
-<p>LOOP、END LOOP</p>
-
+</code></pre><p>LOOP、END LOOP</p>
 <pre><code>DECLARE n int DEFAULT 0;
 DECLARE s int DEFAULT 0;
 my_loop:loop
@@ -270,18 +271,12 @@ my_loop:loop
         leave my_loop;
     end if; 
 end loop my_loop;
-</code></pre>
-
-<p>REPEAT、UNTIL</p>
-
+</code></pre><p>REPEAT、UNTIL</p>
 <pre><code>DECLARE n int DEFAULT 0;
 REPEAT
     set n=n+1;
 UNTIL n=10 END REPEAT;
-</code></pre>
-
-<p>CASE语句</p>
-
+</code></pre><p>CASE语句</p>
 <pre><code>DECLARE c varchar(500);
 DECLARE type int DEFAULT 0;
 CASE type
@@ -292,27 +287,18 @@ WHEN 1 THEN
 ELSE
     set c = 'param is others, not 0 or 1';
 END CASE;
-</code></pre>
-
-<h2 id="存储过程-函数">存储过程/函数</h2>
-
+</code></pre><h2 id="heading5">存储过程/函数</h2>
 <p><a href="https://dev.mysql.com/doc/refman/5.6/en/create-procedure.html" title="官方文档">官网文档</a></p>
-
-<h3 id="定义">定义</h3>
-
+<h3 id="heading6">定义</h3>
 <p>简单的说，就是一组SQL语句集，功能强大，可以实现一些比较复杂的逻辑功能，类似于JAVA语言中的方法；
 存储过程跟触发器有点类似，都是一组SQL集，但是存储过程是主动调用的，且功能比触发器更加强大，触发器是某件事触发后自动调用；</p>
-
-<h3 id="特性">特性</h3>
-
+<h3 id="heading7">特性</h3>
 <ol>
 <li>有输入输出参数，可以声明变量，有if/else,case,while等控制语句，通过编写存储过程，可以实现复杂的逻辑功能；</li>
 <li>函数的普遍特性：模块化，封装，代码复用；</li>
 <li>速度快，只有首次执行需经过编译和优化步骤，后续被调用可以直接执行，省去以上步骤；</li>
 </ol>
-
-<h3 id="语法">语法</h3>
-
+<h3 id="heading8">语法</h3>
 <pre><code>CREATE
     [DEFINER = { user | CURRENT_USER }]
     PROCEDURE sp_name ([proc_parameter[,...]])
@@ -342,10 +328,7 @@ characteristic:
 
 routine_body:
     Valid SQL routine statement
-</code></pre>
-
-<h4 id="创建存储过程">创建存储过程</h4>
-
+</code></pre><h4 id="heading9">创建存储过程</h4>
 <pre><code># ################# 不带返回值 #################
 # 删除已有的存储过程
 DROP PROCEDURE IF EXISTS `pr_add`;
@@ -387,10 +370,7 @@ DELIMITER ;
 mysql&gt; set @a=1;
 mysql&gt; call pr_add(1,@a,@s);
 mysql&gt; select @s as sum;
-</code></pre>
-
-<p>在终端创建存储过程：</p>
-
+</code></pre><p>在终端创建存储过程：</p>
 <pre><code>/*
 如果您使用mysql客户端程序来定义包含分号字符的存储程序，则会出现问题。 默认情况下， mysql本身将分号识别为语句分隔符，因此必须临时重新定义分隔符，才能将整个存储的程序定义传递到服务器。使用delimiter命令，重新定义mysql分隔符。 分隔符可以由单个字符或多个字符组成
 */
@@ -402,22 +382,18 @@ mysql&gt; CREATE DEFINER = 'admin'@'localhost' PROCEDURE account_count()
 -&gt; SELECT 'Number of accounts:', COUNT(*) FROM mysql.user;
 -&gt; END $$
 mysql&gt; delimiter ;
-</code></pre>
-
-<h4 id="创建存储函数">创建存储函数</h4>
-
-<p>先查看函数功能是否开启：show variables like &lsquo;%func%&lsquo;，未开启则创建函数会报错。</p>
-
-<p>解决办法有两种，
-&gt;第一种是在创建子程序(存储过程、函数、触发器)时，声明为 DETERMINISTIC | NO SQL | READS SQL DATA 等中的一个，具体可以看<a href="#1">语法</a>;
+</code></pre><h4 id="heading10">创建存储函数</h4>
+<p>先查看函数功能是否开启：show variables like &lsquo;%func%'，未开启则创建函数会报错。</p>
+<p>解决办法有两种，</p>
+<blockquote>
+<p>第一种是在创建子程序(存储过程、函数、触发器)时，声明为 DETERMINISTIC | NO SQL | READS SQL DATA 等中的一个，具体可以看<!-- raw HTML omitted -->语法<!-- raw HTML omitted -->;
 第二种是信任子程序的创建者，禁止创建、修改子程序时对SUPER权限的要求，设置log_bin_trust_routine_creators全局系统变量为1。
 设置方法有三种:
 1.在客户端上执行SET GLOBAL log_bin_trust_function_creators = 1 开启,关闭则为0;
 2.MySQL启动时，加上&ndash;log-bin-trust-function-creators选项，参数设置为1
 3.在MySQL配置文件my.ini或my.cnf中的[mysqld]段上加log-bin-trust-function-creators=1</p>
-
+</blockquote>
 <p>eg:</p>
-
 <pre><code>DROP FUNCTION IF EXISTS `f1`;
 DELIMITER ;;
 # 创建存储函数
@@ -434,43 +410,31 @@ BEGIN
 END
 ;;
 DELIMITER ;
-</code></pre>
-
-<p>存储的函数不能递归,默认情况下允许递归存储过程，但禁用。
-&gt;要启用递归，请将max_sp_recursion_depth服务器系统变量设置为大于零的值。
-    存储过程递归增加了对线程堆栈空间的需求。
-    如果增加max_sp_recursion_depth的值，可能需要通过在服务器启动时增加thread_stack的值来增加线程堆栈大小</p>
-
-<p>存储过程或函数与特定数据库相关联。 这有几个含义：
-&gt;1.当调用例程时，执行隐式USE db_name （当程序终止时，它将被撤销）。 存储例程中的USE语句不允许。
-    2.可以使用数据库名称限定常规名称。这可以用于引用不在当前数据库中的例程。例如，要调用与test数据库相关联的存储过程p或函数f ，可以说CALL test.p()或test.f() 。
-    3.当数据库被删除时，与它相关联的所有存储例程也被删除。</p>
-
-<h4 id="查看存储过程和函数-存储函数-触发器">查看存储过程和函数|存储函数|触发器</h4>
-
+</code></pre><p>存储的函数不能递归,默认情况下允许递归存储过程，但禁用。</p>
+<blockquote>
+<p>要启用递归，请将max_sp_recursion_depth服务器系统变量设置为大于零的值。
+存储过程递归增加了对线程堆栈空间的需求。
+如果增加max_sp_recursion_depth的值，可能需要通过在服务器启动时增加thread_stack的值来增加线程堆栈大小</p>
+</blockquote>
+<p>存储过程或函数与特定数据库相关联。 这有几个含义：</p>
+<blockquote>
+<p>1.当调用例程时，执行隐式USE db_name （当程序终止时，它将被撤销）。 存储例程中的USE语句不允许。
+2.可以使用数据库名称限定常规名称。这可以用于引用不在当前数据库中的例程。例如，要调用与test数据库相关联的存储过程p或函数f ，可以说CALL test.p()或test.f() 。
+3.当数据库被删除时，与它相关联的所有存储例程也被删除。</p>
+</blockquote>
+<h4 id="heading11">查看存储过程和函数|存储函数|触发器</h4>
 <p>1）查询数据库中的存储过程/函数</p>
-
 <pre><code># 方法一：
 select `name` from mysql.proc where db = 'your_db_name' and `type` = 'PROCEDURE|FUNCTION|TRIGGER';
 # 方法二：
 SHOW {PROCEDURE | FUNCTION} status
-</code></pre>
-
-<p>2）查看存储过程|函数|触发器的创建代码</p>
-
+</code></pre><p>2）查看存储过程|函数|触发器的创建代码</p>
 <pre><code>//查看存储过程
 SHOW CREATE {PROCEDURE | FUNCTION | TRIGGER} sp_name;
-</code></pre>
-
-<h4 id="删除存储过程-函数-触发器">删除存储过程|函数|触发器</h4>
-
+</code></pre><h4 id="heading12">删除存储过程|函数|触发器</h4>
 <pre><code>DROP {PROCEDURE | FUNCTION | TRIGGER } [IF EXISTS] sp_name;
-</code></pre>
-
-<h3 id="存储过程和存储函数优缺点和区别">存储过程和存储函数优缺点和区别</h3>
-
+</code></pre><h3 id="heading13">存储过程和存储函数优缺点和区别</h3>
 <p>优缺点：</p>
-
 <table>
 <thead>
 <tr>
@@ -478,17 +442,14 @@ SHOW CREATE {PROCEDURE | FUNCTION | TRIGGER} sp_name;
 <th align="left">缺点</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">执行速度更快&mdash;因为存储过程是预编译过的<br>模块化程序设计—类似方法的复用<br> 提高系统的安全性—防止SQL注入<br>减少网络流量—只需传输存储过程的名称即可</td>
-<td align="left">存储过程和函数的编写比单句SQL语句复杂<br>在编写存储过程和函数时，需要创建这些数据库对象的权限</td>
+<td align="left">执行速度更快&mdash;因为存储过程是预编译过的<!-- raw HTML omitted -->模块化程序设计—类似方法的复用<!-- raw HTML omitted --> 提高系统的安全性—防止SQL注入<!-- raw HTML omitted -->减少网络流量—只需传输存储过程的名称即可</td>
+<td align="left">存储过程和函数的编写比单句SQL语句复杂<!-- raw HTML omitted -->在编写存储过程和函数时，需要创建这些数据库对象的权限</td>
 </tr>
 </tbody>
 </table>
-
 <p>区别：</p>
-
 <table>
 <thead>
 <tr>
@@ -496,74 +457,56 @@ SHOW CREATE {PROCEDURE | FUNCTION | TRIGGER} sp_name;
 <th align="left">存储函数</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">是用户定义的一系列sql语句的集合，涉及特定表或其它对象的任务，用户可以调用存储过程</td>
 <td align="left">通常是数据库已定义的方法，它接收参数并返回某种类型的值并且不涉及特定用户表</td>
 </tr>
-
 <tr>
 <td align="left">存储过程实现的功能要复杂一点</td>
 <td align="left">函数的实现的功能针对性比较强</td>
 </tr>
-
 <tr>
 <td align="left">存储过程，功能强大，可以执行包括修改表等一系列数据库操</td>
 <td align="left">用户定义函数不能用于执行一组修改全局数据库状态的操作</td>
 </tr>
-
 <tr>
 <td align="left">可以返回参数，如记录集且可以返回多个</td>
 <td align="left">函数只能返回值或者表对象且只能返回一个变量</td>
 </tr>
-
 <tr>
 <td align="left">参数可以有IN,OUT,INOUT三种类型</td>
 <td align="left">参数只能有IN类</td>
 </tr>
-
 <tr>
 <td align="left">声明时不需要返回类型</td>
 <td align="left">声明时需要描述返回类型，且函数体中必须包含一个有效的RETURN语句</td>
 </tr>
-
 <tr>
 <td align="left">可以使用非确定函数</td>
 <td align="left">不允许在用户定义函数主体中内置非确定函数</td>
 </tr>
-
 <tr>
 <td align="left">一般是作为一个独立的部分来执行（CALL语句执行）</td>
 <td align="left">可以作为查询语句的一个部分来调用（SELECT调用），由于函数可以返回一个表对象，因此它可以在查询语句中位于FROM关键字的后面</td>
 </tr>
-
 <tr>
 <td align="left">SQL语句中不可用存储过程</td>
 <td align="left">SQL语句可以使用函数</td>
 </tr>
 </tbody>
 </table>
-
-<h2 id="触发器">触发器</h2>
-
-<h3 id="特点">特点</h3>
-
+<h2 id="heading14">触发器</h2>
+<h3 id="heading15">特点</h3>
 <pre><code>触发事件的操作和触发器里的SQL语句是一个事务操作，具有原子性,要么全部执行，要么都不执行；
 </code></pre>
-
-<h3 id="作用">作用</h3>
-
+<h3 id="heading16">作用</h3>
 <pre><code>保证数据的完整性，起到约束的作用；
 </code></pre>
-
-<h3 id="弊端">弊端</h3>
-
+<h3 id="heading17">弊端</h3>
 <pre><code>增加程序的复杂度，有些业务逻辑在代码中处理，有些业务逻辑用触发器处理，会使后期维护变得困难；
 </code></pre>
-
-<h3 id="语法-1">语法</h3>
-
+<h3 id="heading18">语法</h3>
 <pre><code>CREATE
     [DEFINER = { user | CURRENT_USER }]
     TRIGGER trigger_name
@@ -574,10 +517,7 @@ SHOW CREATE {PROCEDURE | FUNCTION | TRIGGER} sp_name;
 trigger_time: { BEFORE | AFTER }
 
 trigger_event: { INSERT | UPDATE | DELETE }
-</code></pre>
-
-<h4 id="创建触发器">创建触发器</h4>
-
+</code></pre><h4 id="heading19">创建触发器</h4>
 <pre><code>DROP TRIGGER IF EXISTS `t1`;
 DELIMITER ;;
 CREATE TRIGGER `t1` AFTER UPDATE ON `user` FOR EACH ROW begin
@@ -586,28 +526,18 @@ CREATE TRIGGER `t1` AFTER UPDATE ON `user` FOR EACH ROW begin
 end
 ;;
 DELIMITER ;
-</code></pre>
-
-<h4 id="a-href-2-删除查看-a"><a href="#2">删除查看</a></h4>
-
-<h2 id="视图">视图</h2>
-
+</code></pre><h4 id="a-href2a"><!-- raw HTML omitted -->删除查看<!-- raw HTML omitted --></h4>
+<h2 id="heading20">视图</h2>
 <p><a href="http://blog.sina.com.cn/s/blog_8edc37a80101c4ba.html">视图总结原地址</a></p>
-
-<h3 id="定义-1">定义</h3>
-
+<h3 id="heading21">定义</h3>
 <blockquote>
 <p>视图是从一个或多个表（或视图）导出的表。视图是数据库的用户使用数据库的观点。可以根据他们的不同需求，在物理的数据库上定义他们对数据库所要求的数据结构，这种根据用户观点所定义的数据结构就是视图。</p>
 </blockquote>
-
-<h3 id="与表区别">与表区别</h3>
-
+<h3 id="heading22">与表区别</h3>
 <blockquote>
 <p>视图与表（有时为与视图区别，也称表为基本表——Base Table）不同，视图是一个虚表，即视图所对应的数据不进行实际存储，数据库中只存储视图的定义，对视图的数据进行操作时，系统根据视图的定义去操作与视图相关联的基本表。</p>
 </blockquote>
-
-<h3 id="优点">优点</h3>
-
+<h3 id="heading23">优点</h3>
 <blockquote>
 <p>1）为用户集中数据，简化用户的数据查询和处理。有时用户所需要的数据分散在多个表中，定义视图可将它们集中在一起，从而方便用户的数据查询和处理。
 2）屏蔽数据库的复杂性。用户不必了解复杂的数据库中的表结构，并且数据库表的更改也不影响用户对数据库的使用。
@@ -615,18 +545,14 @@ DELIMITER ;
 4）便于数据共享。各用户不必都定义和存储自己所需的数据，可共享数据库的数据，这样同样的数据只需存储一次。
 5）可以重新组织数据以便输出到其他应用程序中</p>
 </blockquote>
-
-<h3 id="注意">注意</h3>
-
+<h3 id="heading24">注意</h3>
 <blockquote>
 <p>1）在默认情况下，将在当前数据库创建新视图。要想在给定数据库中明确创建视图，创建时，应将名称指定为db_name.view_name
 2）视图的命名必须遵循标志符命名规则，不能与表同名，且对每个用户视图名必须是唯一的，即对不同用户，即使是定义相同的视图，也必须使用不同的名字。
 3）不能把规则、默认值或触发器与视图相关联。
 4）不能在视图上建立任何索引，包括全文索引。</p>
 </blockquote>
-
-<h3 id="语法-2">语法</h3>
-
+<h3 id="heading25">语法</h3>
 <pre><code>CREATE
     [OR REPLACE]
     [ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]
@@ -662,14 +588,11 @@ DELIMITER ;
 指出在可更新视图上所进行的修改都要符合select_statement所指定的限制条件，这样可以确保数据修改后，仍可通过视图看到修 改的数据。当视图是根据另一个视图定义的时，WITH CHECK OPTION给出两个参数：LOCAL和CASCADED。它们决定了检查测试的范围。Local关键字使CHECK OPTION只对定义的视图进行检查，cascaded则会对所有视图进行检查。如果未给定任一关键字，默认值为CASCADED。
  
  */
-</code></pre>
-
-<h4 id="可更新视图">可更新视图</h4>
-
+</code></pre><h4 id="heading26">可更新视图</h4>
 <p>要通过视图更新基本表数据，必须保证视图是可更新视图，即可以在INSET、UPDATE或DELETE等语句当中使用它们。对于可更新的视图，在视图中的行和基表中的行之间必须具有一对一的关系。还有一些特定的其他结构，这类结构会使得视图不可更新。</p>
-
-<p>如果视图包含下述结构中的任何一种，那么它就是不可更新的：
-&gt;1）聚合函数；
+<p>如果视图包含下述结构中的任何一种，那么它就是不可更新的：</p>
+<blockquote>
+<p>1）聚合函数；
 2）DISTINCT关键字；
 3）GROUP BY子句；
 4）ORDER BY子句；
@@ -680,340 +603,277 @@ DELIMITER ;
 9）SELECT语句中引用了不可更新视图；
 10）WHERE子句中的子查询，引用FROM子句中的表；
 11）ALGORITHM 选项指定为TEMPTABLE（使用临时表总会使视图成为不可更新的）。</p>
-
-<h4 id="插入数据">插入数据</h4>
-
+</blockquote>
+<h4 id="heading27">插入数据</h4>
 <p>使用INSERT语句通过视图向基本表插入数据
-例: 创建视图CS_XS，视图中包含计算机专业的学生信息，并向CS_XS视图中插入一条记录：（&rsquo;081255&rsquo;，&rsquo;李牧&rsquo;，&rsquo;计算机&rsquo;，1，&rsquo;1990-10-21&rsquo;，50，NULL，NULL）。
+例: 创建视图CS_XS，视图中包含计算机专业的学生信息，并向CS_XS视图中插入一条记录：（&lsquo;081255&rsquo;，&lsquo;李牧&rsquo;，&lsquo;计算机&rsquo;，1，&lsquo;1990-10-21&rsquo;，50，NULL，NULL）。
 首先创建视图CS_XS：(以下的删除、修改都是用该表)</p>
-
 <pre><code>CREATEOR REPLACE VIEW CS_XS
       AS  SELECT* FROM XS
       WHERE 专业 = '计算机'  WITH CHECK OPTION;
-</code></pre>
-
-<p><strong>注意:
+</code></pre><p><strong>注意:
 在创建视图的时候加上WITH CHECK OPTION子句，是因为WITH CHECK OPTION子句会在更新数据的时候检查新数据是否符合视图定义中WHERE子句的条件。WITH CHECKOPTION子句只能和可更新视图一起使用。</strong></p>
-
 <p>接下来插入记录：</p>
-
 <pre><code>INSERT INTO CS_XS
     VALUES('081255', '李牧', '计算机', 1, '1990-10-14',50, NULL, NULL);
-</code></pre>
-
-<p>注意：这里插入记录时专业名只能为“计算机”。
+</code></pre><p>注意：这里插入记录时专业名只能为“计算机”。
 这时，使用SELECT语句查询CS_XS视图和基本表XS，就可发现XS表中该记录已经被添加。</p>
-
-<p><strong>当视图所依赖的基本表有多个时，不能向该视图插入数据，因为这将会影响多个基本表。</strong>例如，不能向视图CS_KC插入数据，因为CS_KC依赖两个基本表：XS和XS_KC。
-<strong>对INSERT语句还有一个限制：SELECT语句中必须包含FROM子句中指定表的所有不能为空的列。</strong>例如，若CS_XS视图定义的时候不加上“姓名”字段，则插入数据的时候会出错。</p>
-
-<h4 id="修改数据">修改数据</h4>
-
+<p>**当视图所依赖的基本表有多个时，不能向该视图插入数据，因为这将会影响多个基本表。**例如，不能向视图CS_KC插入数据，因为CS_KC依赖两个基本表：XS和XS_KC。
+**对INSERT语句还有一个限制：SELECT语句中必须包含FROM子句中指定表的所有不能为空的列。**例如，若CS_XS视图定义的时候不加上“姓名”字段，则插入数据的时候会出错。</p>
+<h4 id="heading28">修改数据</h4>
 <p>使用UPDATE语句可以通过视图修改基本表的数据
 例: 将CS_XS视图中所有学生的总学分增加8。</p>
-
 <pre><code>UPDATE CS_XS SET 总学分 = 总学分+8;
-</code></pre>
-
-<p>该语句实际上是将CS_XS视图所依赖的基本表XS中所有记录的总学分字段值在原来基础上增加8。
+</code></pre><p>该语句实际上是将CS_XS视图所依赖的基本表XS中所有记录的总学分字段值在原来基础上增加8。
 <strong>若一个视图依赖于多个基本表，则一次修改该视图只能变动一个基本表的数据。</strong></p>
-
 <p>例: 将CS_KC视图中学号为081101的学生的101课程成绩改为90。</p>
-
 <pre><code>UPDATE CS_KC SET 成绩=90
     WHERE 学号='081101' AND 课程号='101';
-</code></pre>
-
-<p>本例中，视图CS_KC依赖于两个基本表：XS和XS_KC，对CS_KC视图的一次修改只能改变学号（源于XS表）或者课程号和成绩（源于XS_KC表）。</p>
-
-<h4 id="删除数据">删除数据</h4>
-
+</code></pre><p>本例中，视图CS_KC依赖于两个基本表：XS和XS_KC，对CS_KC视图的一次修改只能改变学号（源于XS表）或者课程号和成绩（源于XS_KC表）。</p>
+<h4 id="heading29">删除数据</h4>
 <p>使用DELETE语句可以通过视图删除基本表的数据</p>
-
 <p>例: 删除CS_XS中女同学的记录。</p>
-
 <pre><code>DELETEFROM CS_XS  WHERE 性别 = 0;
-</code></pre>
-
-<p><strong>注意：对依赖于多个基本表的视图，不能使用DELETE语句。</strong>例如，不能通过对CS_KC视图执行DELETE语句而删除与之相关的基本表XS及XS_KC表的数据。</p>
-
-<h4 id="修改已有视图的定义">修改已有视图的定义</h4>
-
+</code></pre><p>**注意：对依赖于多个基本表的视图，不能使用DELETE语句。**例如，不能通过对CS_KC视图执行DELETE语句而删除与之相关的基本表XS及XS_KC表的数据。</p>
+<h4 id="heading30">修改已有视图的定义</h4>
 <p>语法格式：</p>
-
 <pre><code>ALTER[ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]
     VIEW view_name [(column_list)]  AS select_statement
     [WITH [CASCADED | LOCAL] CHECK OPTION]
-</code></pre>
-
-<p>ALTERVIEW语句的语法和CREATE VIEW类似</p>
-
+</code></pre><p>ALTERVIEW语句的语法和CREATE VIEW类似</p>
 <p>例: 将CS_XS视图修改为只包含计算机专业学生的学号、姓名和总学分。</p>
-
 <pre><code>USEXSCJ;
 ALTERVIEW CS_XS
 AS  SELECT 学号,姓名,总学分  FROM XS
       WHERE 专业名 = '计算机';
-</code></pre>
-
-<h4 id="查看视图">查看视图</h4>
-
+</code></pre><h4 id="heading31">查看视图</h4>
 <p>查看视图数据</p>
-
 <pre><code>select * from view_name;
-</code></pre>
-
-<p>查看视图状态</p>
-
+</code></pre><p>查看视图状态</p>
 <pre><code>show tables status like view_name;
-</code></pre>
-
-<h4 id="删除视图">删除视图</h4>
-
+</code></pre><h4 id="heading32">删除视图</h4>
 <pre><code>drop VIEW [IF EXISTS] view_name1 [,view_name2]...
     [RESTRICT | CASCADE]
 </code></pre>
-  </article>
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    </article>
+    <footer>
+      
+        上一篇: <a class="previous" href="https://lpgph.github.io/post/mysql_table/"> MySql操作之表篇</a>
+      
+      
+        下一篇: <a class="next" href="https://lpgph.github.io/post/java_spring_quartz/"> Quartz与Spring整合</a>
+      
+    </footer>
+  </div>
+  <div class="comment-container box-style box-other">
+    
 
-<div id="gitalk-container"></div>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <div  id="comment-container">
+
+  </div>
 <script>
 var gitalk = new Gitalk({
+  language: 'zh-CN' ,
   clientID: '86c61da5bfaea99e9f10',
   clientSecret: '3c0524cd32fbe175601f5b964c6a34b6d31b0975',
   repo: 'lpgph.github.io',
   owner: 'lpgph',
-  admin: ['lpgph'],
+  admin: ["lpgph"],
   id: window.location.pathname,      
-  distractionFreeMode: true  
+  distractionFreeMode: false  
 })
-gitalk.render('gitalk-container')
+gitalk.render('comment-container')
 </script>
 
 
-        <div class="article-toc-panel">
-          <div class="article-toc" id="article-toc">
+  </div>
+ 
+
+
+    <div class="article-toc-panel">
+      <div class="article-toc" id="article-toc">
+        <strong class="toc-title">文章目录</strong>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">运算</a>
+      <ul>
+        <li><a href="#heading1">定义变量</a></li>
+        <li><a href="#heading2">控制语句</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading5">存储过程/函数</a>
+      <ul>
+        <li><a href="#heading6">定义</a></li>
+        <li><a href="#heading7">特性</a></li>
+        <li><a href="#heading8">语法</a></li>
+        <li><a href="#heading13">存储过程和存储函数优缺点和区别</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading14">触发器</a>
+      <ul>
+        <li><a href="#heading15">特点</a></li>
+        <li><a href="#heading16">作用</a></li>
+        <li><a href="#heading17">弊端</a></li>
+        <li><a href="#heading18">语法</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading20">视图</a>
+      <ul>
+        <li><a href="#heading21">定义</a></li>
+        <li><a href="#heading22">与表区别</a></li>
+        <li><a href="#heading23">优点</a></li>
+        <li><a href="#heading24">注意</a></li>
+        <li><a href="#heading25">语法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </div>
+
+    <div class="btn-panel" id="btn-panel">
+        
+        <div class="btn-toc" id="btn-toc">
+          <button class="btn" onclick="showToc()" title="文章目录" >
+            <i class="fa fa-expand"></i>
+          </button>
+          <aside class="article-toc" id="panel-article-toc">
             <strong class="toc-title">文章目录</strong>
             <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#运算">运算</a>
-<ul>
-<li><a href="#定义变量">定义变量</a></li>
-<li><a href="#控制语句">控制语句</a>
-<ul>
-<li><a href="#条件语句">条件语句</a></li>
-<li><a href="#循环语句">循环语句</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#存储过程-函数">存储过程/函数</a>
-<ul>
-<li><a href="#定义">定义</a></li>
-<li><a href="#特性">特性</a></li>
-<li><a href="#语法">语法</a>
-<ul>
-<li><a href="#创建存储过程">创建存储过程</a></li>
-<li><a href="#创建存储函数">创建存储函数</a></li>
-<li><a href="#查看存储过程和函数-存储函数-触发器">查看存储过程和函数|存储函数|触发器</a></li>
-<li><a href="#删除存储过程-函数-触发器">删除存储过程|函数|触发器</a></li>
-</ul></li>
-<li><a href="#存储过程和存储函数优缺点和区别">存储过程和存储函数优缺点和区别</a></li>
-</ul></li>
-<li><a href="#触发器">触发器</a>
-<ul>
-<li><a href="#特点">特点</a></li>
-<li><a href="#作用">作用</a></li>
-<li><a href="#弊端">弊端</a></li>
-<li><a href="#语法-1">语法</a>
-<ul>
-<li><a href="#创建触发器">创建触发器</a></li>
-<li><a href="#a-href-2-删除查看-a"><a href="#2">删除查看</a></a></li>
-</ul></li>
-</ul></li>
-<li><a href="#视图">视图</a>
-<ul>
-<li><a href="#定义-1">定义</a></li>
-<li><a href="#与表区别">与表区别</a></li>
-<li><a href="#优点">优点</a></li>
-<li><a href="#注意">注意</a></li>
-<li><a href="#语法-2">语法</a>
-<ul>
-<li><a href="#可更新视图">可更新视图</a></li>
-<li><a href="#插入数据">插入数据</a></li>
-<li><a href="#修改数据">修改数据</a></li>
-<li><a href="#删除数据">删除数据</a></li>
-<li><a href="#修改已有视图的定义">修改已有视图的定义</a></li>
-<li><a href="#查看视图">查看视图</a></li>
-<li><a href="#删除视图">删除视图</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#heading">运算</a>
+      <ul>
+        <li><a href="#heading1">定义变量</a></li>
+        <li><a href="#heading2">控制语句</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading5">存储过程/函数</a>
+      <ul>
+        <li><a href="#heading6">定义</a></li>
+        <li><a href="#heading7">特性</a></li>
+        <li><a href="#heading8">语法</a></li>
+        <li><a href="#heading13">存储过程和存储函数优缺点和区别</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading14">触发器</a>
+      <ul>
+        <li><a href="#heading15">特点</a></li>
+        <li><a href="#heading16">作用</a></li>
+        <li><a href="#heading17">弊端</a></li>
+        <li><a href="#heading18">语法</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading20">视图</a>
+      <ul>
+        <li><a href="#heading21">定义</a></li>
+        <li><a href="#heading22">与表区别</a></li>
+        <li><a href="#heading23">优点</a></li>
+        <li><a href="#heading24">注意</a></li>
+        <li><a href="#heading25">语法</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
-          </div>
-
+          </aside>
         </div>
+        
 
-        <div class="btn-panel" id="btn-panel">
-           
-            <div class="btn-toc" id="btn-toc">
-              <button class="btn" onclick="showToc()" title="文章目录" >
-                <i class="fa fa-expand"></i>
-              </button>
-              <aside class="article-toc" id="panel-article-toc">
-                <strong class="toc-title">文章目录</strong>
-                <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#运算">运算</a>
-<ul>
-<li><a href="#定义变量">定义变量</a></li>
-<li><a href="#控制语句">控制语句</a>
-<ul>
-<li><a href="#条件语句">条件语句</a></li>
-<li><a href="#循环语句">循环语句</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#存储过程-函数">存储过程/函数</a>
-<ul>
-<li><a href="#定义">定义</a></li>
-<li><a href="#特性">特性</a></li>
-<li><a href="#语法">语法</a>
-<ul>
-<li><a href="#创建存储过程">创建存储过程</a></li>
-<li><a href="#创建存储函数">创建存储函数</a></li>
-<li><a href="#查看存储过程和函数-存储函数-触发器">查看存储过程和函数|存储函数|触发器</a></li>
-<li><a href="#删除存储过程-函数-触发器">删除存储过程|函数|触发器</a></li>
-</ul></li>
-<li><a href="#存储过程和存储函数优缺点和区别">存储过程和存储函数优缺点和区别</a></li>
-</ul></li>
-<li><a href="#触发器">触发器</a>
-<ul>
-<li><a href="#特点">特点</a></li>
-<li><a href="#作用">作用</a></li>
-<li><a href="#弊端">弊端</a></li>
-<li><a href="#语法-1">语法</a>
-<ul>
-<li><a href="#创建触发器">创建触发器</a></li>
-<li><a href="#a-href-2-删除查看-a"><a href="#2">删除查看</a></a></li>
-</ul></li>
-</ul></li>
-<li><a href="#视图">视图</a>
-<ul>
-<li><a href="#定义-1">定义</a></li>
-<li><a href="#与表区别">与表区别</a></li>
-<li><a href="#优点">优点</a></li>
-<li><a href="#注意">注意</a></li>
-<li><a href="#语法-2">语法</a>
-<ul>
-<li><a href="#可更新视图">可更新视图</a></li>
-<li><a href="#插入数据">插入数据</a></li>
-<li><a href="#修改数据">修改数据</a></li>
-<li><a href="#删除数据">删除数据</a></li>
-<li><a href="#修改已有视图的定义">修改已有视图的定义</a></li>
-<li><a href="#查看视图">查看视图</a></li>
-<li><a href="#删除视图">删除视图</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-              </aside>
-            </div>
+        <div class="btn-share" id="btn-share">
+          <button class="btn" title="分享">
+            <i class="fa fa-share-alt"></i>
+          </button>
+        </div>
+        <div class="btn-top" id="btn-top" >
+          <button class="btn" onclick="backToTop()" title="返回顶部" >
+            <i class="fa fa-arrow-up"></i>
+          </button>
+        </div>
+    </div>
+      <script src="https://lpgph.github.io/js/nav-scroll.js"></script>
+      <script>
+      $("#article-toc").navScrollSpy({
+        navContainer: '#article-toc',
+        current:"active",
+        scrollSpeed: 50
+      });
+
+      $("#panel-article-toc").navScrollSpy({
+        navContainer: '#panel-article-toc',
+        current:"active",
+        scrollSpeed: 50
+      });
+      </script>
+  </div>
+
+        </main>
+        
+        <footer class="home-footer">
             
 
-            <div class="btn-share" id="btn-share">
-              <button class="btn" title="分享">
-                <i class="fa fa-share-alt"></i>
-              </button>
-            </div>
-            <div class="btn-top" id="btn-top" >
-              <button class="btn" onclick="backToTop()" title="返回顶部" >
-                <i class="fa fa-arrow-up"></i>
-              </button>
-            </div>
-        </div>
-          <script src="https://lpgph.github.io/js/nav-scroll.js"></script>
-          <script>
-          $("#article-toc").navScrollSpy({
-            navContainer: '#article-toc',
-            current:"active",
-            scrollSpeed: 50
-          });
+  <div class="footer-background">
+    <figure class="clouds"></figure>
+    <figure class="background"></figure>
+    <figure class="foreground"></figure>
+  </div>
 
-          $("#panel-article-toc").navScrollSpy({
-            navContainer: '#panel-article-toc',
-            current:"active",
-            scrollSpeed: 50
-          });
+  <div class="footer" >
+    <p class="copyright">
+      Copyright © 2017-2019 <a href="https://lpgph.github.io/" title="Dreamcatcher">Dreamcatcher</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+    </p>
+    <br/>
+    <script>
+        var now = new Date(); 
+        function createtime() { 
+            var grt= new Date("2017-01-07T00:00:00Z");
+            now.setTime(now.getTime()+250); 
+            days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+            hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+            if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+            mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+            seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+            snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+            document.getElementById("timeDate").innerHTML = "本站已勉强存活 "+dnum+" 天 "; 
+            document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+        } 
+        setInterval("createtime()",250);
+    </script>
 
-
-          
-          </script>
-      </div>
-      <footer><div class="footer-background">
-  <figure class="clouds"></figure>
-  <figure class="background"></figure>
-  <figure class="foreground"></figure>
-</div>
-
-<div class="footer" >
-  <p class="copyright">
-    Copyright © 2017-2019 <a href="https://lpgph.github.io/" title="Dreamcatcher">Dreamcatcher</a>
-    &nbsp;&nbsp;|&nbsp;&nbsp;
-    <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
-  </p>
-  <br/>
-  <script>
-      var now = new Date(); 
-      function createtime() { 
-          var grt= new Date("2017-01-07T00:00:00Z");
-          now.setTime(now.getTime()+250); 
-          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
-          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
-          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
-          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
-          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
-          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
-          document.getElementById("timeDate").innerHTML = "本站已勉强存活 "+dnum+" 天 "; 
-          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
-      } 
-      setInterval("createtime()",250);
-  </script>
-
-  <ul class="github-badge">
-    <li>
-      <a style="color: #fff" rel="license" href="https://hexo.io/" target="_blank" title="由 Hugo 强力驱动">
-      <span class="badge-subject">Powered</span><span class="badge-value bg-blue">Hugo</span></a>
-    </li>
-    <li>
-      <a style="color: #fff" rel="license" href="https://github.com/" target="_blank" title="静态网页托管于 GitHub Pages 和 Coding Pages">
-      <span class="badge-subject">Hosted</span><span class="badge-value bg-brightgreen">GitHub &amp; Coding</span></a>
-    </li>
-    
-    
-    <li>
-      <a style="color: #fff" rel="license" href="https://github.com/lpgph/hugo-theme-young" target="_blank" title="站点使用 hugo-theme-young 主题">
-      <span class="badge-subject">Theme</span><span class="badge-value bg-blue">hugo-theme-young</span></a>
-    </li>
-    <li>
-      <a style="color: #fff" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="本站点采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可">
-      <span class="badge-subject"><i class="fa fa-copyright"></i></span><span class="badge-value bg-lightgrey">BY-NC-SA 4.0</span></a>
-    </li>
-    <li>
-      <a style="color: #fff" rel="license" href="https://996.icu/" target="_blank" title="支持 996.ICU">
-      <span class="badge-subject">Link</span><span class="badge-value bg-red">996.ICU</span></a>
-    </li>
-    
-    
-  </ul>
-</div>
-</footer>
+    <ul class="github-badge">
+      <li>
+        <a style="color: #fff" rel="license" href="https://hexo.io/" target="_blank" title="由 Hugo 强力驱动">
+        <span class="badge-subject">Powered</span><span class="badge-value bg-blue">Hugo</span></a>
+      </li>
+      <li>
+        <a style="color: #fff" rel="license" href="https://github.com/" target="_blank" title="静态网页托管于 GitHub Pages 和 Coding Pages">
+        <span class="badge-subject">Hosted</span><span class="badge-value bg-brightgreen">GitHub &amp; Coding</span></a>
+      </li>
       
+      
+      <li>
+        <a style="color: #fff" rel="license" href="https://github.com/lpgph/hugo-theme-young" target="_blank" title="站点使用 hugo-theme-young 主题">
+        <span class="badge-subject">Theme</span><span class="badge-value bg-blue">hugo-theme-young</span></a>
+      </li>
+      <li>
+        <a style="color: #fff" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="本站点采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可">
+        <span class="badge-subject"><i class="fa fa-copyright"></i></span><span class="badge-value bg-lightgrey">BY-NC-SA 4.0</span></a>
+      </li>
+      <li>
+        <a style="color: #fff" rel="license" href="https://996.icu/" target="_blank" title="支持 996.ICU">
+        <span class="badge-subject">Link</span><span class="badge-value bg-red">996.ICU</span></a>
+      </li>
+      
+      
+    </ul>
+  </div>
+        </footer>
+    </div>
+
+    
 
 
 
@@ -1021,6 +881,7 @@ gitalk.render('gitalk-container')
 
 
 <script type="text/javascript" color="220,220,220" opacity='1' zIndex="1" count="200" src="https://lpgph.github.io//js/canvas-nest.min.js"></script>
+
 <script src="https://lpgph.github.io//js/piao.js" type="text/javascript"></script>
 <script src="https://lpgph.github.io//js/circleMagic.js" type="text/javascript"></script>
 
@@ -1088,7 +949,6 @@ $(window).resize(function(){
             if(homeScroll+50<=docScroll) {
               if (!articleToc.hasClass('fixed')) {
                   articleToc.addClass('fixed')
-                  $(".article-toc-panel").addClass('fixed');
               }
             }
         }else{
@@ -1096,15 +956,16 @@ $(window).resize(function(){
             if( homeScroll+50 >= docScroll) {
             if (articleToc.hasClass('fixed')) {
                 articleToc.removeClass('fixed');
-                $(".article-toc-panel").removeClass('fixed');
             } 
           }
         }
 
         if (document.body.scrollWidth<720) {
           $("#live2d-widget").css("opacity","0");
+          $("#c_n14").css("opacity","0");
         }else{
           $("#live2d-widget").css("opacity","1");
+          $("#c_n14").css("opacity","1");
         }
 
     },100)
@@ -1144,7 +1005,6 @@ var homeScroll     = $('#app-header').height()-40,
           if(homeScroll+50<=docScroll) {
           if (!articleToc.hasClass('fixed')) {
               articleToc.addClass('fixed')
-              $(".article-toc-panel").addClass('fixed');
           }
         }
         if (homeScroll+100<=docScroll) {
@@ -1169,7 +1029,6 @@ var homeScroll     = $('#app-header').height()-40,
           if( homeScroll+70 >= docScroll) {
             if (articleToc.hasClass('fixed')) {
                 articleToc.removeClass('fixed');
-                $(".article-toc-panel").removeClass('fixed');
             } 
           }
         }
@@ -1341,7 +1200,5 @@ $(document).ready(function(){
 
 
 
-    </div>
-  </div>
 </body>
 </html>

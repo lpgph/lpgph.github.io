@@ -2,13 +2,13 @@
 <html lang="en-us">
 <head>
   <meta charset="UTF-8">
-  <title>404 Page not found - Dreamcatcher</title>
+  <title>Test - Dreamcatcher</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="404 Page not found">
+  <meta name="description" content="Test">
   
-  <meta itemprop="name" content="404 Page not found - Dreamcatcher">
-  <meta itemprop="description" content="404 Page not found">
+  <meta itemprop="name" content="Test - Dreamcatcher">
+  <meta itemprop="description" content="Test">
   
   <meta itemprop="image" content="https://lpgph.github.io/img/author.jpg">
 
@@ -56,51 +56,9 @@
 
 </head>
 <body>
-  <header>
-    
-
-  <div class="vertical">
-    <div class="inner">
-      <h1 class="site-name">
-        <a href="https://lpgph.github.io/" title="Dreamcatcher">Dreamcatcher</a>
-      </h1>
-      <h2 class="blog-motto" id="header-blog-motto"></h2>
-      <h3 class="blog-motto-author" id="header-blog-motto-author"></h2>
-
-      
-      <script>
-        var xhr = new XMLHttpRequest();
-        xhr.open('get', 'https://v1.hitokoto.cn');
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4) {
-            var data = JSON.parse(xhr.responseText);
-            var $content = document.getElementById('header-blog-motto');
-            $content.innerText = data.hitokoto; 
-            var $author = document.getElementById('header-blog-motto-author');
-            $author.innerText ="——— "+(data.type==="e"||data.type==="f"||data.type==="g"?data.from:"《"+data.from+"》");
-          }
-        }
-        xhr.send();
-      </script>
-      
-
-
-    </div>
-  </div>
-  <div class="scroll-down" id="scroll-down"> 
-    <a href="javascript:void(0);">  
-      <i class="scroll-down-icon fa fa-angle-down fa-2x"></i>  
-    </a>
-  </div>
-
-  </header>
-  <div id="container">
-    <div id="main">
-      
-      你访问的页面不存在
-      
-    </div>
-    
+    <div id="home" class="app-home">
+        <aside>
+             
   <button class="navbutton"  id="openaside" title="显示侧边栏">
     <i class="fa fa-navicon"></i>  
     <span id="nav-btn-title" style="padding-left: 10px;">MENU</span>
@@ -211,8 +169,154 @@
     </div>
   </div>
   <div id="sideBar" class="app-menu"></div>
+        </aside>
+
+        <header>
+         
+    <header class="app-header article-header" id="app-header">
+      
+<div class="vertical">
+  <div class="inner">
+      <h1 itemprop="name" class="article-title">
+        <a href="https://lpgph.github.io/post/mysql_test/" title="Test" itemprop="url">Test</a>
+      </h1>
+      <h2 class="article-info">
+        <p class="article-info-text">
+          Posted by
+          
+            <a href="http://localhost:1313/" title="lpgph">lpgph</a>
+          
+          on <time datetime="2017-04-14 19:37:11 &#43;0000 UTC" itemprop="datePublished">2017-04-14</time>
+        </p>
+        <p class="article-tags">
+          
+          
+            
+            <span class="article-tag  article-category-color">
+              <i class="fa fa-th-large" aria-hidden="true"></i>
+              <a href="https://lpgph.github.io/categories/mysql">MySql</a>
+            </span>
+            
+          
+          
+
+          
+          
+            
+            <span class="article-tag  article-tag-color">
+              <i class="fa fa-tag" aria-hidden="true"></i>
+              <a href="https://lpgph.github.io/tags/mysql">MySql</a>
+            </span>
+            
+          
+          
+        </p>
+      </h2>
   </div>
-  <footer>
+</div>
+    </header>
+
+        </header>
+        
+        <main id="main-content" class="app container">
+            
+      
+  <div id="main" class="post"> 
+
+    
+  <div  class="article-content box-style box-first">
+    <article>
+      <p>Test</p>
+
+    </article>
+    <footer>
+      
+        上一篇: <a class="previous" href="https://lpgph.github.io/post/mysql_database/"> MySql操作之数据库篇</a>
+      
+      
+        下一篇: <a class="next" href="https://lpgph.github.io/post/mysql_join/"> MySql之Join语法解析与性能分析</a>
+      
+    </footer>
+  </div>
+  <div class="comment-container box-style box-other">
+    
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <div  id="comment-container">
+
+  </div>
+<script>
+var gitalk = new Gitalk({
+  language: 'zh-CN' ,
+  clientID: '86c61da5bfaea99e9f10',
+  clientSecret: '3c0524cd32fbe175601f5b964c6a34b6d31b0975',
+  repo: 'lpgph.github.io',
+  owner: 'lpgph',
+  admin: ["lpgph"],
+  id: window.location.pathname,      
+  distractionFreeMode: false  
+})
+gitalk.render('comment-container')
+</script>
+
+
+  </div>
+ 
+
+
+    <div class="article-toc-panel">
+      <div class="article-toc" id="article-toc">
+        <strong class="toc-title">文章目录</strong>
+        <nav id="TableOfContents"></nav>
+      </div>
+    </div>
+
+    <div class="btn-panel" id="btn-panel">
+        
+        <div class="btn-toc" id="btn-toc">
+          <button class="btn" onclick="showToc()" title="文章目录" >
+            <i class="fa fa-expand"></i>
+          </button>
+          <aside class="article-toc" id="panel-article-toc">
+            <strong class="toc-title">文章目录</strong>
+            <nav id="TableOfContents"></nav>
+          </aside>
+        </div>
+        
+
+        <div class="btn-share" id="btn-share">
+          <button class="btn" title="分享">
+            <i class="fa fa-share-alt"></i>
+          </button>
+        </div>
+        <div class="btn-top" id="btn-top" >
+          <button class="btn" onclick="backToTop()" title="返回顶部" >
+            <i class="fa fa-arrow-up"></i>
+          </button>
+        </div>
+    </div>
+      <script src="https://lpgph.github.io/js/nav-scroll.js"></script>
+      <script>
+      $("#article-toc").navScrollSpy({
+        navContainer: '#article-toc',
+        current:"active",
+        scrollSpeed: 50
+      });
+
+      $("#panel-article-toc").navScrollSpy({
+        navContainer: '#panel-article-toc',
+        current:"active",
+        scrollSpeed: 50
+      });
+      </script>
+  </div>
+
+        </main>
+        
+        <footer class="home-footer">
+            
 
   <div class="footer-background">
     <figure class="clouds"></figure>
@@ -270,8 +374,11 @@
       
       
     </ul>
-  </div></footer>
-  
+  </div>
+        </footer>
+    </div>
+
+    
 
 
 
@@ -515,6 +622,38 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 $(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('#openaside'),
+      c  = $('#closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+   
+     
+    
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
   var $this = $('.share'),
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
@@ -541,6 +680,27 @@ $(document).ready(function(){
 });
 </script>
 
+
+<link rel="stylesheet" href="https://lpgph.github.io/plugin/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="https://lpgph.github.io/plugin/fancybox/jquery.fancybox.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
 
 
 
