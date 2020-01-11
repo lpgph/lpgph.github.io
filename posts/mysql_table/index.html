@@ -1,0 +1,1575 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <title>MySql操作之表篇 - Dreamcatcher</title>
+
+  
+  <meta name="description" content="一些基本的操作">
+  
+  <meta itemprop="name" content="MySql操作之表篇 - Dreamcatcher">
+  <meta itemprop="description" content="一些基本的操作">
+  
+  <meta itemprop="image" content="https://lpgph.github.io/img/avatar.jpg">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0">
+  <meta name='apple-mobile-web-app-capable' content='yes'>
+  <meta name='apple-mobile-web-app-status-bar-style' content='black'>
+  <meta name='format-detection' content='telephone=no'>
+
+
+  
+  
+  <meta name="twitter:description" content="君子如器">
+
+  
+  
+  <link rel="shortcut icon" href="https://lpgph.github.io/img/favicon.ico"/>
+  <link rel="apple-touch-icon" href="https://lpgph.github.io/img/apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="https://lpgph.github.io/img/apple-touch-icon.png" />
+
+  
+  
+  <link rel="stylesheet" href="https://lpgph.github.io/font/hack/css/hack.min.css">
+  <link rel="stylesheet" href="https://lpgph.github.io/font/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://lpgph.github.io/font/playball/playball.css">
+
+  <link rel="stylesheet" href="https://lpgph.github.io/lib/animate/animate.min.css">
+
+  
+  
+  <link rel="stylesheet" href="/sass/style.min.dc252023e1d044c43100d79b21900e0670083b7c413152daed69e3457ec5de79.css" integrity="sha256-3CUgI&#43;HQRMQxANebIZAOBnAIO3xBMVLa7WnjRX7F3nk=" media="screen" crossorigin="anonymous">
+  
+
+  <script src="https://lpgph.github.io/js/jquery-3.3.1.min.js"></script>
+
+  
+  <script src="https://lpgph.github.io/js/motto-show.js"></script>
+
+  
+  
+  <link rel="stylesheet" href="https://lpgph.github.io/lib/highlight/styles/github.css">
+  <script src="https://lpgph.github.io/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  
+  
+  <script type="text/javascript" src="https://lpgph.github.io/js/click_show_text.js"></script>
+  
+
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  
+  <script type="text/javascript" src="https://lpgph.github.io/js/jquery.pjax.js"></script>
+  
+  
+
+
+</head>
+<body>
+    <div id="app" class="app" >
+        <header class="app-header" id="app-header">
+            
+<div class="nav-header">
+  <button class="button menu" title="显示侧边栏">
+    <i class="fa fa-navicon"></i>   
+  </button>
+
+  <div class="blog-title animated lightSpeedIn">
+    <a href="https://lpgph.github.io/">
+      <span class="title">Dreamcatcher</span>
+    </a>
+  </div>
+
+  <button class="button search">
+    <i class="fa fa-search" aria-hidden="true"></i>
+  </button>
+
+</div>
+
+<div class="nav-panel" id="header-nav-panel">
+   <div class="search-box">
+      <form method="get" action="https://www.google.com/search">
+        <input type="text" id="search" name="q" placeholder="搜索">
+        <button type="button">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </form>
+   </div>
+</div>
+        </header>
+        <main class="app-main">
+            <aside class="app-sidebar" id="app-sidebar">
+                
+ 
+ 
+ 
+<div class="blog-info scrollbar">
+  
+  <div class="avatar">
+    <a href="https://lpgph.github.io/"  data-pjax>
+      <img src="https://lpgph.github.io/img/avatar.jpg" alt="lpgph" title="lpgph"/>
+    </a>
+  </div>
+  
+  <div class="motto"  >
+    <small class="content" id="blog-motto"></small>
+    <script>
+     
+      binft(document.getElementById('blog-motto'),["青青陵上柏，磊磊涧中石","勿以恶小而为之，勿以善小而不为","勿以时穷而忘节，勿以势起而乱性","人生天地间，忽如远行客","斗酒相娱乐，聊厚不为薄","驱车策驽马，游戏宛与洛","洛中何郁郁，冠带自相索","长衢罗夹巷，王侯多第宅","两宫遥相望，双阙百余尺","极宴娱心意，戚戚何所迫？"]);
+    
+    </script>
+  </div>
+  <nav class="menu">
+  <ul class="nav">
+    
+      <li class="line"></li>
+      
+      <li>
+        
+          <a href="/" data-pjax target="_self" title="主页">
+            <div class="row-box flex">
+              <i class='fa fa-home' aria-hidden='true'></i><span class="title">主页</span>
+            </div>
+          </a>
+        
+      </li>
+      
+      <li>
+        
+          <a href="/posts/" data-pjax target="_self" title="归档">
+            <div class="row-box flex">
+              <i class='fa fa-archive' aria-hidden='true'></i><span class="title">归档</span>
+            </div>
+          </a>
+        
+      </li>
+      
+      <li>
+        
+          <a href="/note/" data-pjax target="_self" title="短笺">
+            <div class="row-box flex">
+              <i class='fa fa-sticky-note' aria-hidden='true'></i><span class="title">短笺</span>
+            </div>
+          </a>
+        
+      </li>
+      
+      <li>
+        
+          <a href="/photo/" data-pjax target="_self" title="相册">
+            <div class="row-box flex">
+              <i class='fa fa-photo' aria-hidden='true'></i><span class="title">相册</span>
+            </div>
+          </a>
+        
+      </li>
+      
+      <li>
+        
+          <a href="/about/" data-pjax target="_self" title="关于我">
+            <div class="row-box flex">
+              <i class='fa fa-user' aria-hidden='true'></i><span class="title">关于我</span>
+            </div>
+          </a>
+        
+      </li>
+      
+    
+    <li class="line"></li>
+    <li>
+      <div class="row-box flex">
+        <i class="fa fa-th-large" aria-hidden="true"></i><span class="title">随笔分类</span><i class="angle fa fa-angle-right" aria-hidden="true"></i>
+      </div>
+      <ul class="nav nav-sub animated fadeIn">
+        
+        <li>
+          <a href="https://lpgph.github.io/categories/java/" data-pjax target="_self" title="Java">
+            <div class="row-box flex">
+              Java<span class="bubble">2</span>
+            </div>
+          </a>
+        </li>
+        
+        <li>
+          <a href="https://lpgph.github.io/categories/mysql/" data-pjax target="_self" title="MySql">
+            <div class="row-box flex">
+              MySql<span class="bubble">8</span>
+            </div>
+          </a>
+        </li>
+        
+        <li>
+          <a href="https://lpgph.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-pjax target="_self" title="设计模式">
+            <div class="row-box flex">
+              设计模式<span class="bubble">1</span>
+            </div>
+          </a>
+        </li>
+        
+      </ul>
+    </li>
+    <li>
+      <div class="row-box flex">
+        <i class="fa fa-tag" aria-hidden="true"></i><span class="title">我的标签</span><i class="angle fa fa-angle-right" aria-hidden="true"></i>
+      </div>
+      <nav class="nav nav-sub block-box tags animated fadeIn">
+      
+      <a href="https://lpgph.github.io/tags/java/" data-pjax target="_self" title="Java">
+        <span class="bubble font-zoom">Java<sup>(3)</sup></span>
+      </a>
+      
+      <a href="https://lpgph.github.io/tags/mysql/" data-pjax target="_self" title="MySql">
+        <span class="bubble font-zoom">MySql<sup>(8)</sup></span>
+      </a>
+      
+      <a href="https://lpgph.github.io/tags/quartz/" data-pjax target="_self" title="Quartz">
+        <span class="bubble font-zoom">Quartz<sup>(2)</sup></span>
+      </a>
+      
+      <a href="https://lpgph.github.io/tags/spring/" data-pjax target="_self" title="Spring">
+        <span class="bubble font-zoom">Spring<sup>(2)</sup></span>
+      </a>
+      
+      <a href="https://lpgph.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-pjax target="_self" title="设计模式">
+        <span class="bubble font-zoom">设计模式<sup>(1)</sup></span>
+      </a>
+      
+      </nav>
+    </li>
+  </ul>
+</nav>
+
+
+</div>
+
+
+
+
+
+
+  <div class="social">
+    <div class="list">
+      
+      
+      
+        <a href="https://github.com/lpgph" target="_blank" title="github"><i class="fa fa-github" aria-hidden="true"></i></a>
+      
+      
+      
+      
+    </div>
+  </div>
+  
+
+            </aside>
+            <div style="display: contents;" id="main-contents">
+                <div class="main-container scrollbar" id="main-container">
+                    <main>
+                        <div class="main-content" data-pjax>
+                        
+  <header class="main-header">
+    <h1 itemprop="name" class="title">
+  <a href="https://lpgph.github.io/posts/mysql_table/" title="MySql操作之表篇" itemprop="url">MySql操作之表篇</a>
+</h1>
+<ul class="info">
+  <li>
+    <i class="fa fa-user-o"></i><a href="https://lpgph.github.io/about" title="lpgph">lpgph</a>
+  </li>
+  <li>
+    <i class="fa fa-clock-o"></i><time datetime="2018-03-03 13:37:02 &#43;0000 UTC">2018-03-03</time>
+  </li>
+  <li>
+    <i class="fa fa-keyboard-o"></i>字数统计:<span>4636</span>字
+  </li>
+  <li>
+    <i class="fa fa-hourglass-half"></i>阅读时长 ≈ <span>10</span>分钟
+  </li>
+  <li>
+    <i class="fa fa-eye"></i><span id="busuanzi_value_page_pv">0</span>
+  </li>
+  <li>
+    <a href="https://lpgph.github.io/posts/mysql_table/#comment-container"><i class="fa fa-comment-o"></i><span id="comment_value_page_count">0</span></a>
+  </li>
+  
+  <li>
+    <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+    
+      <a href="https://lpgph.github.io/categories/mysql">MySql</a>
+    
+  </li>
+  
+</ul> 
+  </header>
+  <div class="main-content-container">
+    
+
+<section class="article-content box-style box-other">
+  <article>
+  <p>一些基本的操作</p>
+<p>[Mysql官方文档] (<a href="https://dev.mysql.com/doc/refman/5.7/en/select.html">https://dev.mysql.com/doc/refman/5.7/en/select.html</a> &ldquo;Mysql官方文档&rdquo;)</p>
+<h2 id="heading">创建和删除</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">/</span><span class="o">/</span><span class="err">创</span><span class="err">建</span><span class="err">表</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">create</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span><span class="p">(</span><span class="n">field</span><span class="p">[</span><span class="p">,</span><span class="n">field2</span><span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">]</span><span class="p">)</span> <span class="k">comment</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">&#39;</span><span class="p">;</span>
+<span class="o">/</span><span class="o">/</span><span class="n">eg</span><span class="p">:</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">create</span> <span class="k">table</span> <span class="k">user</span><span class="p">(</span>
+<span class="o">&gt;</span> <span class="n">id</span> <span class="nb">int</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">auto_increment</span><span class="p">,</span>
+<span class="o">&gt;</span> <span class="n">name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
+<span class="o">&gt;</span> <span class="n">sex</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span> <span class="k">default</span> <span class="s1">&#39;</span><span class="s1">0</span><span class="s1">&#39;</span><span class="p">,</span>
+<span class="o">&gt;</span> <span class="n">weight</span> <span class="n">double</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="p">)</span> <span class="k">comment</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">用户表</span><span class="s1">&#39;</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">/</span><span class="o">/</span><span class="err">删</span><span class="err">除</span><span class="err">表</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">drop</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">/</span><span class="o">/</span><span class="err">修</span><span class="err">改</span><span class="err">表</span><span class="err">名</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">rename</span> <span class="k">table</span> <span class="o">&lt;</span><span class="n">old_table_name</span><span class="o">&gt;</span> <span class="k">to</span> <span class="o">&lt;</span><span class="n">new_table_name</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div><h2 id="heading-1">查看表</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SHOW</span> <span class="n">DATABASES</span>                                <span class="o">/</span><span class="o">/</span><span class="err">列</span><span class="err">出</span> <span class="n">MySQL</span> <span class="n">Server</span> <span class="err">数</span><span class="err">据</span><span class="err">库</span><span class="err">。</span>
+<span class="k">SHOW</span> <span class="n">TABLES</span> <span class="p">[</span><span class="k">FROM</span> <span class="n">db_name</span><span class="p">]</span>                    <span class="o">/</span><span class="o">/</span><span class="err">列</span><span class="err">出</span><span class="err">数</span><span class="err">据</span><span class="err">库</span><span class="err">数</span><span class="err">据</span><span class="err">表</span><span class="err">。</span>
+<span class="k">SHOW</span> <span class="k">TABLE</span> <span class="n">STATUS</span> <span class="p">[</span><span class="k">FROM</span> <span class="n">db_name</span><span class="p">]</span>              <span class="o">/</span><span class="o">/</span><span class="err">列</span><span class="err">出</span><span class="err">数</span><span class="err">据</span><span class="err">表</span><span class="err">及</span><span class="err">表</span><span class="err">状</span><span class="err">态</span><span class="err">信</span><span class="err">息</span><span class="err">。</span>
+<span class="k">SHOW</span> <span class="n">COLUMNS</span> <span class="k">FROM</span> <span class="n">tbl_name</span> <span class="p">[</span><span class="k">FROM</span> <span class="n">db_name</span><span class="p">]</span>     <span class="o">/</span><span class="o">/</span><span class="err">列</span><span class="err">出</span><span class="err">资</span><span class="err">料</span><span class="err">表</span><span class="err">字</span><span class="err">段</span>
+<span class="k">SHOW</span> <span class="n">FIELDS</span> <span class="k">FROM</span> <span class="n">tbl_name</span> <span class="p">[</span><span class="k">FROM</span> <span class="n">db_name</span><span class="p">]</span>
+<span class="k">DESCRIBE</span> <span class="n">tbl_name</span> <span class="p">[</span><span class="n">col_name</span><span class="p">]</span>                  <span class="o">/</span><span class="o">/</span><span class="err">可</span><span class="err">以</span><span class="err">简</span><span class="err">写</span><span class="err">为</span><span class="err">：</span> <span class="k">DESC</span> <span class="n">tbl_name</span> <span class="p">[</span><span class="n">col_name</span><span class="p">]</span>
+<span class="k">SHOW</span> <span class="k">FULL</span> <span class="n">COLUMNS</span> <span class="k">FROM</span> <span class="n">tbl_name</span> <span class="p">[</span><span class="k">FROM</span> <span class="n">db_name</span><span class="p">]</span><span class="o">/</span><span class="o">/</span><span class="err">列</span><span class="err">出</span><span class="err">字</span><span class="err">段</span><span class="err">及</span><span class="err">详</span><span class="err">情</span>
+<span class="k">SHOW</span> <span class="k">FULL</span> <span class="n">FIELDS</span> <span class="k">FROM</span> <span class="n">tbl_name</span> <span class="p">[</span><span class="k">FROM</span> <span class="n">db_name</span><span class="p">]</span> <span class="o">/</span><span class="o">/</span><span class="err">列</span><span class="err">出</span><span class="err">字</span><span class="err">段</span><span class="err">完</span><span class="err">整</span><span class="err">属</span><span class="err">性</span>
+<span class="k">SHOW</span> <span class="k">INDEX</span> <span class="k">FROM</span> <span class="n">tbl_name</span> <span class="p">[</span><span class="k">FROM</span> <span class="n">db_name</span><span class="p">]</span>       <span class="o">/</span><span class="o">/</span><span class="err">列</span><span class="err">出</span><span class="err">表</span><span class="err">索</span><span class="err">引</span><span class="err">。</span>
+<span class="k">SHOW</span> <span class="n">STATUS</span>                                  <span class="o">/</span><span class="o">/</span><span class="err">列</span><span class="err">出</span> <span class="n">DB</span> <span class="n">Server</span> <span class="err">状</span><span class="err">态</span><span class="err">。</span>
+<span class="k">SHOW</span> <span class="n">VARIABLES</span>                               <span class="o">/</span><span class="o">/</span><span class="err">列</span><span class="err">出</span> <span class="n">MySQL</span> <span class="err">系</span><span class="err">统</span><span class="err">环</span><span class="err">境</span><span class="err">变</span><span class="err">量</span><span class="err">。</span>
+<span class="k">SHOW</span> <span class="n">PROCESSLIST</span>                             <span class="o">/</span><span class="o">/</span><span class="err">列</span><span class="err">出</span><span class="err">执</span><span class="err">行</span><span class="err">命</span><span class="err">令</span><span class="err">。</span>
+<span class="k">SHOW</span> <span class="n">GRANTS</span> <span class="k">FOR</span> <span class="k">user</span>                         <span class="o">/</span><span class="o">/</span><span class="err">列</span><span class="err">出</span><span class="err">某</span><span class="err">用</span><span class="err">户</span><span class="err">权</span><span class="err">限</span>
+</code></pre></div><h2 id="heading-2">表字段</h2>
+<h3 id="heading-3">常用字段属性:</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auto_increment</td>
+<td>为新插入的行赋一个唯一的整数标识符,自动递增,作为主键列，每个表只允许有一个自动递增列</td>
+</tr>
+<tr>
+<td>binary</td>
+<td>区分大小写的方式排序</td>
+</tr>
+<tr>
+<td>default</td>
+<td>属性确保在没有任何值可用的情况下，赋予某个常量值，这个值必须是常量，因为MySQL不允许插入函数或表达式值。此外，此属性无法用于BLOB或TEXT列。如果已经为此列指定了NULL属性，没有指定默认值时默认值将为NULL，否则默认值将依赖于字段的数据类型</td>
+</tr>
+<tr>
+<td>index</td>
+<td>如果所有其他因素都相同，要加速数据库查询，使用索引通常是最重要的一个步骤。索引一个列会为该列创建一个有序的键数组，每个键指向其相应的表行。以后针对输入条件可以搜索这个有序的键数组，与搜索整个未索引的表相比，这将在性能方面得到极大的提升。<strong>在实践中尽量使用小的索引。</strong></td>
+</tr>
+<tr>
+<td>not null</td>
+<td>如果将一个列定义为not null，将不允许向该列插入null值。<strong>建议在重要情况下始终使用not null属性</strong>，因为它提供了一个基本验证，确保已经向查询传递了所有必要的值。</td>
+</tr>
+<tr>
+<td>null</td>
+<td>为列指定null属性时，该列可以保持为空，而不论行中其它列是否已经被填充。记住，<strong>null精确的说法是“无”，而不是空字符串或0。</strong></td>
+</tr>
+<tr>
+<td>primary key</td>
+<td>用于确保指定行的唯一性。指定为主键的列中，值不能重复，也不能为空。为指定为主键的列赋予auto_increment属性是很常见的，因为此列不必与行数据有任何关系，而只是作为一个唯一标识符。作为主键又分两种：<!-- raw HTML omitted -->(1) 单字段主键 如果输入到数据库中的每行都已经有不可修改的唯一标识符，一般会使用单字段主键。注意，此主键一旦设置就不能再修改。<!-- raw HTML omitted -->(2) 多字段主键如果记录中任何一个字段都不可能保证唯一性，就可以使用多字段主键。这时，多个字段联合起来确保唯一性。如果出现这种情况，指定一个auto_increment整数作为主键是更好的办法。</td>
+</tr>
+<tr>
+<td>unique</td>
+<td>被赋予unique属性的列将确保所有值都有不同的值，只是null值可以重复。一般会指定一个列为unique，以确保该列的所有值都不同。</td>
+</tr>
+<tr>
+<td>zerofill</td>
+<td>可用于任何数值类型，用0填充所有剩余字段空间。例如，无符号int的默认宽度是10；因此，当“零填充”的int值为4时，将表示它为0000000004。</td>
+</tr>
+<tr>
+<td>character set</td>
+<td>指定一个字符集</td>
+</tr>
+</tbody>
+</table>
+<h3 id="heading-4">添加字段</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> <span class="k">add</span> <span class="o">&lt;</span><span class="n">field_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">field_type</span><span class="o">&gt;</span> <span class="k">comment</span> <span class="s2">&#34;</span><span class="s2">备注</span><span class="s2">&#34;</span><span class="p">;</span>
+<span class="o">/</span><span class="o">/</span><span class="n">eg</span><span class="p">:</span><span class="err">在</span><span class="err">表</span><span class="n">user添加了一个字段update_time</span><span class="err">，</span><span class="err">类</span><span class="err">型</span><span class="err">为</span><span class="k">timestamp</span><span class="err">，</span><span class="err">设</span><span class="err">置</span><span class="err">创</span><span class="err">建</span><span class="err">时</span><span class="err">间</span><span class="err">和</span><span class="err">默</span><span class="err">认</span><span class="err">时</span><span class="err">间</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">alter</span> <span class="k">table</span> <span class="k">user</span> <span class="k">add</span> <span class="n">update_time</span> <span class="k">timestamp</span> <span class="k">default</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="k">comment</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">更新时间</span><span class="s1">&#39;</span><span class="p">;</span>
+<span class="o">/</span><span class="o">/</span> <span class="err">在</span><span class="n">log表中</span> <span class="err">添</span><span class="err">加</span><span class="err">一</span><span class="err">个</span><span class="n">state字段并且放在current_count后</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">log</span> <span class="k">ADD</span> <span class="o">`</span><span class="k">state</span><span class="o">`</span> <span class="n">TINYINT</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">UNSIGNED</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="mi">0</span> <span class="k">COMMENT</span> <span class="s2">&#34;</span><span class="s2">状态，0 待审核，1已审核，2拒绝</span><span class="s2">&#34;</span> <span class="k">AFTER</span> <span class="n">current_count</span><span class="p">;</span>
+</code></pre></div><h3 id="heading-5">修改字段</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> <span class="n">change</span> <span class="o">&lt;</span><span class="n">old_table</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">new_table</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">field_type</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="o">/</span><span class="o">/</span><span class="n">eg</span><span class="p">:</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">alter</span> <span class="k">table</span> <span class="k">user</span> <span class="n">change</span> <span class="n">weight</span> <span class="n">height</span> <span class="n">double</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><h3 id="heading-6">删除字段</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="err">删</span><span class="err">除</span><span class="err">字</span><span class="err">段</span><span class="err">：</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> <span class="k">drop</span> <span class="o">&lt;</span><span class="n">field_name</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div><h3 id="heading-7">添加索引</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">/</span><span class="o">/</span><span class="err">一</span><span class="err">般</span><span class="err">索</span><span class="err">引</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> <span class="k">add</span> <span class="k">index</span> <span class="o">&lt;</span><span class="n">index_name</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">field_name</span><span class="p">[</span><span class="p">,</span><span class="n">field_name2</span><span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+<span class="o">/</span><span class="o">/</span><span class="n">eg</span><span class="p">:</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">alter</span> <span class="k">table</span> <span class="k">user</span> <span class="k">add</span> <span class="k">index</span> <span class="n">u_name</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">sex</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">/</span><span class="o">/</span><span class="err">加</span><span class="err">主</span><span class="err">关</span><span class="err">键</span><span class="err">字</span><span class="err">的</span><span class="err">索</span><span class="err">引</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> <span class="k">add</span> <span class="k">primary</span> <span class="k">key</span> <span class="o">&lt;</span><span class="n">field_name</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="o">/</span><span class="o">/</span><span class="n">eg</span><span class="p">:</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">alter</span> <span class="k">table</span> <span class="k">user</span> <span class="k">add</span> <span class="k">primary</span> <span class="k">key</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">/</span><span class="o">/</span><span class="err">加</span><span class="err">唯</span><span class="err">一</span><span class="err">限</span><span class="err">制</span><span class="err">条</span><span class="err">件</span><span class="err">的</span><span class="err">索</span><span class="err">引</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> <span class="k">add</span> <span class="k">unique</span> <span class="o">&lt;</span><span class="n">index_name</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">field_name</span><span class="p">)</span><span class="p">;</span>
+<span class="o">/</span><span class="o">/</span><span class="n">eg</span><span class="p">:</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">alter</span> <span class="k">table</span> <span class="k">user</span> <span class="k">add</span> <span class="k">unique</span> <span class="n">u_name</span><span class="p">(</span><span class="n">cardnumber</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><h3 id="heading-8">删除索引</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> <span class="k">drop</span> <span class="k">index</span> <span class="o">&lt;</span><span class="n">index_name</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="o">/</span><span class="o">/</span><span class="n">eg</span><span class="p">:</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">alter</span> <span class="k">table</span> <span class="k">user</span> <span class="k">drop</span> <span class="k">index</span> <span class="n">u_name</span><span class="p">;</span>
+</code></pre></div><h2 id="insert">insert语法</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="p">[</span> <span class="n">LOW_PRIORITY</span> <span class="o">|</span> <span class="n">DELAYED</span> <span class="o">|</span> <span class="n">HIGH_PRIORITY</span> <span class="p">]</span> <span class="p">[</span> <span class="k">IGNORE</span> <span class="p">]</span> <span class="p">[</span> <span class="k">INTO</span> <span class="p">]</span> <span class="n">tbl_name</span> <span class="p">[</span> <span class="n">PARTITION</span> <span class="p">(</span>
+	<span class="n">partition_name</span> <span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span> <span class="p">]</span> <span class="p">[</span> <span class="p">(</span>
+		<span class="n">col_name</span> <span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span> <span class="p">]</span> <span class="err">{</span>
+		<span class="k">VALUES</span>
+			<span class="o">|</span>
+		<span class="n">VALUE</span>
+			<span class="err">}</span> <span class="p">(</span><span class="err">{</span> <span class="n">expr</span> <span class="o">|</span> <span class="k">DEFAULT</span> <span class="err">}</span><span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span><span class="p">,</span><span class="p">(</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span> <span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">[</span> <span class="k">ON</span> <span class="n">DUPLICATE</span> <span class="k">KEY</span> <span class="k">UPDATE</span> <span class="n">col_name</span> <span class="o">=</span> <span class="n">expr</span> <span class="p">[</span><span class="p">,</span> <span class="n">col_name</span> <span class="o">=</span> <span class="n">expr</span> <span class="p">]</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">]</span>
+
+<span class="o">/</span><span class="o">/</span><span class="n">eg1</span> <span class="err">单</span><span class="err">条</span><span class="err">插</span><span class="err">入</span><span class="p">:</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">user</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span> <span class="n">VALUE</span> <span class="p">(</span><span class="s2">&#34;</span><span class="s2">张三</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">18</span><span class="p">)</span><span class="p">;</span>
+<span class="o">/</span><span class="o">/</span><span class="n">eg2</span> <span class="err">多</span><span class="err">条</span><span class="err">插</span><span class="err">入</span><span class="p">:</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">user</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s2">&#34;</span><span class="s2">张三</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">18</span><span class="p">)</span><span class="p">,</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">李四</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">19</span><span class="p">)</span><span class="p">,</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">王五</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>or</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">/</span><span class="o">/</span><span class="err">只</span><span class="err">能</span><span class="err">插</span><span class="err">入</span><span class="err">一</span><span class="err">条</span>
+<span class="k">INSERT</span> <span class="p">[</span> <span class="n">LOW_PRIORITY</span> <span class="o">|</span> <span class="n">DELAYED</span> <span class="o">|</span> <span class="n">HIGH_PRIORITY</span> <span class="p">]</span> <span class="p">[</span> <span class="k">IGNORE</span> <span class="p">]</span> <span class="p">[</span> <span class="k">INTO</span> <span class="p">]</span> <span class="n">tbl_name</span> <span class="p">[</span> <span class="n">PARTITION</span> <span class="p">(</span>
+	<span class="n">partition_name</span> <span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span> <span class="p">]</span>
+	<span class="k">SET</span> <span class="n">col_name</span> <span class="o">=</span><span class="err">{</span> <span class="n">expr</span> <span class="o">|</span> <span class="k">DEFAULT</span> <span class="err">}</span><span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">[</span> <span class="k">ON</span> <span class="n">DUPLICATE</span> <span class="k">KEY</span> <span class="k">UPDATE</span> <span class="n">col_name</span> <span class="o">=</span> <span class="n">expr</span> <span class="p">[</span><span class="p">,</span> <span class="n">col_name</span> <span class="o">=</span> <span class="n">expr</span> <span class="p">]</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">]</span>
+
+<span class="o">/</span><span class="o">/</span><span class="n">eg</span><span class="p">:</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">user</span> <span class="k">set</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">张三</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">18</span><span class="p">;</span>
+</code></pre></div><p>or</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">/</span><span class="o">/</span><span class="err">用</span><span class="err">于</span><span class="err">表</span><span class="err">复</span><span class="err">制</span>
+<span class="k">INSERT</span> <span class="p">[</span> <span class="n">LOW_PRIORITY</span> <span class="o">|</span> <span class="n">HIGH_PRIORITY</span> <span class="p">]</span> <span class="p">[</span> <span class="k">IGNORE</span> <span class="p">]</span> <span class="p">[</span> <span class="k">INTO</span> <span class="p">]</span> <span class="n">tbl_name</span> <span class="p">[</span> <span class="n">PARTITION</span> <span class="p">(</span>
+	<span class="n">partition_name</span> <span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span> <span class="p">]</span> <span class="p">[</span> <span class="p">(</span>
+		<span class="n">col_name</span> <span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span> <span class="p">]</span> <span class="k">SELECT</span>
+			<span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">[</span> <span class="k">ON</span> <span class="n">DUPLICATE</span> <span class="k">KEY</span> <span class="k">UPDATE</span> <span class="n">col_name</span> <span class="o">=</span> <span class="n">expr</span> <span class="p">[</span><span class="p">,</span> <span class="n">col_name</span> <span class="o">=</span> <span class="n">expr</span> <span class="p">]</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">]</span>
+			
+<span class="o">/</span><span class="o">/</span><span class="n">eg1</span> <span class="err">两</span><span class="err">个</span><span class="err">表</span><span class="err">数</span><span class="err">据</span><span class="err">互</span><span class="err">通</span><span class="p">:</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">a</span><span class="p">(</span><span class="n">a_field1</span><span class="p">,</span><span class="n">a_field2</span><span class="p">)</span> <span class="k">SELECT</span> <span class="n">b_field1</span><span class="p">,</span><span class="n">b_field2</span> <span class="k">FROM</span> <span class="n">b</span><span class="p">;</span>
+<span class="o">/</span><span class="o">/</span><span class="n">eg2</span> <span class="err">多</span><span class="err">张</span><span class="err">表</span><span class="err">进</span><span class="err">行</span><span class="err">复</span><span class="err">制</span><span class="p">,</span><span class="err">需</span><span class="err">要</span><span class="err">先</span><span class="err">使</span><span class="err">用</span><span class="err">关</span><span class="err">联</span><span class="err">查</span><span class="err">询</span><span class="err">查</span><span class="err">出</span><span class="err">数</span><span class="err">据</span><span class="err">后</span><span class="err">再</span><span class="err">插</span><span class="err">入</span><span class="p">,</span><span class="err">嵌</span><span class="err">套</span><span class="err">部</span><span class="err">分</span><span class="err">需</span><span class="err">要</span><span class="err">设</span><span class="err">置</span><span class="err">别</span><span class="err">名</span><span class="err">！</span><span class="err">！</span><span class="p">:</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">a</span><span class="p">(</span><span class="n">a_field1</span><span class="p">,</span><span class="n">a_field2</span><span class="p">)</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span><span class="p">(</span><span class="k">SELECT</span> <span class="n">f1</span><span class="p">,</span><span class="n">f2</span> <span class="k">FROM</span> <span class="n">b</span> <span class="k">JOIN</span> <span class="k">c</span><span class="p">)</span> <span class="k">AS</span> <span class="n">tb</span><span class="p">;</span>
+</code></pre></div><h2 id="update">update语法</h2>
+<h3 id="heading-9">单条更新：</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">UPDATE</span> <span class="p">[</span> <span class="n">LOW_PRIORITY</span> <span class="p">]</span> <span class="p">[</span> <span class="k">IGNORE</span> <span class="p">]</span> <span class="n">table_reference</span>
+<span class="k">SET</span> <span class="n">col_name1</span> <span class="o">=</span><span class="err">{</span> <span class="n">expr1</span> <span class="o">|</span> <span class="k">DEFAULT</span> <span class="err">}</span> <span class="p">[</span><span class="p">,</span> <span class="n">col_name2</span> <span class="o">=</span><span class="err">{</span> <span class="n">expr2</span> <span class="o">|</span> <span class="k">DEFAULT</span> <span class="err">}</span><span class="p">]</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">[</span>
+<span class="k">WHERE</span>
+	<span class="n">where_condition</span> <span class="p">]</span> <span class="p">[</span>
+<span class="k">ORDER</span> <span class="k">BY</span>
+	<span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">]</span> <span class="p">[</span>
+<span class="k">LIMIT</span> <span class="k">row_count</span> <span class="p">]</span>
+
+<span class="o">#</span> <span class="n">eg1</span> <span class="err">单</span><span class="err">表</span><span class="err">更</span><span class="err">新</span><span class="p">:</span>
+<span class="k">UPDATE</span> <span class="k">user</span> <span class="k">SET</span> <span class="n">name</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">李四</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">age</span><span class="o">=</span><span class="mi">19</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="o">#</span> <span class="n">eg2</span> <span class="err">多</span><span class="err">表</span><span class="err">更</span><span class="err">新</span><span class="p">:</span>
+<span class="k">UPDATE</span> <span class="k">USER</span> <span class="n">u</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">user_info</span> <span class="n">ui</span> <span class="k">ON</span> <span class="n">u</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">ui_user_id</span>
+<span class="k">SET</span> <span class="n">ui_age</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="k">WHERE</span>
+	<span class="n">u</span><span class="p">.</span><span class="n">sex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div><h3 id="heading-10">多条更新：</h3>
+<p>由于mysql并没有提供多条更新语句，所以进行批量更新网上有三种方法：</p>
+<ol>
+<li>
+<p>在程序中批量update，一条记录update一次，性能很差</p>
+</li>
+<li>
+<p>使用replace into 或者insert into &hellip;on duplicate key update，性能较好</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">/</span><span class="o">/</span><span class="n">eg1</span><span class="err">：</span><span class="k">replace</span> <span class="k">into</span> <span class="p">(</span><span class="err">操</span><span class="err">作</span><span class="err">本</span><span class="err">质</span><span class="err">是</span><span class="err">对</span><span class="err">重</span><span class="err">复</span><span class="err">的</span><span class="err">记</span><span class="err">录</span><span class="err">先</span><span class="n">delete后insert</span><span class="err">，</span><span class="err">如</span><span class="err">果</span><span class="err">更</span><span class="err">新</span><span class="err">的</span><span class="err">字</span><span class="err">段</span><span class="err">不</span><span class="err">全</span><span class="err">会</span><span class="err">将</span><span class="err">缺</span><span class="err">失</span><span class="err">的</span><span class="err">字</span><span class="err">段</span><span class="err">置</span><span class="err">为</span><span class="err">缺</span><span class="err">省</span><span class="err">值</span><span class="p">)</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">replace</span> <span class="k">into</span> <span class="k">user</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="s2">&#34;</span><span class="s2">张三</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span><span class="p">,</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">李四</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="p">,</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">王五</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">17</span><span class="p">)</span><span class="p">;</span>
+<span class="o">/</span><span class="o">/</span><span class="n">eg2</span><span class="err">：</span><span class="k">insert</span> <span class="k">into</span> <span class="p">(</span><span class="err">操</span><span class="err">作</span><span class="err">本</span><span class="err">质</span><span class="err">是</span><span class="err">只</span><span class="n">update重复记录</span><span class="err">，</span><span class="err">不</span><span class="err">会</span><span class="err">改</span><span class="err">变</span><span class="err">其</span><span class="err">它</span><span class="err">字</span><span class="err">段</span><span class="err">。</span><span class="p">)</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">insert</span> <span class="k">into</span> <span class="k">user</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s2">&#34;</span><span class="s2">张三</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span><span class="p">,</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s2">&#34;</span><span class="s2">李四</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="p">,</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s2">&#34;</span><span class="s2">王五</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">17</span><span class="p">)</span> <span class="k">on</span> <span class="n">duplicate</span> <span class="k">key</span> <span class="k">update</span> <span class="n">name</span><span class="o">=</span><span class="k">values</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="k">values</span><span class="p">(</span><span class="n">age</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>两者异同
+相同之处:</p>
+<blockquote>
+<p>(1) 没有key的时候，replace与insert .. on deplicate udpate相同。
+(2) 有key的时候，都保留主键值，并且auto_increment自动+1</p>
+</blockquote>
+<p>不同之处：</p>
+<blockquote>
+<p>有key的时候，replace是delete老记录，而录入新的记录，所以原有的所有记录会被清除，这个时候，如果replace语句的字段不全的话，有些原有的字段的值会被自动填充为默认值。
+而insert .. duplicate update则只执行update标记之后的sql，从表象上来看相当于一个简单的update语句。所以两者的区别只有一个，insert .. on duplicate udpate保留了所有字段的旧值，再覆盖然后一起insert进去，而replace没有保留旧值，直接删除再insert新值。</p>
+</blockquote>
+<p>从底层执行效率上来讲，replace要比insert .. on duplicate update效率要高，但是在写replace的时候，字段要写全，防止老的字段数据被删除。</p>
+</li>
+<li>
+<p>创建临时表，先更新临时表，然后从临时表中update，性能最好</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">/</span><span class="o">/</span><span class="err">注</span><span class="err">意</span><span class="err">：</span><span class="err">这</span><span class="err">种</span><span class="err">方</span><span class="err">法</span><span class="err">需</span><span class="err">要</span><span class="err">用</span><span class="err">户</span><span class="err">有</span><span class="k">temporary</span> <span class="err">表</span><span class="err">的</span><span class="k">create</span> <span class="err">权</span><span class="err">限</span><span class="err">。</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">create</span> <span class="k">temporary</span> <span class="k">table</span> <span class="n">tmp</span><span class="p">(</span><span class="n">id</span> <span class="nb">int</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">primary</span> <span class="k">key</span><span class="p">,</span><span class="n">name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="p">,</span> <span class="n">age</span> <span class="nb">int</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">insert</span> <span class="k">into</span> <span class="n">tmp</span> <span class="k">values</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s2">&#34;</span><span class="s2">张三</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span><span class="p">,</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s2">&#34;</span><span class="s2">李四</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="p">,</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s2">&#34;</span><span class="s2">王五</span><span class="s2">&#34;</span><span class="p">,</span><span class="mi">17</span><span class="p">)</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">update</span> <span class="k">user</span><span class="p">,</span> <span class="n">tmp</span> <span class="k">set</span> <span class="k">user</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="n">tmp</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="k">user</span><span class="p">.</span><span class="n">age</span><span class="o">=</span><span class="n">tmp</span><span class="p">.</span><span class="n">age</span> <span class="k">where</span> <span class="k">user</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="n">tmp</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</code></pre></div></li>
+</ol>
+<p>补充：</p>
+<pre><code>// 批量替换字段内容的一部分
+mysql&gt; UPDATE article SET content = REPLACE(content, 'abc', '123');
+//效果： &quot;AabcB&quot; =》&quot;A123B&quot;
+</code></pre><h2 id="delete">delete语法</h2>
+<h3 id="heading-11">普通删除：</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">DELETE</span> <span class="p">[</span> <span class="n">LOW_PRIORITY</span> <span class="p">]</span> <span class="p">[</span> <span class="n">QUICK</span> <span class="p">]</span> <span class="p">[</span> <span class="k">IGNORE</span> <span class="p">]</span>
+<span class="k">FROM</span>
+	<span class="n">tbl_name</span> <span class="p">[</span> <span class="n">PARTITION</span> <span class="p">(</span>
+		<span class="n">partition_name</span> <span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span> <span class="p">]</span> <span class="p">[</span>
+		<span class="k">WHERE</span>
+			<span class="n">where_condition</span> <span class="p">]</span> <span class="p">[</span>
+		<span class="k">ORDER</span> <span class="k">BY</span>
+			<span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">]</span> <span class="p">[</span>
+		<span class="k">LIMIT</span> <span class="k">row_count</span> <span class="p">]</span>
+
+<span class="o">/</span><span class="o">/</span><span class="n">eg1</span> <span class="err">删</span><span class="err">除</span><span class="err">单</span><span class="err">条</span><span class="p">:</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">DELETE</span> <span class="k">FROM</span> <span class="k">user</span> <span class="k">where</span> <span class="n">user_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="o">/</span><span class="o">/</span><span class="n">eg2</span> <span class="err">删</span><span class="err">除</span><span class="err">多</span><span class="err">条</span><span class="p">:</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">DELETE</span> <span class="k">FROM</span> <span class="k">user</span> <span class="k">where</span> <span class="n">user_id</span> <span class="k">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><h3 id="heading-12">多表删除：</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">DELETE</span> <span class="p">[</span> <span class="n">LOW_PRIORITY</span> <span class="p">]</span> <span class="p">[</span> <span class="n">QUICK</span> <span class="p">]</span> <span class="p">[</span> <span class="k">IGNORE</span> <span class="p">]</span> <span class="n">tbl_name</span> <span class="p">[</span><span class="p">.</span><span class="o">*</span><span class="p">]</span> <span class="p">[</span><span class="p">,</span> <span class="n">tbl_name</span> <span class="p">[</span><span class="p">.</span><span class="o">*</span><span class="p">]</span><span class="p">]</span><span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="k">FROM</span>
+	<span class="n">table_references</span> <span class="p">[</span>
+<span class="k">WHERE</span>
+	<span class="n">where_condition</span> <span class="p">]</span>
+
+<span class="o">/</span><span class="o">/</span><span class="n">eg</span><span class="p">:</span>
+<span class="k">DELETE</span> <span class="n">t1</span><span class="p">,</span><span class="n">t2</span>
+<span class="k">FROM</span> <span class="n">t1</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">t2</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">t3</span>
+<span class="k">WHERE</span>
+	<span class="n">t1</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">t2</span><span class="p">.</span><span class="n">id</span>
+<span class="k">AND</span> <span class="n">t2</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">t3</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</code></pre></div><p>or:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">DELETE</span> <span class="p">[</span> <span class="n">LOW_PRIORITY</span> <span class="p">]</span> <span class="p">[</span> <span class="n">QUICK</span> <span class="p">]</span> <span class="p">[</span> <span class="k">IGNORE</span> <span class="p">]</span>
+<span class="k">FROM</span>
+	<span class="n">tbl_name</span> <span class="p">[</span><span class="p">.</span><span class="o">*</span><span class="p">]</span> <span class="p">[</span><span class="p">,</span> <span class="n">tbl_name</span> <span class="p">[</span><span class="p">.</span><span class="o">*</span><span class="p">]</span><span class="p">]</span><span class="p">.</span><span class="p">.</span><span class="p">.</span> <span class="k">USING</span> <span class="n">table_references</span> <span class="p">[</span>
+<span class="k">WHERE</span>
+	<span class="n">where_condition</span> <span class="p">]</span>
+	
+<span class="o">#</span> <span class="n">eg</span><span class="err">：</span>
+<span class="k">DELETE</span>
+<span class="k">FROM</span>
+	<span class="n">t1</span><span class="p">,</span>
+	<span class="n">t2</span> <span class="k">USING</span> <span class="n">t1</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">t2</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">t3</span>
+<span class="k">WHERE</span>
+	<span class="n">t1</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">t2</span><span class="p">.</span><span class="n">id</span>
+<span class="k">AND</span> <span class="n">t2</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">t3</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</code></pre></div><h3 id="heading-13">截断表：</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">truncate</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="cm">/*</span><span class="cm">
+</span><span class="cm">截断表可以用于删除表中的所有数据。截断表命令还会回收所有索引的分配页。截断表的执行速度与不带where子句的delete（删除）命令相同，甚至比它还要快。delete（删除）一次删除一行数据，并且将每一行被删除的数据都作为一个事务记录日志；而truncate （截断）表则回收整个数据页，只记录很少的日志项。delete（删除）和truncate（截断）都会回收被数据占用的空间，以及相关的索引。只有表的拥有者可以截断表。
+</span><span class="cm">另外，truncate表之后，如果有自动主键的话，会恢复成默认值。
+</span><span class="cm"></span><span class="cm">*/</span>
+</code></pre></div><h2 id="select">select语法</h2>
+<h3 id="heading-14">基本语法：</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span>
+	<span class="p">[</span> <span class="k">ALL</span> <span class="o">|</span> <span class="k">DISTINCT</span> <span class="o">|</span> <span class="n">DISTINCTROW</span> <span class="p">]</span> <span class="p">[</span> <span class="n">HIGH_PRIORITY</span> <span class="p">]</span> <span class="p">[</span> <span class="n">STRAIGHT_JOIN</span> <span class="p">]</span> <span class="p">[</span> <span class="n">SQL_SMALL_RESULT</span> <span class="p">]</span> <span class="p">[</span> <span class="n">SQL_BIG_RESULT</span> <span class="p">]</span> <span class="p">[</span> <span class="n">SQL_BUFFER_RESULT</span> <span class="p">]</span> <span class="p">[</span> <span class="n">SQL_CACHE</span> <span class="o">|</span> <span class="n">SQL_NO_CACHE</span> <span class="p">]</span> <span class="p">[</span> <span class="n">SQL_CALC_FOUND_ROWS</span> <span class="p">]</span> <span class="n">select_expr</span> <span class="p">[</span><span class="p">,</span> <span class="n">select_expr</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">]</span> <span class="p">[</span>
+<span class="k">FROM</span>
+	<span class="n">table_references</span> <span class="p">[</span> <span class="n">PARTITION</span> <span class="n">partition_list</span> <span class="p">]</span> <span class="p">[</span>
+<span class="k">WHERE</span>
+	<span class="n">where_condition</span> <span class="p">]</span> <span class="p">[</span>
+<span class="k">GROUP</span> <span class="k">BY</span>
+	<span class="err">{</span> <span class="n">col_name</span> <span class="o">|</span> <span class="n">expr</span> <span class="o">|</span> <span class="k">position</span> <span class="err">}</span> <span class="p">[</span> <span class="k">ASC</span> <span class="o">|</span> <span class="k">DESC</span> <span class="p">]</span><span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">[</span> <span class="k">WITH</span> <span class="k">ROLLUP</span> <span class="p">]</span><span class="p">]</span> <span class="p">[</span>
+<span class="k">HAVING</span>
+	<span class="n">where_condition</span> <span class="p">]</span> <span class="p">[</span>
+<span class="k">ORDER</span> <span class="k">BY</span>
+	<span class="err">{</span> <span class="n">col_name</span> <span class="o">|</span> <span class="n">expr</span> <span class="o">|</span> <span class="k">position</span> <span class="err">}</span> <span class="p">[</span> <span class="k">ASC</span> <span class="o">|</span> <span class="k">DESC</span> <span class="p">]</span><span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">]</span> <span class="p">[</span>
+<span class="k">LIMIT</span> <span class="err">{</span><span class="p">[</span> <span class="k">OFFSET</span> <span class="p">,</span><span class="p">]</span> <span class="k">row_count</span> <span class="o">|</span> <span class="k">row_count</span> <span class="k">OFFSET</span> <span class="k">OFFSET</span> <span class="err">}</span><span class="p">]</span> <span class="p">[</span> <span class="k">PROCEDURE</span> <span class="n">procedure_name</span> <span class="p">(</span><span class="n">argument_list</span><span class="p">)</span> <span class="p">]</span> <span class="p">[</span> <span class="k">INTO</span> <span class="n">OUTFILE</span> <span class="s1">&#39;</span><span class="s1">file_name</span><span class="s1">&#39;</span> <span class="p">[</span> <span class="nb">CHARACTER</span>
+<span class="k">SET</span> <span class="n">charset_name</span> <span class="p">]</span> <span class="n">export_options</span> <span class="o">|</span> <span class="k">INTO</span> <span class="n">DUMPFILE</span> <span class="s1">&#39;</span><span class="s1">file_name</span><span class="s1">&#39;</span> <span class="o">|</span> <span class="k">INTO</span> <span class="n">var_name</span> <span class="p">[</span><span class="p">,</span> <span class="n">var_name</span> <span class="p">]</span><span class="p">]</span> <span class="p">[</span> <span class="k">FOR</span> <span class="k">UPDATE</span> <span class="o">|</span> <span class="k">LOCK</span> <span class="k">IN</span> <span class="k">SHARE</span> <span class="k">MODE</span> <span class="p">]</span><span class="p">]</span>
+
+<span class="o">#</span><span class="n">eg</span><span class="p">:</span>
+<span class="o">#</span><span class="err">查</span><span class="err">询</span><span class="err">总</span><span class="err">条</span><span class="err">数</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">test_table</span> <span class="k">WHERE</span> <span class="n">tf_b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="o">#</span><span class="err">倒</span><span class="err">序</span><span class="err">分</span><span class="err">页</span><span class="err">查</span><span class="err">询</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="n">tf_a</span><span class="p">,</span> <span class="n">tf_b</span> <span class="k">FROM</span> <span class="n">test_table</span> <span class="k">WHERE</span> <span class="n">tf_b</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">tf_a</span> <span class="k">DESC</span> <span class="k">LIMIT</span> <span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">;</span>
+</code></pre></div><h3 id="heading-15">花式操作</h3>
+<pre><code># 创建学生表1
+CREATE TABLE `student1` (
+  `STUDENT_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '学生自增长ID',
+  `STUDENT_NAME` varchar(30) DEFAULT NULL COMMENT '学生名称',
+  `STUDENT_COURSE` varchar(30) DEFAULT NULL COMMENT '学科',
+  `STUDENT_SCORE` int(11) DEFAULT NULL COMMENT '成绩',
+  PRIMARY KEY (`STUDENT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='学生表';
+
+# 插入数据
+INSERT INTO student1 (
+	STUDENT_NAME,
+	STUDENT_COURSE,
+	STUDENT_SCORE
+)
+VALUES
+	(&quot;张三&quot;, &quot;语文&quot;, 80),
+	(&quot;张三&quot;, &quot;数学&quot;, 90),
+	(&quot;张三&quot;, &quot;英语&quot;, 85),
+	(&quot;李四&quot;, &quot;语文&quot;, 30),
+	(&quot;李四&quot;, &quot;数学&quot;, 90),
+	(&quot;李四&quot;, &quot;英语&quot;, 100);
+</code></pre><table>
+<thead>
+<tr>
+<th align="right">STUDENT_ID</th>
+<th align="right">STUDENT_NAME</th>
+<th align="right">STUDENT_COURSE</th>
+<th align="right">STUDENT_SCORE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">1</td>
+<td align="right">张三</td>
+<td align="right">语文</td>
+<td align="right">80</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">张三</td>
+<td align="right">数学</td>
+<td align="right">90</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="right">张三</td>
+<td align="right">英语</td>
+<td align="right">85</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="right">李四</td>
+<td align="right">语文</td>
+<td align="right">30</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td align="right">李四</td>
+<td align="right">数学</td>
+<td align="right">90</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td align="right">李四</td>
+<td align="right">英语</td>
+<td align="right">100</td>
+</tr>
+</tbody>
+</table>
+<pre><code># 创建学生表2
+CREATE TABLE `student2` (
+  `STUDENT_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '学生自增长ID',
+  `STUDENT_NAME` varchar(30) DEFAULT NULL COMMENT '学生名称',
+  `STUDENT_TOTAL_SCORE` int(1) DEFAULT NULL COMMENT '总成绩',
+  PRIMARY KEY (`STUDENT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='学生总成绩';
+</code></pre><h4 id="heading-16">查询并插入</h4>
+<p>语法格式</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="err">表</span><span class="err">名</span><span class="mi">1</span><span class="p">(</span><span class="err">字</span><span class="err">段</span><span class="err">列</span><span class="err">表</span><span class="mi">1</span><span class="p">)</span> <span class="k">SELECT</span> <span class="err">字</span><span class="err">段</span><span class="err">列</span><span class="err">表</span><span class="mi">2</span> <span class="k">FROM</span> <span class="err">表</span><span class="err">名</span><span class="mi">2</span> <span class="k">WHERE</span> <span class="err">条</span><span class="err">件</span><span class="err">表</span><span class="err">达</span><span class="err">式</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span> <span class="n">eg</span> <span class="err">用</span><span class="err">一</span><span class="err">条</span><span class="err">语</span><span class="err">句</span><span class="err">查</span><span class="err">询</span><span class="err">出</span><span class="n">student1表中学生总成绩并且降序插入student2表中</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">student2</span> <span class="p">(</span>
+	<span class="n">STUDENT_NAME</span><span class="p">,</span>
+	<span class="n">STUDENT_TOTAL_SCORE</span>
+<span class="p">)</span> <span class="k">SELECT</span>
+	<span class="n">STUDENT_NAME</span><span class="p">,</span>
+	<span class="k">SUM</span><span class="p">(</span><span class="n">STUDENT_SCORE</span><span class="p">)</span> <span class="k">AS</span> <span class="n">STUDENT_TOTAL_SCORE</span>
+<span class="k">FROM</span>
+	<span class="n">student1</span>
+<span class="k">GROUP</span> <span class="k">BY</span>
+	<span class="n">STUDENT_NAME</span>
+</code></pre></div><p>运行结果：</p>
+<table>
+<thead>
+<tr>
+<th align="right">STUDENT_ID</th>
+<th align="right">STUDENT_NAME</th>
+<th align="right">STUDENT_TOTAL_SCORE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">1</td>
+<td align="right">张三</td>
+<td align="right">255</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="right">李四</td>
+<td align="right">220</td>
+</tr>
+</tbody>
+</table>
+<h4 id="heading-17">查询并更新</h4>
+<p>update时，更新的表不能在set和where中用于子查询,但是可以对多个表进行更新(INNER JOIN)，所以根据这个特性我们来做查询并更新
+语法格式：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">UPDATE</span> <span class="n">table1</span> <span class="n">a</span> <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">table2</span> <span class="n">b</span> <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">id</span> <span class="k">set</span> <span class="p">.</span><span class="p">.</span><span class="p">.</span> <span class="k">where</span> <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span> <span class="n">eg</span><span class="p">:</span> <span class="err">用</span><span class="err">一</span><span class="err">条</span><span class="err">语</span><span class="err">句</span><span class="err">将</span><span class="err">所</span><span class="err">有</span><span class="err">人</span><span class="err">的</span><span class="err">语</span><span class="err">文</span><span class="err">成</span><span class="err">绩</span><span class="err">改</span><span class="err">成</span><span class="mi">95</span>
+<span class="k">UPDATE</span> <span class="n">student1</span> <span class="n">a</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="p">(</span>
+	<span class="k">SELECT</span>
+		<span class="n">STUDENT_ID</span><span class="p">,</span>
+		<span class="n">STUDENT_NAME</span><span class="p">,</span>
+		<span class="n">STUDENT_COURSE</span><span class="p">,</span>
+		<span class="n">STUDENT_SCORE</span>
+	<span class="k">FROM</span>
+		<span class="n">student1</span>
+	<span class="k">WHERE</span>
+		<span class="n">STUDENT_COURSE</span> <span class="k">LIKE</span> <span class="s1">&#39;</span><span class="s1">%英语%</span><span class="s1">&#39;</span>
+<span class="p">)</span> <span class="n">b</span> <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">STUDENT_ID</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">STUDENT_ID</span>
+<span class="k">SET</span> <span class="n">a</span><span class="p">.</span><span class="n">STUDENT_SCORE</span> <span class="o">=</span> <span class="mi">95</span>
+</code></pre></div><h4 id="heading-18">查询并删除</h4>
+<p>通常查询并删除针对的是表中的重复记录，所以我们首先要查找到重复的记录：</p>
+<h5 id="heading-19">查找记录</h5>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="err">方</span><span class="err">法</span><span class="err">一</span><span class="p">(</span><span class="err">推</span><span class="err">荐</span><span class="p">)</span><span class="err">：</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span>
+	<span class="k">table</span> <span class="n">a</span>
+<span class="k">WHERE</span>
+	<span class="p">[</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">field1</span><span class="p">,</span><span class="n">a</span><span class="p">.</span><span class="n">field2</span><span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span><span class="p">]</span> <span class="k">IN</span> <span class="p">(</span>
+		<span class="k">SELECT</span>
+			<span class="p">[</span><span class="n">field1</span><span class="p">,</span><span class="n">field2</span><span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">]</span>
+		<span class="k">FROM</span>
+			<span class="k">table</span>
+		<span class="k">GROUP</span> <span class="k">BY</span>
+			<span class="p">[</span><span class="n">field1</span> <span class="p">,</span><span class="n">field2</span><span class="p">,</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">]</span>
+		<span class="k">HAVING</span>
+			<span class="k">Count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+	<span class="p">)</span> 
+<span class="err">方</span><span class="err">法</span><span class="err">二</span><span class="err">：</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span>
+	<span class="k">table</span> <span class="n">a</span>
+<span class="k">WHERE</span>
+<span class="p">(</span><span class="p">(</span>  <span class="k">SELECT</span>
+    	<span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+    <span class="k">FROM</span>
+    	<span class="k">table</span>
+    <span class="k">WHERE</span>
+    	<span class="n">field1</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">field1</span>
+        <span class="k">AND</span> <span class="n">field2</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">field2</span>
+        <span class="k">AND</span> <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="p">)</span><span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div><p>eg： ps. 如果需要只显示一条最新记录，则添加a.STUDENT_ID和MAX(STUDENT_ID)。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span> <span class="err">根</span><span class="err">据</span><span class="err">多</span><span class="err">个</span><span class="err">字</span><span class="err">段</span><span class="err">查</span><span class="err">询</span><span class="n">student1</span>
+<span class="k">SELECT</span>
+	<span class="n">STUDENT_ID</span><span class="p">,</span>
+	<span class="n">STUDENT_NAME</span><span class="p">,</span>
+	<span class="n">STUDENT_COURSE</span><span class="p">,</span>
+	<span class="n">STUDENT_SCORE</span>
+<span class="k">FROM</span>
+	<span class="n">student1</span> <span class="n">a</span>
+<span class="k">WHERE</span>
+	<span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">STUDENT_NAME</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">STUDENT_COURSE</span><span class="p">)</span> <span class="k">IN</span> <span class="p">(</span>
+	<span class="o">#</span> <span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">STUDENT_NAME</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">STUDENT_COURSE</span><span class="p">,</span><span class="n">a</span><span class="p">.</span><span class="n">STUDENT_ID</span><span class="p">)</span> <span class="k">IN</span> <span class="p">(</span>
+		<span class="k">SELECT</span>
+		    <span class="o">#</span> <span class="k">MAX</span><span class="p">(</span><span class="n">STUDENT_ID</span><span class="p">)</span>
+			<span class="n">STUDENT_NAME</span><span class="p">,</span>
+			<span class="n">STUDENT_COURSE</span>
+		<span class="k">FROM</span>
+			<span class="n">student1</span>
+		<span class="k">GROUP</span> <span class="k">BY</span>
+			<span class="n">STUDENT_NAME</span><span class="p">,</span>
+			<span class="n">STUDENT_COURSE</span>
+		<span class="k">HAVING</span>
+			<span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+	<span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span>
+	<span class="n">STUDENT_COURSE</span> <span class="k">DESC</span>
+</code></pre></div><h5 id="heading-20">删除记录</h5>
+<p>如上所提，可以得到最新的一条数据，那只保留id最大的一条数据:
+两种方法目前手头没有大的数据无法做测试，等以后再比较性能差异。
+方法一：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">student1</span>
+<span class="k">WHERE</span>
+    <span class="o">#</span> <span class="err">将</span><span class="err">最</span><span class="err">后</span><span class="err">插</span><span class="err">入</span><span class="err">的</span><span class="err">数</span><span class="err">据</span><span class="err">保</span><span class="err">留</span> <span class="err">其</span><span class="err">他</span><span class="err">数</span><span class="err">据</span><span class="err">删</span><span class="err">除</span>
+	<span class="n">STUDENT_ID</span>  <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span>
+ 		<span class="o">#</span> <span class="err">查</span><span class="err">询</span><span class="err">最</span><span class="err">后</span><span class="err">插</span><span class="err">入</span><span class="err">的</span><span class="err">数</span><span class="err">据</span>
+		<span class="k">SELECT</span>
+			<span class="k">MAX</span><span class="p">(</span><span class="n">STUDENT_ID</span><span class="p">)</span>
+		<span class="k">FROM</span>
+			<span class="p">(</span>
+				<span class="o">#</span>  <span class="err">查</span><span class="err">询</span><span class="err">出</span><span class="err">重</span><span class="err">复</span><span class="err">数</span><span class="err">据</span>
+				<span class="k">SELECT</span>
+					<span class="n">STUDENT_ID</span><span class="p">,</span>
+					<span class="n">STUDENT_NAME</span><span class="p">,</span>
+					<span class="n">STUDENT_COURSE</span><span class="p">,</span>
+					<span class="n">STUDENT_SCORE</span>
+				<span class="k">FROM</span>
+					<span class="n">student1</span> <span class="n">a</span>
+				<span class="k">WHERE</span>
+					<span class="p">(</span>
+						<span class="n">a</span><span class="p">.</span><span class="n">STUDENT_NAME</span><span class="p">,</span>
+						<span class="n">a</span><span class="p">.</span><span class="n">STUDENT_COURSE</span>
+					<span class="p">)</span> <span class="k">IN</span> <span class="p">(</span>
+						<span class="k">SELECT</span>
+							<span class="n">STUDENT_NAME</span><span class="p">,</span>
+							<span class="n">STUDENT_COURSE</span>
+						<span class="k">FROM</span>
+							<span class="n">student1</span>
+						<span class="k">GROUP</span> <span class="k">BY</span>
+							<span class="n">STUDENT_NAME</span><span class="p">,</span>
+							<span class="n">STUDENT_COURSE</span>
+						<span class="k">HAVING</span>
+							<span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+					<span class="p">)</span>
+			<span class="p">)</span> <span class="k">AS</span> <span class="n">tmp</span>
+		<span class="k">GROUP</span> <span class="k">BY</span>
+			<span class="n">STUDENT_NAME</span><span class="p">,</span>
+			<span class="n">STUDENT_COURSE</span>
+		<span class="k">HAVING</span>
+			<span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+	<span class="p">)</span>
+</code></pre></div><p>方法二：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">DELETE</span>
+<span class="k">FROM</span>
+	<span class="n">student1</span>
+<span class="k">WHERE</span>
+    <span class="o">#</span><span class="err">查</span><span class="err">出</span><span class="err">重</span><span class="err">复</span><span class="err">数</span><span class="err">据</span>
+	<span class="p">(</span>
+		<span class="n">STUDENT_NAME</span><span class="p">,</span>
+		<span class="n">STUDENT_COURSE</span>
+	<span class="p">)</span> <span class="k">IN</span> <span class="p">(</span>
+		<span class="k">SELECT</span>
+			<span class="n">STUDENT_NAME</span><span class="p">,</span>
+			<span class="n">STUDENT_COURSE</span>
+		<span class="k">FROM</span>
+			<span class="p">(</span>
+				<span class="k">SELECT</span>
+					<span class="n">STUDENT_NAME</span><span class="p">,</span>
+					<span class="n">STUDENT_COURSE</span>
+				<span class="k">FROM</span>
+					<span class="n">student1</span>
+				<span class="k">GROUP</span> <span class="k">BY</span>
+					<span class="n">STUDENT_NAME</span><span class="p">,</span>
+					<span class="n">STUDENT_COURSE</span>
+				<span class="k">HAVING</span>
+					<span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+			<span class="p">)</span> <span class="n">s1</span>
+	<span class="p">)</span>
+<span class="o">#</span> <span class="err">排</span><span class="err">除</span><span class="err">最</span><span class="err">后</span><span class="err">插</span><span class="err">入</span><span class="err">的</span><span class="err">数</span><span class="err">据</span><span class="err">保</span><span class="err">留</span>
+<span class="k">AND</span> <span class="n">STUDENT_ID</span> <span class="k">NOT</span> <span class="k">IN</span> <span class="p">(</span>
+	<span class="k">SELECT</span>
+		<span class="n">STUDENT_ID</span>
+	<span class="k">FROM</span>
+		<span class="p">(</span>
+			<span class="k">SELECT</span>
+				<span class="k">MAX</span><span class="p">(</span><span class="n">STUDENT_ID</span><span class="p">)</span>
+			<span class="k">FROM</span>
+				<span class="n">student1</span>
+			<span class="k">GROUP</span> <span class="k">BY</span>
+				<span class="n">STUDENT_NAME</span><span class="p">,</span>
+				<span class="n">STUDENT_COURSE</span>
+			<span class="k">HAVING</span>
+				<span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+		<span class="p">)</span> <span class="n">s2</span>
+<span class="p">)</span><span class="p">;</span>
+</code></pre></div>
+  </article>
+  
+  <footer class="article-footer">
+    <ul>
+       
+        <li>
+          上一篇: <a class="previous" href="https://lpgph.github.io/posts/mysql_users/"> MySql操作之用户篇</a>
+        </li>
+        
+        
+        <li>
+          下一篇: <a class="next" href="https://lpgph.github.io/posts/mysql_procedure_function_trigger_view/"> MySql之存储过程,函数,触发器,视图</a>
+        </li>
+        
+        
+        
+        
+        <li>
+          <h3>See Also</h3>
+          <ul>
+            
+            <li><a href="/posts/mysql_users/">MySql操作之用户篇</a></li>
+            
+            <li><a href="/posts/mysql_function/">MySql函数详解</a></li>
+            
+            <li><a href="/test/mysql_join/">MySql之Join语法解析与性能分析</a></li>
+            
+            <li><a href="/posts/mysql_join/">MySql之Join语法解析与性能分析</a></li>
+            
+            <li><a href="/posts/mysql_test/">Test</a></li>
+            
+          </ul>
+        </li>
+        
+    </ul>
+  </footer>
+
+</section>
+
+ 
+
+
+    
+
+
+  <section class="comment-container">
+    <div class="comment-content box-style box-other" id="comment-container" >
+
+    </div>
+  </section>
+
+  <script>
+    $(function () {
+      
+      initGtalk();
+      gitPostComments(window.location.pathname);
+      
+    })
+  </script>
+
+
+  </div>
+
+
+                        </div>
+                        <aside class="main-sidebar scrollbar-none"  data-pjax>
+                        
+  <section>
+  <div class="nav-tabs">
+    <ul>
+      <li>
+        <span class="font-zoom active" data-tab="#tab-top-post">
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+        </span>
+      </li>
+      <li>
+        <span class="font-zoom" data-tab="#tab-comments"><i class="fa fa-comments-o" aria-hidden="true"></i></span>
+      </li>
+      <li>
+        <span class="font-zoom" data-tab="#tab-host-post"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
+      </li>
+    </ul>
+  </div>
+  <div class="tab-content sidebar-box">
+    <div id="tab-top-post" class="tab-top animated fadeIn active">
+      <h2 class="title">置顶文章</h2>
+      <ul>
+        
+        
+          <li>
+              <a href="https://lpgph.github.io/note/2020010301/" title="2020010301">
+                <div class="container font-zoom">
+                  <i class="fa fa-heart" aria-hidden="true"></i>
+                  <span>2020010301</span>
+                </div>
+              </a>
+          </li>
+        
+          <li>
+              <a href="https://lpgph.github.io/posts/design_pattern_principle/" title="设计模式六大原则">
+                <div class="container font-zoom">
+                  <i class="fa fa-heart" aria-hidden="true"></i>
+                  <span>设计模式六大原则</span>
+                </div>
+              </a>
+          </li>
+        
+          <li>
+              <a href="https://lpgph.github.io/posts/java_spring_quartz/" title="Quartz与Spring整合">
+                <div class="container font-zoom">
+                  <i class="fa fa-heart" aria-hidden="true"></i>
+                  <span>Quartz与Spring整合</span>
+                </div>
+              </a>
+          </li>
+        
+          <li>
+              <a href="https://lpgph.github.io/posts/mysql_procedure_function_trigger_view/" title="MySql之存储过程,函数,触发器,视图">
+                <div class="container font-zoom">
+                  <i class="fa fa-heart" aria-hidden="true"></i>
+                  <span>MySql之存储过程,函数,触发器,视图</span>
+                </div>
+              </a>
+          </li>
+        
+          <li>
+              <a href="https://lpgph.github.io/posts/mysql_table/" title="MySql操作之表篇">
+                <div class="container font-zoom">
+                  <i class="fa fa-heart" aria-hidden="true"></i>
+                  <span>MySql操作之表篇</span>
+                </div>
+              </a>
+          </li>
+        
+      </ul>
+    </div>
+    <div id="tab-comments" class="tab-comments animated fadeIn">
+      <h2 class="title">最新评论</h2>
+      <ul>
+        <li>暂无评论<li>
+      </ul>
+    </div>
+    <div id="tab-host-post" class="tab-top animated fadeIn">
+      <h2 class="title">热门文章</h2>
+      <ul>
+        <li>暂无热门文章</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="sidebar-box">
+  <h2 class="title">访客信息</h2>
+  <div class="visitors-info box-shadow-wrap-normal" id="visitors-info">
+  
+  </div>
+</section>
+
+<section class="sidebar-box">
+  <h2 class="title">博客信息</h2>
+  <ul class="list-group box-shadow-wrap-normal">
+    <li>
+      <div class="row-box flex">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <span class="title">文章数目</span>
+        
+        
+        <span class="bubble">10</span>
+      </div>
+    </li>
+     <li>
+      <div class="row-box flex">
+        <i class="fa fa-comment-o" aria-hidden="true"></i>
+        <span class="title">评论数目</span>
+        <span class="bubble" id="comment-total">0</span>
+      </div>
+    </li>
+     <li>
+      <div class="row-box flex">
+        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+        <span class="title">运行天数</span>
+        <span class="bubble" id="siteDate"></span>
+      </div>
+    </li>
+     <li>
+      <div class="row-box flex">
+        <i class="fa fa-heartbeat" aria-hidden="true"></i>
+        <span class="title">最后活动</span>
+        <span class="bubble" id="lastActive"></span>
+      </div>
+    </li>
+  </ul>
+</section>
+<section class="sidebar-box">
+  <h2 class="title">文章标签</h2>
+  <div class="tags">
+      
+        
+          <a href="https://lpgph.github.io/tags/mysql" data-pjax title="MySql">
+            <span class="bubble font-zoom">MySql</span>
+          </a>
+        
+      
+  </div>
+</section>
+
+
+<section class="article-toc sidebar-box">
+  <h2 class="toc-title">文章目录</h2>
+  <div class="table-of-contents"  id="panel-article-toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">创建和删除</a></li>
+    <li><a href="#heading-1">查看表</a></li>
+    <li><a href="#heading-2">表字段</a>
+      <ul>
+        <li><a href="#heading-3">常用字段属性:</a></li>
+        <li><a href="#heading-4">添加字段</a></li>
+        <li><a href="#heading-5">修改字段</a></li>
+        <li><a href="#heading-6">删除字段</a></li>
+        <li><a href="#heading-7">添加索引</a></li>
+        <li><a href="#heading-8">删除索引</a></li>
+      </ul>
+    </li>
+    <li><a href="#insert">insert语法</a></li>
+    <li><a href="#update">update语法</a>
+      <ul>
+        <li><a href="#heading-9">单条更新：</a></li>
+        <li><a href="#heading-10">多条更新：</a></li>
+      </ul>
+    </li>
+    <li><a href="#delete">delete语法</a>
+      <ul>
+        <li><a href="#heading-11">普通删除：</a></li>
+        <li><a href="#heading-12">多表删除：</a></li>
+        <li><a href="#heading-13">截断表：</a></li>
+      </ul>
+    </li>
+    <li><a href="#select">select语法</a>
+      <ul>
+        <li><a href="#heading-14">基本语法：</a></li>
+        <li><a href="#heading-15">花式操作</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</section>
+
+
+                        </aside>
+                    </main>
+                    <footer class="app-footer">
+                          <div class="footer" >
+    <p class="copyright">
+      Copyright © 2017-2020 <a href="https://lpgph.github.io/" title="Dreamcatcher">Dreamcatcher</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <span id="sitetime"></span>
+    </p>
+    <br/>
+    <ul class="github-badge">
+      <li>
+        <a  rel="license" href="https://hexo.io/" target="_blank" title="由 Hugo 强力驱动">
+        <span class="badge-subject">Powered</span><span class="badge-value bg-blue">Hugo</span></a>
+      </li>
+      <li>
+        <a  rel="license" href="https://github.com/" target="_blank" title="静态网页托管于 GitHub Pages 和 Coding Pages">
+        <span class="badge-subject">Hosted</span><span class="badge-value bg-brightgreen">GitHub &amp; Coding</span></a>
+      </li>
+      
+      
+      <li>
+        <a rel="license" href="https://github.com/lpgph/hugo-theme-young" target="_blank" title="站点使用 hugo-theme-young 主题">
+        <span class="badge-subject">Theme</span><span class="badge-value bg-blue">hugo-theme-young</span></a>
+      </li>
+      <li>
+        <a  rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="本站点采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可">
+        <span class="badge-subject"><i class="fa fa-copyright"></i></span><span class="badge-value bg-lightgray">BY-NC-SA 4.0</span></a>
+      </li>
+      <li>
+        <a rel="license" href="https://996.icu/" target="_blank" title="支持 996.ICU">
+        <span class="badge-subject">Link</span><span class="badge-value bg-red">996.ICU</span></a>
+      </li>
+      <li>
+        <span class="badge-subject">UV</span><span class="badge-value bg-orange" id="busuanzi_value_site_uv"></span>
+      </li>
+      <li>
+        <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
+      </li>
+      
+    </ul>
+  </div>
+                    </footer>
+                </div>
+                <ul class="fixed-panel" id="fixed-panel">
+                    
+<li>
+  <div class="toc-panel">
+    <button onclick="showToc()" title="文章目录" >
+      <i class="fa fa-expand"></i>
+    </button>
+    <aside class="article-toc">
+      <h2 class="toc-title">文章目录</h2>
+      <div class="table-of-contents" id="article-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">创建和删除</a></li>
+    <li><a href="#heading-1">查看表</a></li>
+    <li><a href="#heading-2">表字段</a>
+      <ul>
+        <li><a href="#heading-3">常用字段属性:</a></li>
+        <li><a href="#heading-4">添加字段</a></li>
+        <li><a href="#heading-5">修改字段</a></li>
+        <li><a href="#heading-6">删除字段</a></li>
+        <li><a href="#heading-7">添加索引</a></li>
+        <li><a href="#heading-8">删除索引</a></li>
+      </ul>
+    </li>
+    <li><a href="#insert">insert语法</a></li>
+    <li><a href="#update">update语法</a>
+      <ul>
+        <li><a href="#heading-9">单条更新：</a></li>
+        <li><a href="#heading-10">多条更新：</a></li>
+      </ul>
+    </li>
+    <li><a href="#delete">delete语法</a>
+      <ul>
+        <li><a href="#heading-11">普通删除：</a></li>
+        <li><a href="#heading-12">多表删除：</a></li>
+        <li><a href="#heading-13">截断表：</a></li>
+      </ul>
+    </li>
+    <li><a href="#select">select语法</a>
+      <ul>
+        <li><a href="#heading-14">基本语法：</a></li>
+        <li><a href="#heading-15">花式操作</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </aside>
+  </div>
+</li>
+
+
+<li>
+  <button title="分享">
+    <i class="fa fa-share-alt"></i>
+  </button>
+</li>
+<li>
+  <button onclick="backToTop()" id="backToTop" title="返回顶部" style="display: none;">
+    <i class="fa fa-arrow-up"></i>
+  </button>
+</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+      <div id="aplayer"></div> 
+  
+
+  <link rel="stylesheet" href="https://lpgph.github.io/lib/aplayer/APlayer.min.css">
+  <script src="https://lpgph.github.io/lib/aplayer/APlayer.min.js"></script>
+
+  <script>
+  const ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: true,
+    autoplay: false,
+    theme: '#FADFA3',
+    loop: 'all',
+    order: 'random',
+    preload: 'auto',
+    volume: 0.3,
+    mutex: true,
+    listFolded: true,
+    listMaxHeight: 90,
+    lrcType: 3,
+    audio: [{
+        name: "Devil's Tears",
+        artist: 'Vicion',
+        url: "https:\/\/lpgph.github.io\/music/Vicion - Devil's Tears.mp3",
+        cover: "https:\/\/lpgph.github.io\/music/cover/Vicion - Devil's Tears.jpg",
+        lrc: "https:\/\/lpgph.github.io\/music/lrc/Vicion - Devil's Tears"
+    },{
+        name: "Devil's Tears",
+        artist: 'Vicion',
+        url: "https:\/\/lpgph.github.io\/music/Vicion - Devil's Tears.mp3",
+        cover: "https:\/\/lpgph.github.io\/music/cover/Vicion - Devil's Tears.jpg",
+        lrc: "https:\/\/lpgph.github.io\/music/lrc/Vicion - Devil's Tears"
+    }]
+  });
+  </script>
+    
+
+<script type="text/javascript" src="/js/main.7f7fc64a9f49ec7d40ba4b92fb47cf5408480332be71d709aa43eaaed1d15907.js" integrity="sha256-f3/GSp9J7H1AukuS&#43;0fPVAhIAzK&#43;cdcJqkPqrtHRWQc=" crossorigin="anonymous"></script>
+  <script src="https://lpgph.github.io/js/nav-scroll.js"></script>
+<link rel="stylesheet" href="https://lpgph.github.io/lib/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="https://lpgph.github.io/lib/fancybox/jquery.fancybox.js"></script>
+
+<script>
+    $(function() {
+        $(document).pjax('[data-pjax] a, a[data-pjax]', '#main-contents', {
+            fragment: '#main-contents',
+            timeout: 5000,
+            cache: false
+        }).on('pjax:send',function () {
+        }).on('pjax:click', function() {
+        }).on('pjax:complete', function() {
+          pjaxInitPage();
+        }).on('pjax:end', function() {
+          pjaxInitPage();
+        });
+        pjaxInitPage();
+    })
+</script>
+
+
+<script src="https://lpgph.github.io/lib/live2d-widget/js/L2Dwidget.min.js"></script>
+<script>
+
+  $(function () {
+          
+      L2Dwidget
+      .on('*', (name) => {
+        console.log('%c EVENT ' + '%c -> ' + name, 'background: #222; color: yellow', 'background: #fff; color: #000')
+      })
+      .init({
+        "name":{
+          "canvas": 'live2dcanvas', 
+          div : 'live2d-widget' 
+        },
+        "dev":{
+          border: false 
+        },
+        "model": {
+            "jsonPath": "http:\/\/localhost:1313\/lib\/live2d-widget\/model\/kesyoban\/kesyoban.model.json", 
+            "scale": 1 
+        },
+        "display": {
+            "superSample": 2, 
+            "position": "right", 
+            "width": 200,  
+            "height": 400, 
+            "hOffset": 0, 
+            "vOffset": -20 
+        },
+        "mobile": {
+            "show": false,  
+            "scale": 0.5  
+        },
+        "react": {
+            "opacity": 1  
+        },
+        dialog: {
+          
+          enable: true,
+          script: {
+            
+            'every idle 10s': '$hitokoto$',
+            'hover .avatar': '星星在天上而你在我心里 (*/ω＼*)',
+            
+            'tap body': '你在做什么?',
+            
+            'tap face': '人家已经不是小孩子了！'
+          }
+        }
+      });
+  })
+</script>
+
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  function pjaxInitPage() {
+    initMotto();
+    getIp();
+    initScroll();
+    lastActiveTime(new Date('2020-01-02 05:40:06'));
+    siteTime(new Date('2017-01-07T00:00:00Z'));
+    $.getScript("https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+
+    
+    initGitIssues();
+    
+    initMainSidebar();
+    initFacybox();
+  }
+  function initFacybox() {
+    $('#main-content article figure img').each(function(){
+        if ($(this).parent().attr('data-fancybox="images"')) return;
+        var alt = this.alt;
+        
+        $(this).wrap('<a href="' + this.src + '" title="' + alt + '" data-fancybox="images" ></a>');
+
+    });
+    if($.fancybox){
+      $('[data-fancybox]').fancybox({
+        protect: true,
+        buttons:[
+          "zoom",
+          
+          "slideShow",
+          "fullScreen",
+          "thumbs",
+          "close"
+        ],
+        arrows: true
+      });
+    }
+  }
+
+
+  function initGitIssues() {
+    var time = 3600000;
+    window.setTimeout(()=>{
+      initGitIssues();
+    }, time);
+    
+    var key = "initGitalk";
+    var objStr = localStorage.getItem(key);
+    var nowGmt = new Date();
+    if (objStr) {
+      var obj = JSON.parse(objStr);
+      var lastGmt = new Date(obj.date);
+      if (parseInt(nowGmt.getTime()-lastGmt.getTime()) < time) {
+        initGitComment(obj.gitComment);
+        return;
+      }
+    }
+    getGitComment().then((rs)=>{
+      
+      if (!rs.isSuceess && objStr) {
+        rs = JSON.parse(objStr);
+      }
+      initGitComment(rs);
+      var gitStorage = {
+        "date": nowGmt,
+        "gitComment": rs
+      }
+      localStorage.setItem(key,JSON.stringify(gitStorage))
+    });
+  }
+
+  async function getGitComment() {
+    var issuesUrl = "https://api.github.com/repos/lpgph/lpgph.github.io/issues";
+    var hostPosts = [];
+
+    var newCommentList= [];
+    var totalComment = 0;
+    var isSuceess = true;
+
+    try {
+      const issueResult = async function (url) {
+        return await axios.get(url);
+      }
+      const newCommentsResult=  await axios.get(issuesUrl+"/comments?per_page=10&sort=update");
+      newCommentsResult.data.forEach(item => {
+        var commentMap = {
+          "title":"",
+          "url":"",
+          "content": item.body,
+          "date":item.updated_at,
+          "user":{
+            "name":item.user.login,
+            "url":item.user.url,
+            "avatar_url":item.user.avatar_url
+          }
+        };
+        issueResult(item.issue_url).then((rs)=>{
+          const data = rs.data;
+          commentMap.title = data.title;
+          data.labels.some((label, index) => {
+            if (label.name !== "Gitalk") {
+              commentMap.url = label.name;
+              return true;
+            }
+          });
+          newCommentList.push(commentMap)
+        })
+      });
+      const getTotalCount = await axios.get(issuesUrl+"/comments");
+      totalComment = getTotalCount.data.length;
+      const getHotPost = await axios.get(issuesUrl+"?per_page=10&sort=comments");
+      getHotPost.data.forEach(item=>{
+        var postMap = {
+          "title":item.title,
+          "url":"",
+          "comment_count": item.comments
+        };
+        item.labels.some((label, index) => {
+          if (label.name !== "Gitalk") {
+            postMap.url = label.name;
+            return true;
+          }
+        });
+        hostPosts.push(postMap);
+      });
+    } catch (error) {
+      console.log(error)
+      isSuceess = false;
+    }
+    return{
+      isSuceess: isSuceess,
+      newComments: newCommentList,
+      total: totalComment,
+      hostPosts: hostPosts
+    };
+  }
+
+  function initGitComment(issue) {
+    var commentListHtml = "";
+    if (issue.newComments && issue.newComments.length>0) {
+      issue.newComments.forEach(item => {
+          commentListHtml+='<li>\n'+
+              '<a href="https:\/\/lpgph.github.io\/'+item.url+'#comment-container" title="'+item.title+'">'+
+                '<div class="container font-zoom">'+
+                  '<img src="'+item.user.avatar_url+'" class="avatar" alt="'+item.user.name+'" title="'+item.user.name+'"/>'+
+                  '<div>'+
+                    '<p>'+item.user.name+'</p>'+
+                    '<p>'+item.content+'</p>'+
+                  '</div>'+
+                '</div>'+
+              '</a>'+
+          '</li>\n';
+      });
+    }else{
+      commentListHtml = '<li><small>暂无评论</small></li>'
+    }
+    $("#tab-comments ul").html(commentListHtml);
+    
+    var hostPostHtml = "";
+     if (issue.hostPosts && issue.hostPosts.length>0) {
+      issue.hostPosts.forEach(item => {
+          hostPostHtml+='<li>\n'+
+              '<a href="https:\/\/lpgph.github.io\/'+item.url+'" title="'+item.title+'">'+
+                '<div class="container font-zoom">'+
+                  '<i class="fa fa-heart" aria-hidden="true"></i>'+
+                  '<div>'+
+                    '<p>'+item.title+'</p>'+
+                    '<p><i class="fa fa-comment-o" aria-hidden="true"></i>'+item.comment_count+'</p>'+
+                  '</div>'+
+                '</div>'+
+              '</a>'+
+          '</li>\n';
+      });
+    }else{
+      hostPostHtml = '<li><small>暂无热门文章</small></li>'
+    }
+    $("#tab-host-post ul").html(hostPostHtml);
+    $("#comment-total").text(issue.total);
+  }
+
+  async function gitPostComments(path) {
+    var issuesUrl = "https://api.github.com/repos/lpgph/lpgph.github.io/issues";
+    const getComments = await axios.get(issuesUrl+"?per_page=10&sort=comments");
+    var count = 0;
+    if(getComments.status === 200){
+      count = getComments.data[0].comments;
+    }
+    $("#comment_value_page_count").text(count);
+  }
+
+    function initGtalk() {
+      var gitalk = new Gitalk({
+      language: 'zh-CN' ,
+      clientID: '86c61da5bfaea99e9f10',
+      clientSecret: '3c0524cd32fbe175601f5b964c6a34b6d31b0975',
+      repo: 'lpgph.github.io',
+      owner: 'lpgph',
+      admin: ["lpgph"],
+      createIssueManually: true,
+      perPage: 1,
+      id: window.location.pathname,      
+      distractionFreeMode: false  
+    });
+    
+    gitalk.render('comment-container');
+  }
+
+
+
+
+ function initMotto() {
+  
+  hitokoto()
+  
+}
+</script>
+
+
+
+
+
+<script src="https://lpgph.github.io/js/piao.js" type="text/javascript"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

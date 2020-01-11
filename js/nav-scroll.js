@@ -7,9 +7,9 @@
     var pluginName = "navScrollSpy";
     //defaults options
     var defaults = {
-        navContainer: '#TableOfContents',  //外部容器
         navItems: 'a',        //元素
         current : 'active',  //当前
+        container : window,
         easing : 'swing',   //动效
         speed: 550,        //速度
         // duration: y    //方向
@@ -22,8 +22,9 @@
     function navScrollSpy(element, options){
         this.element = element;             //获得id=#nav
         this.$ele = $(element);             //获得$("#nav")
-        this.$win = $(window);              //获取window
+      
         this.options = $.extend({}, defaults, options);   //得到参数值
+        this.$win = $(this.options.container);              //获取window
 
         this._defaults = defaults;
         this._name = pluginName;
@@ -58,31 +59,13 @@
             //当页面重置时会发生问题？
             return this;
         },
-
-
-        // //导航固定
-        // fixNav: function(){
-        //     var st = $(window).scrollTop();
-        //     var $nav = $(this.options.navContainer)
-        //     var fixValue = this.options.oldTop;
-        //     if(st >= fixValue){
-        //         $nav.css({
-        //             "position":"fixed",
-        //             "top" : this.options.newTop+"px"
-        //         });
-        //     }else{
-        //         $nav.css({
-        //             "position":"absolute",
-        //             "top" : fixValue+"px"
-        //         });
-        //     }
-        // },
         
         //导航变化
         changeNav: function(self,$parent){
             var current = self.options.current;
             self.$ele.find("."+current).removeClass(current);
             $parent.addClass(current);
+            $parent.parentsUntil('#TableOfContents').addClass(current);
         },
 
         //得到内容区的Top值
@@ -90,33 +73,26 @@
             var self = this;
             self.$a.each(function(){
                 var boxId = $(this).attr("href").split('#')[1];
-                var boxTop = $("#"+boxId).offset().top;
-                //存放boxtop到box对象中去
+                // var boxTop = $("#"+boxId).offset().top;
+                var boxTop = $("#"+boxId).get(0).offsetTop;
                 self.boxs[boxId] = parseInt(boxTop);
             });
         },
 
         //滚动切换
         scrolling: function(){
-            var st = $(window).scrollTop();
-            var wH = $(window).height();
-            // this.fixNav();
-            var current = this.options.current;
-            this.$ele.find("."+current).removeClass(current);
-            //关闭其他ul标签
-            this.$ele.find("a").each(function () {
-                $(this).next("ul").attr("style","display:none");
-            });
-            
+            var st = this.$win.scrollTop();
+            var wH = this.$win.height();
+
             //临界条件: $("#id").offset().top－$(window).scrollTop()>$(window).height()/2;
             for(var box in this.boxs){
+                // console.log("box ",box," this.boxs[box]",this.boxs[box],"  st",st,"  wh",wH);
+                // console.log(st,"    ",this.boxs[box])
+                if(st >= this.boxs[box]-200){
+                // if(this.boxs[box] > parseInt(wH/2)){
                 // if(st >= this.boxs[box]-parseInt(wH/2)){
-                if(st >= this.boxs[box]){
                     var $a = this.$ele.find('a[href="#'+box+'"]');
                     var $parent = $a.parent();
-                    if(!this.options.openAll){
-                      $a.next("ul").attr("style","display:block");
-                    }
                     this.changeNav(this,$parent);
                 }
             };
@@ -124,16 +100,18 @@
 
         //点击切换
         clickSwitch: function(e){
+            // alert(1)
+            // console.log("点击切换", e.currentTarget)
             var $a = $(e.currentTarget);  //获得当前的a
             var $parent = $a.parent();    //获得a的li元素
             var self = this;
             var target = $a.attr("href"); //新的a #id
             if(!$parent.hasClass(self.options.current)){
-                //导航切换
                 self.changeNav(self,$parent);
                 //滚动开始
                 self.scrollTo(target, function(){
                     //callback
+                 
                 });
             }
             e.preventDefault();   //有current阻止冒泡
@@ -142,8 +120,11 @@
         //滚动到某个地方
         scrollTo: function(target, callback){
             //获取目标元素的TOP值
-            var offset = $(target).offset().top;
-            var $el = $('html,body');
+            // var offset = $(target).offset().top;
+            //console.log("target ",target,"offset ", $(target).offset().top,"scrollTop ",$(target).scrollTop(),'offsetTop ',$(target).get(0).offsetTop);
+            var offset = $(target).get(0).offsetTop;
+            var $el = this.$win;
+            // var $el = $('html,body');
             if(!$el.is(":animated")){
                 $el.animate({
                     scrollTop: offset

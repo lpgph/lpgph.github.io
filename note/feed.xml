@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notes on Dreamcatcher</title>
+    <link>https://lpgph.github.io/note/</link>
+    <description>Recent content in Notes on Dreamcatcher</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 03 Jan 2020 10:19:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://lpgph.github.io/note/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2020010301</title>
+      <link>https://lpgph.github.io/note/2020010301/</link>
+      <pubDate>Fri, 03 Jan 2020 10:19:47 +0800</pubDate>
+      
+      <guid>https://lpgph.github.io/note/2020010301/</guid>
+      <description>大江东去，浪淘尽，千古风流人物。 故垒西边，人道是，三国周郎赤壁。 乱石穿空，惊涛拍岸，卷起千堆雪。 江山如画，一时多少豪杰。 遥想公瑾当年，小乔初</description>
+    </item>
+    
+  </channel>
+</rss>

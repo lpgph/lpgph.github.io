@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
             "z-index": 200,
             "top": y - 20,
             "left": x,
-            "position": "absolute",
+            "position": "fixed",
             "font-weight": "bold",
             "color": "#FF0000"
         });

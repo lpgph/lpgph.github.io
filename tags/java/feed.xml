@@ -13,19 +13,33 @@
     
     <item>
       <title>设计模式六大原则</title>
-      <link>https://lpgph.github.io/post/design_pattern_principle/</link>
+      <link>https://lpgph.github.io/posts/design_pattern_principle/</link>
       <pubDate>Tue, 01 May 2018 09:48:13 +0000</pubDate>
       
-      <guid>https://lpgph.github.io/post/design_pattern_principle/</guid>
+      <guid>https://lpgph.github.io/posts/design_pattern_principle/</guid>
       <description>&lt;p&gt;遵循设计原则是为了建立稳定、灵活、健壮的设计,而开闭原则又是重中之重,是最基础的原则,是其他五大原则的精神领袖&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Quartz与Spring整合</title>
-      <link>https://lpgph.github.io/post/java_spring_quartz/</link>
+      <link>https://lpgph.github.io/posts/java_spring_quartz/</link>
       <pubDate>Sat, 24 Mar 2018 19:01:56 +0000</pubDate>
       
-      <guid>https://lpgph.github.io/post/java_spring_quartz/</guid>
+      <guid>https://lpgph.github.io/posts/java_spring_quartz/</guid>
+      <description>&lt;p&gt;以下基本是在配置中遇到或考虑到的问题  末尾附代码&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;做之前先考虑好Quartz的Job,JobGroud,Trigger,TriggerGroup之间的关系&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Job与Trigger之间是一对多的关系
+Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Quartz与Spring整合</title>
+      <link>https://lpgph.github.io/test/java_spring_quartz/</link>
+      <pubDate>Sat, 24 Mar 2018 19:01:56 +0000</pubDate>
+      
+      <guid>https://lpgph.github.io/test/java_spring_quartz/</guid>
       <description>&lt;p&gt;以下基本是在配置中遇到或考虑到的问题  末尾附代码&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;做之前先考虑好Quartz的Job,JobGroud,Trigger,TriggerGroup之间的关系&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;

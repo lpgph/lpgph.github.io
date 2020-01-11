@@ -1675,18 +1675,19 @@ var demo = {
     demo.spinner.init(demo.spring, spinnerTypeAutoSpin);
 
     // if (spinnerTypeAutoSpin) {
-    //   // Fake loading time, in a real world just call demo.spinner.setComplete();
-    //   // whenever the preload will be completed.
-    //   // setTimeout(function () {
-    //   //   demo.spinner.setComplete();
-    //   // }, 6000);
+      // Fake loading time, in a real world just call demo.spinner.setComplete();
+      // whenever the preload will be completed.
+      setTimeout(function () {
+        demo.spinner.setComplete();
+        document.getElementById("app").classList.add("show");
+      }, 1000);
 
 
-    //   //  setTimeout(function () {
-    //   //   if(document.readyState=="complete"){
-    //   //     demo.spinner.setComplete();
-    //   //   }
-    //   // }, 1000);
+      //  setTimeout(function () {
+      //   if(document.readyState=="complete"){
+      //     demo.spinner.setComplete();
+      //   }
+      // }, 1000);
     // } else {
     //   // Perform real ajax request.
     //   demo.loadSomething();
@@ -1724,45 +1725,42 @@ var demo = {
 };
 //# sourceMappingURL=main.js.map
 
-window.addEventListener('load', () =>{
-    demo.init();
-   // document.getElementById("home").style.display="block"
-});
+// window.addEventListener('load', () =>{
+//     demo.init();
+//     // 加载看板娘
+//     L2Dwidget
+//     .on('*', (name) => {
+//       console.log('%c EVENT ' + '%c -> ' + name, 'background: #222; color: yellow', 'background: #fff; color: #000')
+//     })
+//     .init({
+//       dialog: {
+//         // 开启对话框
+//         enable: true,
+//         script: {
+//           // 每空闲 10 秒钟，显示一条一言
+//           'every idle 10s': '$hitokoto$'
+//           // // 当触摸到角色身体
+//           // 'tap body': '哎呀！别碰我！',
+//           // // 当触摸到角色头部
+//           // 'tap face': '人家已经不是小孩子了！'
+//         }
+//       }
+//     });
 
-document.onreadystatechange = function() {
-  if (document.readyState == "complete") {
-        // 加载看板娘
-        L2Dwidget
-        .on('*', (name) => {
-          console.log('%c EVENT ' + '%c -> ' + name, 'background: #222; color: yellow', 'background: #fff; color: #000')
-        })
-        .init({
-          dialog: {
-            // 开启对话框
-            enable: true,
-            script: {
-              // 每空闲 10 秒钟，显示一条一言
-              'every idle 10s': '$hitokoto$'
-              // // 当触摸到角色身体
-              // 'tap body': '哎呀！别碰我！',
-              // // 当触摸到角色头部
-              // 'tap face': '人家已经不是小孩子了！'
-            }
-          }
-        });
+//     if (document.body.scrollWidth<720) {
+//       $("#live2d-widget").css("opacity","0");
+//       $("#c_n14").css("opacity","0");
+//     }else{
+//       $("#live2d-widget").css("opacity","1");
+//       $("#c_n14").css("opacity","1");
+//     }
+// });
 
-      if (document.body.scrollWidth<720) {
-        $("#live2d-widget").css("opacity","0");
-        $("#c_n14").css("opacity","0");
-      }else{
-        $("#live2d-widget").css("opacity","1");
-        $("#c_n14").css("opacity","1");
-      }
-
-
-      setTimeout(function () {
-          demo.spinner.setComplete();
-          document.getElementById("home").classList.add("show");
-      }, 1000);
-  }
-}
+// document.onreadystatechange = function() {
+//   if (document.readyState == "complete") {
+//       setTimeout(function () {
+//           demo.spinner.setComplete();
+//           document.getElementById("app").classList.add("show");
+//       }, 1000);
+//   }
+// }
