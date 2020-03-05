@@ -148,6 +148,7 @@
 				this._canvas.style["width"] = "100%";
 				this._canvas.style["height"] = "100%";
 				this._canvas.style["z-index"] = "1";
+				this._canvas.style["opacity"] = "0.2";
 				this._onResize();
 				this._context = this._canvas.getContext("2d");
 				this._context.clearRect(0, 0, this._width, this._height);

@@ -81,6 +81,7 @@
 
         //滚动切换
         scrolling: function(){
+            // var st = this.$win.offset().top;
             var st = this.$win.scrollTop();
             var wH = this.$win.height();
 

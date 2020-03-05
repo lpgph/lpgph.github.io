@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head>
   <meta charset="UTF-8">
-  <title>MySql之存储过程,函数,触发器,视图 - Dreamcatcher</title>
+  <title>MySql之存储过程,函数,触发器,视图 - 诗和远方</title>
 
   
   <meta name="description" content="运算
@@ -12,7 +12,7 @@ DECLARE counter INT DEFAULT 0;
 SET counter = counter&#43;1;  
 ">
   
-  <meta itemprop="name" content="MySql之存储过程,函数,触发器,视图 - Dreamcatcher">
+  <meta itemprop="name" content="MySql之存储过程,函数,触发器,视图 - 诗和远方">
   <meta itemprop="description" content="运算
 定义变量
 使用DECLARE来声明，DEFAULT赋默认值，SET赋值
@@ -30,7 +30,7 @@ SET counter = counter&#43;1;
 
   
   
-  <meta name="twitter:description" content="君子如器">
+  <meta name="twitter:description" content="勿以时穷而忘节，勿以势起而乱性">
 
   
   
@@ -40,21 +40,22 @@ SET counter = counter&#43;1;
 
   
   
-  <link rel="stylesheet" href="https://lpgph.github.io/font/hack/css/hack.min.css">
+  
   <link rel="stylesheet" href="https://lpgph.github.io/font/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://lpgph.github.io/font/playball/playball.css">
 
-  <link rel="stylesheet" href="https://lpgph.github.io/lib/animate/animate.min.css">
+  
+
+  
 
   
   
-  <link rel="stylesheet" href="/sass/style.min.dc252023e1d044c43100d79b21900e0670083b7c413152daed69e3457ec5de79.css" integrity="sha256-3CUgI&#43;HQRMQxANebIZAOBnAIO3xBMVLa7WnjRX7F3nk=" media="screen" crossorigin="anonymous">
+  <link rel="stylesheet" href="/sass/index.min.f2838a043a0903d455931098cd2df75190ca124c7cceff466d41393981ccec61.css" integrity="sha256-8oOKBDoJA9RVkxCYzS33UZDKEkx8zv9GbUE5OYHM7GE=" media="screen" crossorigin="anonymous">
   
 
   <script src="https://lpgph.github.io/js/jquery-3.3.1.min.js"></script>
 
   
-  <script src="https://lpgph.github.io/js/motto-show.js"></script>
+  
 
   
   
@@ -64,10 +65,8 @@ SET counter = counter&#43;1;
 
   
   
-  <script type="text/javascript" src="https://lpgph.github.io/js/click_show_text.js"></script>
-  
 
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  
   
   <script type="text/javascript" src="https://lpgph.github.io/js/jquery.pjax.js"></script>
   
@@ -76,252 +75,121 @@ SET counter = counter&#43;1;
 
 </head>
 <body>
-    <div id="app" class="app" >
-        <header class="app-header" id="app-header">
+    <div class="react-container" >
+        <header class="header-container">
+            <div class="title vertical-text">
+  <a href="https://lpgph.github.io/" target="_self" data-pjax >
+    <h3>勿以时穷而忘节，勿以势起而乱性</h3>
+    <h1>诗和远方</h1>
+  </a>
+</div>
+
+<ul class="nav">
+  
+  <li><a href="/" target="_self" data-pjax title="主页">主页</a></li>
+  
+  <li><a href="/posts/" target="_self" data-pjax title="归档">归档</a></li>
+  
+  <li><a href="/notes/" target="_self" data-pjax title="短笺">短笺</a></li>
+  
+  <li><a href="/photos/" target="_self" data-pjax title="相册">相册</a></li>
+  
+  <li><a href="/categories/" target="_self" data-pjax title="分类">分类</a></li>
+  
+  <li><a href="/tags/" target="_self" data-pjax title="标签云">标签云</a></li>
+  
+  <li><a href="/about/" target="_self" data-pjax title="关于我">关于我</a></li>
+  
+</ul>
+
+<div class="social" >
+  
+  
+  
+    <a href="https://github.com/lpgph" target="_blank" title="github"><i class="fa fa-github" aria-hidden="true"></i></a>
+  
+  
+  
+  
+</div>
+
+
+
+<footer class="footer">
             
-<div class="nav-header">
-  <button class="button menu" title="显示侧边栏">
-    <i class="fa fa-navicon"></i>   
-  </button>
+  <p class="copyright">
+    © 2017-2020 <a href="https://lpgph.github.io/" title="诗和远方">诗和远方</a>
+  </p>
+  <p id="sitetime"></p>
+  <p>
+    Powered by
+    <a href="https://hexo.io/" target="_blank">Hugo</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+        Hosted by
+    <a  href="https://github.com/" target="_blank">GitHub</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    CDN by
+    <a  href="https://www.jsdelivr.com/" target="_blank">jsDelivr</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    Theme
+    <a  href="https://github.com/lpgph/hugo-theme-typography" target="_blank">hugo-theme-typography</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    UV<span id="busuanzi_value_site_uv"></span>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    PV<span id="busuanzi_value_site_pv"></span>
+  </p>
+</footer>
 
-  <div class="blog-title animated lightSpeedIn">
-    <a href="https://lpgph.github.io/">
-      <span class="title">Dreamcatcher</span>
-    </a>
-  </div>
 
-  <button class="button search">
-    <i class="fa fa-search" aria-hidden="true"></i>
-  </button>
 
-</div>
 
-<div class="nav-panel" id="header-nav-panel">
-   <div class="search-box">
-      <form method="get" action="https://www.google.com/search">
-        <input type="text" id="search" name="q" placeholder="搜索">
-        <button type="button">
-          <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
-      </form>
-   </div>
-</div>
+
         </header>
-        <main class="app-main">
-            <aside class="app-sidebar" id="app-sidebar">
-                
- 
- 
- 
-<div class="blog-info scrollbar">
-  
-  <div class="avatar">
-    <a href="https://lpgph.github.io/"  data-pjax>
-      <img src="https://lpgph.github.io/img/avatar.jpg" alt="lpgph" title="lpgph"/>
+        <div class="main-container" id="main-container">
+            <main class="main-content">
+            
+<section class="main-post">
+  <h1>
+    <a href="https://lpgph.github.io/posts/mysql_procedure_function_trigger_view/" title="MySql之存储过程,函数,触发器,视图">
+      MySql之存储过程,函数,触发器,视图
     </a>
-  </div>
-  
-  <div class="motto"  >
-    <small class="content" id="blog-motto"></small>
-    <script>
-     
-      binft(document.getElementById('blog-motto'),["青青陵上柏，磊磊涧中石","勿以恶小而为之，勿以善小而不为","勿以时穷而忘节，勿以势起而乱性","人生天地间，忽如远行客","斗酒相娱乐，聊厚不为薄","驱车策驽马，游戏宛与洛","洛中何郁郁，冠带自相索","长衢罗夹巷，王侯多第宅","两宫遥相望，双阙百余尺","极宴娱心意，戚戚何所迫？"]);
+  </h1>
+  <p class="list-tags">
+    <span>
+      <i class="fa fa-user-o"></i><span><a href="https://lpgph.github.io/about" title="作者">焚琴</a></span>
+    </span>
+    <span>
+      <i class="fa fa-clock-o" aria-hidden="true"></i><span><time datetime="2018-03-05 11:09:02 &#43;0000 UTC">2018-03-05</time></span>
+    </span>
+    <span title="字数统计">
+      <i class="fa fa-keyboard-o"></i><span>5964 字</span>
+    </span>
+    <span title="阅读时长">
+      <i class="fa fa-hourglass-half"></i><span>12 分钟</span>
+    </span>
+    <span>
+      <i class="fa fa-eye"></i><span id="busuanzi_value_page_pv" title="阅读次数">0</span>
+    </span>
     
-    </script>
-  </div>
-  <nav class="menu">
-  <ul class="nav">
+    <span>
+      <i class="fa fa-folder" aria-hidden="true"></i><span><a href="https://lpgph.github.io/categories/mysql">MySql</a></span>
+    </span>
     
-      <li class="line"></li>
-      
-      <li>
-        
-          <a href="/" data-pjax target="_self" title="主页">
-            <div class="row-box flex">
-              <i class='fa fa-home' aria-hidden='true'></i><span class="title">主页</span>
-            </div>
-          </a>
-        
-      </li>
-      
-      <li>
-        
-          <a href="/posts/" data-pjax target="_self" title="归档">
-            <div class="row-box flex">
-              <i class='fa fa-archive' aria-hidden='true'></i><span class="title">归档</span>
-            </div>
-          </a>
-        
-      </li>
-      
-      <li>
-        
-          <a href="/note/" data-pjax target="_self" title="短笺">
-            <div class="row-box flex">
-              <i class='fa fa-sticky-note' aria-hidden='true'></i><span class="title">短笺</span>
-            </div>
-          </a>
-        
-      </li>
-      
-      <li>
-        
-          <a href="/photo/" data-pjax target="_self" title="相册">
-            <div class="row-box flex">
-              <i class='fa fa-photo' aria-hidden='true'></i><span class="title">相册</span>
-            </div>
-          </a>
-        
-      </li>
-      
-      <li>
-        
-          <a href="/about/" data-pjax target="_self" title="关于我">
-            <div class="row-box flex">
-              <i class='fa fa-user' aria-hidden='true'></i><span class="title">关于我</span>
-            </div>
-          </a>
-        
-      </li>
-      
     
-    <li class="line"></li>
-    <li>
-      <div class="row-box flex">
-        <i class="fa fa-th-large" aria-hidden="true"></i><span class="title">随笔分类</span><i class="angle fa fa-angle-right" aria-hidden="true"></i>
-      </div>
-      <ul class="nav nav-sub animated fadeIn">
-        
-        <li>
-          <a href="https://lpgph.github.io/categories/java/" data-pjax target="_self" title="Java">
-            <div class="row-box flex">
-              Java<span class="bubble">2</span>
-            </div>
-          </a>
-        </li>
-        
-        <li>
-          <a href="https://lpgph.github.io/categories/mysql/" data-pjax target="_self" title="MySql">
-            <div class="row-box flex">
-              MySql<span class="bubble">8</span>
-            </div>
-          </a>
-        </li>
-        
-        <li>
-          <a href="https://lpgph.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-pjax target="_self" title="设计模式">
-            <div class="row-box flex">
-              设计模式<span class="bubble">1</span>
-            </div>
-          </a>
-        </li>
-        
-      </ul>
-    </li>
-    <li>
-      <div class="row-box flex">
-        <i class="fa fa-tag" aria-hidden="true"></i><span class="title">我的标签</span><i class="angle fa fa-angle-right" aria-hidden="true"></i>
-      </div>
-      <nav class="nav nav-sub block-box tags animated fadeIn">
-      
-      <a href="https://lpgph.github.io/tags/java/" data-pjax target="_self" title="Java">
-        <span class="bubble font-zoom">Java<sup>(3)</sup></span>
-      </a>
-      
-      <a href="https://lpgph.github.io/tags/mysql/" data-pjax target="_self" title="MySql">
-        <span class="bubble font-zoom">MySql<sup>(8)</sup></span>
-      </a>
-      
-      <a href="https://lpgph.github.io/tags/quartz/" data-pjax target="_self" title="Quartz">
-        <span class="bubble font-zoom">Quartz<sup>(2)</sup></span>
-      </a>
-      
-      <a href="https://lpgph.github.io/tags/spring/" data-pjax target="_self" title="Spring">
-        <span class="bubble font-zoom">Spring<sup>(2)</sup></span>
-      </a>
-      
-      <a href="https://lpgph.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-pjax target="_self" title="设计模式">
-        <span class="bubble font-zoom">设计模式<sup>(1)</sup></span>
-      </a>
-      
-      </nav>
-    </li>
-  </ul>
-</nav>
-
-
-</div>
-
-
-
-
-
-
-  <div class="social">
-    <div class="list">
-      
-      
-      
-        <a href="https://github.com/lpgph" target="_blank" title="github"><i class="fa fa-github" aria-hidden="true"></i></a>
-      
-      
-      
-      
-    </div>
-  </div>
-  
-
-            </aside>
-            <div style="display: contents;" id="main-contents">
-                <div class="main-container scrollbar" id="main-container">
-                    <main>
-                        <div class="main-content" data-pjax>
-                        
-  <header class="main-header">
-    <h1 itemprop="name" class="title">
-  <a href="https://lpgph.github.io/posts/mysql_procedure_function_trigger_view/" title="MySql之存储过程,函数,触发器,视图" itemprop="url">MySql之存储过程,函数,触发器,视图</a>
-</h1>
-<ul class="info">
-  <li>
-    <i class="fa fa-user-o"></i><a href="https://lpgph.github.io/about" title="lpgph">lpgph</a>
-  </li>
-  <li>
-    <i class="fa fa-clock-o"></i><time datetime="2018-03-05 11:09:02 &#43;0000 UTC">2018-03-05</time>
-  </li>
-  <li>
-    <i class="fa fa-keyboard-o"></i>字数统计:<span>5964</span>字
-  </li>
-  <li>
-    <i class="fa fa-hourglass-half"></i>阅读时长 ≈ <span>12</span>分钟
-  </li>
-  <li>
-    <i class="fa fa-eye"></i><span id="busuanzi_value_page_pv">0</span>
-  </li>
-  <li>
-    <a href="https://lpgph.github.io/posts/mysql_procedure_function_trigger_view/#comment-container"><i class="fa fa-comment-o"></i><span id="comment_value_page_count">0</span></a>
-  </li>
-  
-  <li>
-    <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+    <span>
+      <i class="fa fa-tag" aria-hidden="true"></i><span><a href="https://lpgph.github.io/tags/mysql">MySql</a></span>
+    </span>
     
-      <a href="https://lpgph.github.io/categories/mysql">MySql</a>
-    
-  </li>
-  
-</ul> 
-  </header>
-  <div class="main-content-container">
-    
-
-<section class="article-content box-style box-other">
-  <article>
-  <h2 id="heading">运算</h2>
-<h3 id="heading-1">定义变量</h3>
+  </p>
+  <article class="post-content"><h2 id="运算">运算</h2>
+<h3 id="定义变量">定义变量</h3>
 <p>使用DECLARE来声明，DEFAULT赋默认值，SET赋值</p>
 <pre><code>DECLARE counter INT DEFAULT 0;   
 SET counter = counter+1;  
-</code></pre><h3 id="heading-2">控制语句</h3>
-<h4 id="heading-3">条件语句</h4>
+</code></pre><h3 id="控制语句">控制语句</h3>
+<h4 id="条件语句">条件语句</h4>
 <p>IF THEN、ELSEIF、ELSE、END IF</p>
 <pre><code>DECLARE type int;
 DECLARE c varchar(50);
@@ -333,7 +201,7 @@ ELSEIF type = 1 THEN
 ELSE
     set c = 'param is others, not 0 or 1';
 END IF;
-</code></pre><h4 id="heading-4">循环语句</h4>
+</code></pre><h4 id="循环语句">循环语句</h4>
 <p>WHILE DO、END WHILE</p>
 <pre><code>DECLARE n int DEFAULT 10;
 DECLARE s int DEFAULT 0;
@@ -366,18 +234,18 @@ WHEN 1 THEN
 ELSE
     set c = 'param is others, not 0 or 1';
 END CASE;
-</code></pre><h2 id="heading-5">存储过程/函数</h2>
+</code></pre><h2 id="存储过程函数">存储过程/函数</h2>
 <p><a href="https://dev.mysql.com/doc/refman/5.6/en/create-procedure.html" title="官方文档">官网文档</a></p>
-<h3 id="heading-6">定义</h3>
+<h3 id="定义">定义</h3>
 <p>简单的说，就是一组SQL语句集，功能强大，可以实现一些比较复杂的逻辑功能，类似于JAVA语言中的方法；
 存储过程跟触发器有点类似，都是一组SQL集，但是存储过程是主动调用的，且功能比触发器更加强大，触发器是某件事触发后自动调用；</p>
-<h3 id="heading-7">特性</h3>
+<h3 id="特性">特性</h3>
 <ol>
 <li>有输入输出参数，可以声明变量，有if/else,case,while等控制语句，通过编写存储过程，可以实现复杂的逻辑功能；</li>
 <li>函数的普遍特性：模块化，封装，代码复用；</li>
 <li>速度快，只有首次执行需经过编译和优化步骤，后续被调用可以直接执行，省去以上步骤；</li>
 </ol>
-<h3 id="heading-8">语法</h3>
+<h3 id="语法">语法</h3>
 <pre><code>CREATE
     [DEFINER = { user | CURRENT_USER }]
     PROCEDURE sp_name ([proc_parameter[,...]])
@@ -407,7 +275,7 @@ characteristic:
 
 routine_body:
     Valid SQL routine statement
-</code></pre><h4 id="heading-9">创建存储过程</h4>
+</code></pre><h4 id="创建存储过程">创建存储过程</h4>
 <pre><code># ################# 不带返回值 #################
 # 删除已有的存储过程
 DROP PROCEDURE IF EXISTS `pr_add`;
@@ -461,7 +329,7 @@ mysql&gt; CREATE DEFINER = 'admin'@'localhost' PROCEDURE account_count()
 -&gt; SELECT 'Number of accounts:', COUNT(*) FROM mysql.user;
 -&gt; END $$
 mysql&gt; delimiter ;
-</code></pre><h4 id="heading-10">创建存储函数</h4>
+</code></pre><h4 id="创建存储函数">创建存储函数</h4>
 <p>先查看函数功能是否开启：show variables like &lsquo;%func%'，未开启则创建函数会报错。</p>
 <p>解决办法有两种，</p>
 <blockquote>
@@ -501,7 +369,7 @@ DELIMITER ;
 2.可以使用数据库名称限定常规名称。这可以用于引用不在当前数据库中的例程。例如，要调用与test数据库相关联的存储过程p或函数f ，可以说CALL test.p()或test.f() 。
 3.当数据库被删除时，与它相关联的所有存储例程也被删除。</p>
 </blockquote>
-<h4 id="heading-11">查看存储过程和函数|存储函数|触发器</h4>
+<h4 id="查看存储过程和函数存储函数触发器">查看存储过程和函数|存储函数|触发器</h4>
 <p>1）查询数据库中的存储过程/函数</p>
 <pre><code># 方法一：
 select `name` from mysql.proc where db = 'your_db_name' and `type` = 'PROCEDURE|FUNCTION|TRIGGER';
@@ -510,9 +378,9 @@ SHOW {PROCEDURE | FUNCTION} status
 </code></pre><p>2）查看存储过程|函数|触发器的创建代码</p>
 <pre><code>//查看存储过程
 SHOW CREATE {PROCEDURE | FUNCTION | TRIGGER} sp_name;
-</code></pre><h4 id="heading-12">删除存储过程|函数|触发器</h4>
+</code></pre><h4 id="删除存储过程函数触发器">删除存储过程|函数|触发器</h4>
 <pre><code>DROP {PROCEDURE | FUNCTION | TRIGGER } [IF EXISTS] sp_name;
-</code></pre><h3 id="heading-13">存储过程和存储函数优缺点和区别</h3>
+</code></pre><h3 id="存储过程和存储函数优缺点和区别">存储过程和存储函数优缺点和区别</h3>
 <p>优缺点：</p>
 <table>
 <thead>
@@ -575,17 +443,17 @@ SHOW CREATE {PROCEDURE | FUNCTION | TRIGGER} sp_name;
 </tr>
 </tbody>
 </table>
-<h2 id="heading-14">触发器</h2>
-<h3 id="heading-15">特点</h3>
+<h2 id="触发器">触发器</h2>
+<h3 id="特点">特点</h3>
 <pre><code>触发事件的操作和触发器里的SQL语句是一个事务操作，具有原子性,要么全部执行，要么都不执行；
 </code></pre>
-<h3 id="heading-16">作用</h3>
+<h3 id="作用">作用</h3>
 <pre><code>保证数据的完整性，起到约束的作用；
 </code></pre>
-<h3 id="heading-17">弊端</h3>
+<h3 id="弊端">弊端</h3>
 <pre><code>增加程序的复杂度，有些业务逻辑在代码中处理，有些业务逻辑用触发器处理，会使后期维护变得困难；
 </code></pre>
-<h3 id="heading-18">语法</h3>
+<h3 id="语法-1">语法</h3>
 <pre><code>CREATE
     [DEFINER = { user | CURRENT_USER }]
     TRIGGER trigger_name
@@ -596,7 +464,7 @@ SHOW CREATE {PROCEDURE | FUNCTION | TRIGGER} sp_name;
 trigger_time: { BEFORE | AFTER }
 
 trigger_event: { INSERT | UPDATE | DELETE }
-</code></pre><h4 id="heading-19">创建触发器</h4>
+</code></pre><h4 id="创建触发器">创建触发器</h4>
 <pre><code>DROP TRIGGER IF EXISTS `t1`;
 DELIMITER ;;
 CREATE TRIGGER `t1` AFTER UPDATE ON `user` FOR EACH ROW begin
@@ -605,18 +473,18 @@ CREATE TRIGGER `t1` AFTER UPDATE ON `user` FOR EACH ROW begin
 end
 ;;
 DELIMITER ;
-</code></pre><h4 id="a-href2a"><!-- raw HTML omitted -->删除查看<!-- raw HTML omitted --></h4>
-<h2 id="heading-20">视图</h2>
+</code></pre><h4 id="a-href2删除查看a"><!-- raw HTML omitted -->删除查看<!-- raw HTML omitted --></h4>
+<h2 id="视图">视图</h2>
 <p><a href="http://blog.sina.com.cn/s/blog_8edc37a80101c4ba.html">视图总结原地址</a></p>
-<h3 id="heading-21">定义</h3>
+<h3 id="定义-1">定义</h3>
 <blockquote>
 <p>视图是从一个或多个表（或视图）导出的表。视图是数据库的用户使用数据库的观点。可以根据他们的不同需求，在物理的数据库上定义他们对数据库所要求的数据结构，这种根据用户观点所定义的数据结构就是视图。</p>
 </blockquote>
-<h3 id="heading-22">与表区别</h3>
+<h3 id="与表区别">与表区别</h3>
 <blockquote>
 <p>视图与表（有时为与视图区别，也称表为基本表——Base Table）不同，视图是一个虚表，即视图所对应的数据不进行实际存储，数据库中只存储视图的定义，对视图的数据进行操作时，系统根据视图的定义去操作与视图相关联的基本表。</p>
 </blockquote>
-<h3 id="heading-23">优点</h3>
+<h3 id="优点">优点</h3>
 <blockquote>
 <p>1）为用户集中数据，简化用户的数据查询和处理。有时用户所需要的数据分散在多个表中，定义视图可将它们集中在一起，从而方便用户的数据查询和处理。
 2）屏蔽数据库的复杂性。用户不必了解复杂的数据库中的表结构，并且数据库表的更改也不影响用户对数据库的使用。
@@ -624,14 +492,14 @@ DELIMITER ;
 4）便于数据共享。各用户不必都定义和存储自己所需的数据，可共享数据库的数据，这样同样的数据只需存储一次。
 5）可以重新组织数据以便输出到其他应用程序中</p>
 </blockquote>
-<h3 id="heading-24">注意</h3>
+<h3 id="注意">注意</h3>
 <blockquote>
 <p>1）在默认情况下，将在当前数据库创建新视图。要想在给定数据库中明确创建视图，创建时，应将名称指定为db_name.view_name
 2）视图的命名必须遵循标志符命名规则，不能与表同名，且对每个用户视图名必须是唯一的，即对不同用户，即使是定义相同的视图，也必须使用不同的名字。
 3）不能把规则、默认值或触发器与视图相关联。
 4）不能在视图上建立任何索引，包括全文索引。</p>
 </blockquote>
-<h3 id="heading-25">语法</h3>
+<h3 id="语法-2">语法</h3>
 <pre><code>CREATE
     [OR REPLACE]
     [ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]
@@ -667,7 +535,7 @@ DELIMITER ;
 指出在可更新视图上所进行的修改都要符合select_statement所指定的限制条件，这样可以确保数据修改后，仍可通过视图看到修 改的数据。当视图是根据另一个视图定义的时，WITH CHECK OPTION给出两个参数：LOCAL和CASCADED。它们决定了检查测试的范围。Local关键字使CHECK OPTION只对定义的视图进行检查，cascaded则会对所有视图进行检查。如果未给定任一关键字，默认值为CASCADED。
  
  */
-</code></pre><h4 id="heading-26">可更新视图</h4>
+</code></pre><h4 id="可更新视图">可更新视图</h4>
 <p>要通过视图更新基本表数据，必须保证视图是可更新视图，即可以在INSET、UPDATE或DELETE等语句当中使用它们。对于可更新的视图，在视图中的行和基表中的行之间必须具有一对一的关系。还有一些特定的其他结构，这类结构会使得视图不可更新。</p>
 <p>如果视图包含下述结构中的任何一种，那么它就是不可更新的：</p>
 <blockquote>
@@ -683,7 +551,7 @@ DELIMITER ;
 10）WHERE子句中的子查询，引用FROM子句中的表；
 11）ALGORITHM 选项指定为TEMPTABLE（使用临时表总会使视图成为不可更新的）。</p>
 </blockquote>
-<h4 id="heading-27">插入数据</h4>
+<h4 id="插入数据">插入数据</h4>
 <p>使用INSERT语句通过视图向基本表插入数据
 例: 创建视图CS_XS，视图中包含计算机专业的学生信息，并向CS_XS视图中插入一条记录：（&lsquo;081255&rsquo;，&lsquo;李牧&rsquo;，&lsquo;计算机&rsquo;，1，&lsquo;1990-10-21&rsquo;，50，NULL，NULL）。
 首先创建视图CS_XS：(以下的删除、修改都是用该表)</p>
@@ -699,7 +567,7 @@ DELIMITER ;
 这时，使用SELECT语句查询CS_XS视图和基本表XS，就可发现XS表中该记录已经被添加。</p>
 <p>**当视图所依赖的基本表有多个时，不能向该视图插入数据，因为这将会影响多个基本表。**例如，不能向视图CS_KC插入数据，因为CS_KC依赖两个基本表：XS和XS_KC。
 **对INSERT语句还有一个限制：SELECT语句中必须包含FROM子句中指定表的所有不能为空的列。**例如，若CS_XS视图定义的时候不加上“姓名”字段，则插入数据的时候会出错。</p>
-<h4 id="heading-28">修改数据</h4>
+<h4 id="修改数据">修改数据</h4>
 <p>使用UPDATE语句可以通过视图修改基本表的数据
 例: 将CS_XS视图中所有学生的总学分增加8。</p>
 <pre><code>UPDATE CS_XS SET 总学分 = 总学分+8;
@@ -709,12 +577,12 @@ DELIMITER ;
 <pre><code>UPDATE CS_KC SET 成绩=90
     WHERE 学号='081101' AND 课程号='101';
 </code></pre><p>本例中，视图CS_KC依赖于两个基本表：XS和XS_KC，对CS_KC视图的一次修改只能改变学号（源于XS表）或者课程号和成绩（源于XS_KC表）。</p>
-<h4 id="heading-29">删除数据</h4>
+<h4 id="删除数据">删除数据</h4>
 <p>使用DELETE语句可以通过视图删除基本表的数据</p>
 <p>例: 删除CS_XS中女同学的记录。</p>
 <pre><code>DELETEFROM CS_XS  WHERE 性别 = 0;
 </code></pre><p>**注意：对依赖于多个基本表的视图，不能使用DELETE语句。**例如，不能通过对CS_KC视图执行DELETE语句而删除与之相关的基本表XS及XS_KC表的数据。</p>
-<h4 id="heading-30">修改已有视图的定义</h4>
+<h4 id="修改已有视图的定义">修改已有视图的定义</h4>
 <p>语法格式：</p>
 <pre><code>ALTER[ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]
     VIEW view_name [(column_list)]  AS select_statement
@@ -725,371 +593,176 @@ DELIMITER ;
 ALTERVIEW CS_XS
 AS  SELECT 学号,姓名,总学分  FROM XS
       WHERE 专业名 = '计算机';
-</code></pre><h4 id="heading-31">查看视图</h4>
+</code></pre><h4 id="查看视图">查看视图</h4>
 <p>查看视图数据</p>
 <pre><code>select * from view_name;
 </code></pre><p>查看视图状态</p>
 <pre><code>show tables status like view_name;
-</code></pre><h4 id="heading-32">删除视图</h4>
+</code></pre><h4 id="删除视图">删除视图</h4>
 <pre><code>drop VIEW [IF EXISTS] view_name1 [,view_name2]...
     [RESTRICT | CASCADE]
-</code></pre>
-  </article>
-  
-  <footer class="article-footer">
-    <ul>
-       
-        <li>
-          上一篇: <a class="previous" href="https://lpgph.github.io/posts/mysql_table/"> MySql操作之表篇</a>
-        </li>
-        
-        
-        <li>
-          下一篇: <a class="next" href="https://lpgph.github.io/posts/java_spring_quartz/"> Quartz与Spring整合</a>
-        </li>
-        
-        
-        
-        
-        <li>
-          <h3>See Also</h3>
-          <ul>
-            
-            <li><a href="/posts/mysql_table/">MySql操作之表篇</a></li>
-            
-            <li><a href="/posts/mysql_users/">MySql操作之用户篇</a></li>
-            
-            <li><a href="/posts/mysql_function/">MySql函数详解</a></li>
-            
-            <li><a href="/posts/mysql_join/">MySql之Join语法解析与性能分析</a></li>
-            
-            <li><a href="/test/mysql_join/">MySql之Join语法解析与性能分析</a></li>
-            
-          </ul>
-        </li>
-        
-    </ul>
-  </footer>
-
+</code></pre></article>
 </section>
 
+<footer class="post-footer">
+  
+  <p>
+    上一篇 &nbsp;<a class="previous" href="https://lpgph.github.io/posts/mysql_table/">MySql操作之表篇</a>
+  </p>
+  
+  
+  <p>
+    下一篇 &nbsp;<a class="next" href="https://lpgph.github.io/posts/java_spring_quartz/">Quartz与Spring整合</a>
+  </p>
+  
+  
+  
+  
+  <h3>相关推荐</h3>
+  <ul class="see-also">
+    
+    <li><a href="/posts/mysql_table/">MySql操作之表篇</a></li>
+    
+    <li><a href="/posts/mysql_users/">MySql操作之用户篇</a></li>
+    
+    <li><a href="/posts/mysql_function/">MySql函数详解</a></li>
+    
+    <li><a href="/posts/mysql_join/">MySql之Join语法解析与性能分析</a></li>
+    
+    <li><a href="/posts/mysql_database/">MySql操作之数据库篇</a></li>
+    
+  </ul>
+    
+</footer>
+
+
+<div class="main-comment">
+    
  
 
-
-    
-
-
-  <section class="comment-container">
-    <div class="comment-content box-style box-other" id="comment-container" >
-
-    </div>
+  <section class="comment-container" id="comment-container">
+ 
   </section>
+
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  
 
   <script>
     $(function () {
       
-      initGtalk();
-      gitPostComments(window.location.pathname);
+      var gitalk = new Gitalk({
+        language: 'zh-CN' ,
+        clientID: '86c61da5bfaea99e9f10',
+        clientSecret: '3c0524cd32fbe175601f5b964c6a34b6d31b0975',
+        repo: 'lpgph.github.io',
+        owner: 'lpgph',
+        admin: ["lpgph"],
+        createIssueManually: true,
+        perPage: 1,
+        id: window.location.pathname,      
+        distractionFreeMode: false  
+      });
+      gitalk.render('comment-container');
       
     })
   </script>
 
+</div>
 
-  </div>
 
-
-                        </div>
-                        <aside class="main-sidebar scrollbar-none"  data-pjax>
-                        
-  <section>
-  <div class="nav-tabs">
-    <ul>
-      <li>
-        <span class="font-zoom active" data-tab="#tab-top-post">
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
-        </span>
-      </li>
-      <li>
-        <span class="font-zoom" data-tab="#tab-comments"><i class="fa fa-comments-o" aria-hidden="true"></i></span>
-      </li>
-      <li>
-        <span class="font-zoom" data-tab="#tab-host-post"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
-      </li>
-    </ul>
-  </div>
-  <div class="tab-content sidebar-box">
-    <div id="tab-top-post" class="tab-top animated fadeIn active">
-      <h2 class="title">置顶文章</h2>
-      <ul>
-        
-        
-          <li>
-              <a href="https://lpgph.github.io/note/2020010301/" title="2020010301">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>2020010301</span>
-                </div>
-              </a>
-          </li>
-        
-          <li>
-              <a href="https://lpgph.github.io/posts/design_pattern_principle/" title="设计模式六大原则">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>设计模式六大原则</span>
-                </div>
-              </a>
-          </li>
-        
-          <li>
-              <a href="https://lpgph.github.io/posts/java_spring_quartz/" title="Quartz与Spring整合">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>Quartz与Spring整合</span>
-                </div>
-              </a>
-          </li>
-        
-          <li>
-              <a href="https://lpgph.github.io/posts/mysql_procedure_function_trigger_view/" title="MySql之存储过程,函数,触发器,视图">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>MySql之存储过程,函数,触发器,视图</span>
-                </div>
-              </a>
-          </li>
-        
-          <li>
-              <a href="https://lpgph.github.io/posts/mysql_table/" title="MySql操作之表篇">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>MySql操作之表篇</span>
-                </div>
-              </a>
-          </li>
-        
-      </ul>
-    </div>
-    <div id="tab-comments" class="tab-comments animated fadeIn">
-      <h2 class="title">最新评论</h2>
-      <ul>
-        <li>暂无评论<li>
-      </ul>
-    </div>
-    <div id="tab-host-post" class="tab-top animated fadeIn">
-      <h2 class="title">热门文章</h2>
-      <ul>
-        <li>暂无热门文章</li>
-      </ul>
-    </div>
-  </div>
-</section>
-<section class="sidebar-box">
-  <h2 class="title">访客信息</h2>
-  <div class="visitors-info box-shadow-wrap-normal" id="visitors-info">
+            </main>
+            <footer class="footer">
+            
+  <p class="copyright">
+    © 2017-2020 <a href="https://lpgph.github.io/" title="诗和远方">诗和远方</a>
+  </p>
+  <p id="sitetime"></p>
+  <p>
+    Powered by
+    <a href="https://hexo.io/" target="_blank">Hugo</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+        Hosted by
+    <a  href="https://github.com/" target="_blank">GitHub</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    CDN by
+    <a  href="https://www.jsdelivr.com/" target="_blank">jsDelivr</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    Theme
+    <a  href="https://github.com/lpgph/hugo-theme-typography" target="_blank">hugo-theme-typography</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    UV<span id="busuanzi_value_site_uv"></span>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    PV<span id="busuanzi_value_site_pv"></span>
+  </p>
+</footer>
+             <ul class="fixed-panel" id="fixed-panel"> 
   
-  </div>
-</section>
-
-<section class="sidebar-box">
-  <h2 class="title">博客信息</h2>
-  <ul class="list-group box-shadow-wrap-normal">
-    <li>
-      <div class="row-box flex">
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        <span class="title">文章数目</span>
-        
-        
-        <span class="bubble">10</span>
-      </div>
-    </li>
-     <li>
-      <div class="row-box flex">
-        <i class="fa fa-comment-o" aria-hidden="true"></i>
-        <span class="title">评论数目</span>
-        <span class="bubble" id="comment-total">0</span>
-      </div>
-    </li>
-     <li>
-      <div class="row-box flex">
-        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-        <span class="title">运行天数</span>
-        <span class="bubble" id="siteDate"></span>
-      </div>
-    </li>
-     <li>
-      <div class="row-box flex">
-        <i class="fa fa-heartbeat" aria-hidden="true"></i>
-        <span class="title">最后活动</span>
-        <span class="bubble" id="lastActive"></span>
-      </div>
-    </li>
-  </ul>
-</section>
-<section class="sidebar-box">
-  <h2 class="title">文章标签</h2>
-  <div class="tags">
-      
-        
-          <a href="https://lpgph.github.io/tags/mysql" data-pjax title="MySql">
-            <span class="bubble font-zoom">MySql</span>
-          </a>
-        
-      
-  </div>
-</section>
-
-
-<section class="article-toc sidebar-box">
-  <h2 class="toc-title">文章目录</h2>
-  <div class="table-of-contents"  id="panel-article-toc">
-    <nav id="TableOfContents">
+  <li>
+    <div class="toc-panel">
+      <button onclick="showToc()" title="文章目录" >
+        <i class="fa fa-expand"></i>
+      </button>
+      <aside class="article-toc">
+        <h2 class="toc-title">文章目录</h2>
+        <div class="table-of-contents" id="article-toc">
+          <nav id="TableOfContents">
   <ul>
-    <li><a href="#heading">运算</a>
+    <li><a href="#运算">运算</a>
       <ul>
-        <li><a href="#heading-1">定义变量</a></li>
-        <li><a href="#heading-2">控制语句</a></li>
+        <li><a href="#定义变量">定义变量</a></li>
+        <li><a href="#控制语句">控制语句</a></li>
       </ul>
     </li>
-    <li><a href="#heading-5">存储过程/函数</a>
+    <li><a href="#存储过程函数">存储过程/函数</a>
       <ul>
-        <li><a href="#heading-6">定义</a></li>
-        <li><a href="#heading-7">特性</a></li>
-        <li><a href="#heading-8">语法</a></li>
-        <li><a href="#heading-13">存储过程和存储函数优缺点和区别</a></li>
+        <li><a href="#定义">定义</a></li>
+        <li><a href="#特性">特性</a></li>
+        <li><a href="#语法">语法</a></li>
+        <li><a href="#存储过程和存储函数优缺点和区别">存储过程和存储函数优缺点和区别</a></li>
       </ul>
     </li>
-    <li><a href="#heading-14">触发器</a>
+    <li><a href="#触发器">触发器</a>
       <ul>
-        <li><a href="#heading-15">特点</a></li>
-        <li><a href="#heading-16">作用</a></li>
-        <li><a href="#heading-17">弊端</a></li>
-        <li><a href="#heading-18">语法</a></li>
+        <li><a href="#特点">特点</a></li>
+        <li><a href="#作用">作用</a></li>
+        <li><a href="#弊端">弊端</a></li>
+        <li><a href="#语法-1">语法</a></li>
       </ul>
     </li>
-    <li><a href="#heading-20">视图</a>
+    <li><a href="#视图">视图</a>
       <ul>
-        <li><a href="#heading-21">定义</a></li>
-        <li><a href="#heading-22">与表区别</a></li>
-        <li><a href="#heading-23">优点</a></li>
-        <li><a href="#heading-24">注意</a></li>
-        <li><a href="#heading-25">语法</a></li>
+        <li><a href="#定义-1">定义</a></li>
+        <li><a href="#与表区别">与表区别</a></li>
+        <li><a href="#优点">优点</a></li>
+        <li><a href="#注意">注意</a></li>
+        <li><a href="#语法-2">语法</a></li>
       </ul>
     </li>
   </ul>
 </nav>
-  </div>
-</section>
+        </div>
+      </aside>
+    </div>
+  </li>
+  
 
-
-                        </aside>
-                    </main>
-                    <footer class="app-footer">
-                          <div class="footer" >
-    <p class="copyright">
-      Copyright © 2017-2020 <a href="https://lpgph.github.io/" title="Dreamcatcher">Dreamcatcher</a>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <span id="sitetime"></span>
-    </p>
-    <br/>
-    <ul class="github-badge">
-      <li>
-        <a  rel="license" href="https://hexo.io/" target="_blank" title="由 Hugo 强力驱动">
-        <span class="badge-subject">Powered</span><span class="badge-value bg-blue">Hugo</span></a>
-      </li>
-      <li>
-        <a  rel="license" href="https://github.com/" target="_blank" title="静态网页托管于 GitHub Pages 和 Coding Pages">
-        <span class="badge-subject">Hosted</span><span class="badge-value bg-brightgreen">GitHub &amp; Coding</span></a>
-      </li>
-      
-      
-      <li>
-        <a rel="license" href="https://github.com/lpgph/hugo-theme-young" target="_blank" title="站点使用 hugo-theme-young 主题">
-        <span class="badge-subject">Theme</span><span class="badge-value bg-blue">hugo-theme-young</span></a>
-      </li>
-      <li>
-        <a  rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="本站点采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可">
-        <span class="badge-subject"><i class="fa fa-copyright"></i></span><span class="badge-value bg-lightgray">BY-NC-SA 4.0</span></a>
-      </li>
-      <li>
-        <a rel="license" href="https://996.icu/" target="_blank" title="支持 996.ICU">
-        <span class="badge-subject">Link</span><span class="badge-value bg-red">996.ICU</span></a>
-      </li>
-      <li>
-        <span class="badge-subject">UV</span><span class="badge-value bg-orange" id="busuanzi_value_site_uv"></span>
-      </li>
-      <li>
-        <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
-      </li>
-      
-    </ul>
-  </div>
-                    </footer>
-                </div>
-                <ul class="fixed-panel" id="fixed-panel">
-                    
-<li>
-  <div class="toc-panel">
-    <button onclick="showToc()" title="文章目录" >
-      <i class="fa fa-expand"></i>
+  <li>
+    <button title="分享">
+      <i class="fa fa-share-alt"></i>
     </button>
-    <aside class="article-toc">
-      <h2 class="toc-title">文章目录</h2>
-      <div class="table-of-contents" id="article-toc">
-        <nav id="TableOfContents">
-  <ul>
-    <li><a href="#heading">运算</a>
-      <ul>
-        <li><a href="#heading-1">定义变量</a></li>
-        <li><a href="#heading-2">控制语句</a></li>
-      </ul>
-    </li>
-    <li><a href="#heading-5">存储过程/函数</a>
-      <ul>
-        <li><a href="#heading-6">定义</a></li>
-        <li><a href="#heading-7">特性</a></li>
-        <li><a href="#heading-8">语法</a></li>
-        <li><a href="#heading-13">存储过程和存储函数优缺点和区别</a></li>
-      </ul>
-    </li>
-    <li><a href="#heading-14">触发器</a>
-      <ul>
-        <li><a href="#heading-15">特点</a></li>
-        <li><a href="#heading-16">作用</a></li>
-        <li><a href="#heading-17">弊端</a></li>
-        <li><a href="#heading-18">语法</a></li>
-      </ul>
-    </li>
-    <li><a href="#heading-20">视图</a>
-      <ul>
-        <li><a href="#heading-21">定义</a></li>
-        <li><a href="#heading-22">与表区别</a></li>
-        <li><a href="#heading-23">优点</a></li>
-        <li><a href="#heading-24">注意</a></li>
-        <li><a href="#heading-25">语法</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-      </div>
-    </aside>
-  </div>
-</li>
-
-
-<li>
-  <button title="分享">
-    <i class="fa fa-share-alt"></i>
-  </button>
-</li>
-<li>
-  <button onclick="backToTop()" id="backToTop" title="返回顶部" style="display: none;">
-    <i class="fa fa-arrow-up"></i>
-  </button>
-</li>
-                </ul>
-            </div>
-        </main>
+  </li>
+  <li>
+    <button onclick="backToTop()" id="backToTop" title="返回顶部" style="display: none;">
+      <i class="fa fa-arrow-up"></i>
+    </button>
+  </li>
+</ul>
+        </div>
     </div>
       <div id="aplayer"></div> 
   
@@ -1128,15 +801,15 @@ AS  SELECT 学号,姓名,总学分  FROM XS
   </script>
     
 
-<script type="text/javascript" src="/js/main.7f7fc64a9f49ec7d40ba4b92fb47cf5408480332be71d709aa43eaaed1d15907.js" integrity="sha256-f3/GSp9J7H1AukuS&#43;0fPVAhIAzK&#43;cdcJqkPqrtHRWQc=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.23cb4b632334269c5e1cded63e7c14f48de5b24601e0a2e0c207fbc0279b3ccb.js" integrity="sha256-I8tLYyM0JpxeHN7WPnwU9I3lskYB4KLgwgf7wCebPMs=" crossorigin="anonymous"></script>
   <script src="https://lpgph.github.io/js/nav-scroll.js"></script>
 <link rel="stylesheet" href="https://lpgph.github.io/lib/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="https://lpgph.github.io/lib/fancybox/jquery.fancybox.js"></script>
 
 <script>
     $(function() {
-        $(document).pjax('[data-pjax] a, a[data-pjax]', '#main-contents', {
-            fragment: '#main-contents',
+        $(document).pjax('[data-pjax] a, a[data-pjax]', '#main-container', {
+            fragment: '#main-container',
             timeout: 5000,
             cache: false
         }).on('pjax:send',function () {
@@ -1152,8 +825,9 @@ AS  SELECT 学号,姓名,总学分  FROM XS
 
 
 <script src="https://lpgph.github.io/lib/live2d-widget/js/L2Dwidget.min.js"></script>
-<script>
 
+
+<script>
   $(function () {
           
       L2Dwidget
@@ -1161,35 +835,35 @@ AS  SELECT 学号,姓名,总学分  FROM XS
         console.log('%c EVENT ' + '%c -> ' + name, 'background: #222; color: yellow', 'background: #fff; color: #000')
       })
       .init({
-        "name":{
-          "canvas": 'live2dcanvas', 
+        name:{
+          canvas: 'live2dcanvas', 
           div : 'live2d-widget' 
         },
-        "dev":{
+        dev:{
           border: false 
         },
-        "model": {
-            "jsonPath": "http:\/\/localhost:1313\/lib\/live2d-widget\/model\/kesyoban\/kesyoban.model.json", 
-            "scale": 1 
+        model: {
+            jsonPath: "https:\/\/lpgph.github.io\/lib\/live2d-widget\/model\/kesyoban\/kesyoban.model.json", 
+            scale: 1 
         },
-        "display": {
-            "superSample": 2, 
-            "position": "right", 
-            "width": 200,  
-            "height": 400, 
-            "hOffset": 0, 
-            "vOffset": -20 
+        display: {
+            superSample: 2, 
+            position: "right", 
+            width: 200,  
+            height: 400, 
+            hOffset: 0, 
+            vOffset: -20 
         },
-        "mobile": {
-            "show": false,  
-            "scale": 0.5  
+        mobile: {
+            show:   false ,  
+            scale:   0.5   
         },
-        "react": {
-            "opacity": 1  
+        react: {
+            opacity: 1  
         },
         dialog: {
           
-          enable: true,
+          enable:  true ,
           script: {
             
             'every idle 10s': '$hitokoto$',
@@ -1209,29 +883,16 @@ AS  SELECT 学号,姓名,总学分  FROM XS
 
 
 
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-<script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
   function pjaxInitPage() {
-    initMotto();
-    getIp();
     initScroll();
-    lastActiveTime(new Date('2020-01-02 05:40:06'));
     siteTime(new Date('2017-01-07T00:00:00Z'));
     $.getScript("https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
-
-    
-    initGitIssues();
-    
-    initMainSidebar();
     initFacybox();
   }
   function initFacybox() {
-    $('#main-content article figure img').each(function(){
+    $('article figure img').each(function(){
         if ($(this).parent().attr('data-fancybox="images"')) return;
         var alt = this.alt;
         
@@ -1254,182 +915,15 @@ AS  SELECT 学号,姓名,总学分  FROM XS
     }
   }
 
-
-  function initGitIssues() {
-    var time = 3600000;
-    window.setTimeout(()=>{
-      initGitIssues();
-    }, time);
-    
-    var key = "initGitalk";
-    var objStr = localStorage.getItem(key);
-    var nowGmt = new Date();
-    if (objStr) {
-      var obj = JSON.parse(objStr);
-      var lastGmt = new Date(obj.date);
-      if (parseInt(nowGmt.getTime()-lastGmt.getTime()) < time) {
-        initGitComment(obj.gitComment);
-        return;
-      }
-    }
-    getGitComment().then((rs)=>{
-      
-      if (!rs.isSuceess && objStr) {
-        rs = JSON.parse(objStr);
-      }
-      initGitComment(rs);
-      var gitStorage = {
-        "date": nowGmt,
-        "gitComment": rs
-      }
-      localStorage.setItem(key,JSON.stringify(gitStorage))
-    });
-  }
-
-  async function getGitComment() {
-    var issuesUrl = "https://api.github.com/repos/lpgph/lpgph.github.io/issues";
-    var hostPosts = [];
-
-    var newCommentList= [];
-    var totalComment = 0;
-    var isSuceess = true;
-
-    try {
-      const issueResult = async function (url) {
-        return await axios.get(url);
-      }
-      const newCommentsResult=  await axios.get(issuesUrl+"/comments?per_page=10&sort=update");
-      newCommentsResult.data.forEach(item => {
-        var commentMap = {
-          "title":"",
-          "url":"",
-          "content": item.body,
-          "date":item.updated_at,
-          "user":{
-            "name":item.user.login,
-            "url":item.user.url,
-            "avatar_url":item.user.avatar_url
-          }
-        };
-        issueResult(item.issue_url).then((rs)=>{
-          const data = rs.data;
-          commentMap.title = data.title;
-          data.labels.some((label, index) => {
-            if (label.name !== "Gitalk") {
-              commentMap.url = label.name;
-              return true;
-            }
-          });
-          newCommentList.push(commentMap)
-        })
-      });
-      const getTotalCount = await axios.get(issuesUrl+"/comments");
-      totalComment = getTotalCount.data.length;
-      const getHotPost = await axios.get(issuesUrl+"?per_page=10&sort=comments");
-      getHotPost.data.forEach(item=>{
-        var postMap = {
-          "title":item.title,
-          "url":"",
-          "comment_count": item.comments
-        };
-        item.labels.some((label, index) => {
-          if (label.name !== "Gitalk") {
-            postMap.url = label.name;
-            return true;
-          }
-        });
-        hostPosts.push(postMap);
-      });
-    } catch (error) {
-      console.log(error)
-      isSuceess = false;
-    }
-    return{
-      isSuceess: isSuceess,
-      newComments: newCommentList,
-      total: totalComment,
-      hostPosts: hostPosts
-    };
-  }
-
-  function initGitComment(issue) {
-    var commentListHtml = "";
-    if (issue.newComments && issue.newComments.length>0) {
-      issue.newComments.forEach(item => {
-          commentListHtml+='<li>\n'+
-              '<a href="https:\/\/lpgph.github.io\/'+item.url+'#comment-container" title="'+item.title+'">'+
-                '<div class="container font-zoom">'+
-                  '<img src="'+item.user.avatar_url+'" class="avatar" alt="'+item.user.name+'" title="'+item.user.name+'"/>'+
-                  '<div>'+
-                    '<p>'+item.user.name+'</p>'+
-                    '<p>'+item.content+'</p>'+
-                  '</div>'+
-                '</div>'+
-              '</a>'+
-          '</li>\n';
-      });
-    }else{
-      commentListHtml = '<li><small>暂无评论</small></li>'
-    }
-    $("#tab-comments ul").html(commentListHtml);
-    
-    var hostPostHtml = "";
-     if (issue.hostPosts && issue.hostPosts.length>0) {
-      issue.hostPosts.forEach(item => {
-          hostPostHtml+='<li>\n'+
-              '<a href="https:\/\/lpgph.github.io\/'+item.url+'" title="'+item.title+'">'+
-                '<div class="container font-zoom">'+
-                  '<i class="fa fa-heart" aria-hidden="true"></i>'+
-                  '<div>'+
-                    '<p>'+item.title+'</p>'+
-                    '<p><i class="fa fa-comment-o" aria-hidden="true"></i>'+item.comment_count+'</p>'+
-                  '</div>'+
-                '</div>'+
-              '</a>'+
-          '</li>\n';
-      });
-    }else{
-      hostPostHtml = '<li><small>暂无热门文章</small></li>'
-    }
-    $("#tab-host-post ul").html(hostPostHtml);
-    $("#comment-total").text(issue.total);
-  }
-
-  async function gitPostComments(path) {
-    var issuesUrl = "https://api.github.com/repos/lpgph/lpgph.github.io/issues";
-    const getComments = await axios.get(issuesUrl+"?per_page=10&sort=comments");
-    var count = 0;
-    if(getComments.status === 200){
-      count = getComments.data[0].comments;
-    }
-    $("#comment_value_page_count").text(count);
-  }
-
-    function initGtalk() {
-      var gitalk = new Gitalk({
-      language: 'zh-CN' ,
-      clientID: '86c61da5bfaea99e9f10',
-      clientSecret: '3c0524cd32fbe175601f5b964c6a34b6d31b0975',
-      repo: 'lpgph.github.io',
-      owner: 'lpgph',
-      admin: ["lpgph"],
-      createIssueManually: true,
-      perPage: 1,
-      id: window.location.pathname,      
-      distractionFreeMode: false  
-    });
-    
-    gitalk.render('comment-container');
-  }
-
-
-
-
- function initMotto() {
-  
-  hitokoto()
-  
+function siteTime(t1) {
+  window.setTimeout(()=>{
+   siteTime(t1)
+  }, 1000);
+  var diff = getSiteTime(t1);
+  $("#sitetime").text("本站已勉强存活  "+(diff.years>0 ? diff.years+" 年 ":"")+diff.days+" 天 "+diff.hours+" 时 "+diff.minutes+" 分 "+diff.seconds+" 秒")
+  $("#siteDate").text((diff.years>0 ? diff.years+"年":"")+diff.days+"天");
 }
+
 </script>
 
 

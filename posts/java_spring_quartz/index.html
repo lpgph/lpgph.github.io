@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head>
   <meta charset="UTF-8">
-  <title>Quartz与Spring整合 - Dreamcatcher</title>
+  <title>Quartz与Spring整合 - 诗和远方</title>
 
   
   <meta name="description" content="以下基本是在配置中遇到或考虑到的问题  末尾附代码
@@ -12,7 +12,7 @@ Job与Trigger之间是一对多的关系
 Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的
 ">
   
-  <meta itemprop="name" content="Quartz与Spring整合 - Dreamcatcher">
+  <meta itemprop="name" content="Quartz与Spring整合 - 诗和远方">
   <meta itemprop="description" content="以下基本是在配置中遇到或考虑到的问题  末尾附代码
 做之前先考虑好Quartz的Job,JobGroud,Trigger,TriggerGroup之间的关系
 
@@ -30,7 +30,7 @@ Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的
 
   
   
-  <meta name="twitter:description" content="君子如器">
+  <meta name="twitter:description" content="勿以时穷而忘节，勿以势起而乱性">
 
   
   
@@ -40,21 +40,22 @@ Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的
 
   
   
-  <link rel="stylesheet" href="https://lpgph.github.io/font/hack/css/hack.min.css">
+  
   <link rel="stylesheet" href="https://lpgph.github.io/font/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://lpgph.github.io/font/playball/playball.css">
 
-  <link rel="stylesheet" href="https://lpgph.github.io/lib/animate/animate.min.css">
+  
+
+  
 
   
   
-  <link rel="stylesheet" href="/sass/style.min.dc252023e1d044c43100d79b21900e0670083b7c413152daed69e3457ec5de79.css" integrity="sha256-3CUgI&#43;HQRMQxANebIZAOBnAIO3xBMVLa7WnjRX7F3nk=" media="screen" crossorigin="anonymous">
+  <link rel="stylesheet" href="/sass/index.min.f2838a043a0903d455931098cd2df75190ca124c7cceff466d41393981ccec61.css" integrity="sha256-8oOKBDoJA9RVkxCYzS33UZDKEkx8zv9GbUE5OYHM7GE=" media="screen" crossorigin="anonymous">
   
 
   <script src="https://lpgph.github.io/js/jquery-3.3.1.min.js"></script>
 
   
-  <script src="https://lpgph.github.io/js/motto-show.js"></script>
+  
 
   
   
@@ -64,10 +65,8 @@ Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的
 
   
   
-  <script type="text/javascript" src="https://lpgph.github.io/js/click_show_text.js"></script>
-  
 
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  
   
   <script type="text/javascript" src="https://lpgph.github.io/js/jquery.pjax.js"></script>
   
@@ -76,261 +75,130 @@ Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的
 
 </head>
 <body>
-    <div id="app" class="app" >
-        <header class="app-header" id="app-header">
+    <div class="react-container" >
+        <header class="header-container">
+            <div class="title vertical-text">
+  <a href="https://lpgph.github.io/" target="_self" data-pjax >
+    <h3>勿以时穷而忘节，勿以势起而乱性</h3>
+    <h1>诗和远方</h1>
+  </a>
+</div>
+
+<ul class="nav">
+  
+  <li><a href="/" target="_self" data-pjax title="主页">主页</a></li>
+  
+  <li><a href="/posts/" target="_self" data-pjax title="归档">归档</a></li>
+  
+  <li><a href="/notes/" target="_self" data-pjax title="短笺">短笺</a></li>
+  
+  <li><a href="/photos/" target="_self" data-pjax title="相册">相册</a></li>
+  
+  <li><a href="/categories/" target="_self" data-pjax title="分类">分类</a></li>
+  
+  <li><a href="/tags/" target="_self" data-pjax title="标签云">标签云</a></li>
+  
+  <li><a href="/about/" target="_self" data-pjax title="关于我">关于我</a></li>
+  
+</ul>
+
+<div class="social" >
+  
+  
+  
+    <a href="https://github.com/lpgph" target="_blank" title="github"><i class="fa fa-github" aria-hidden="true"></i></a>
+  
+  
+  
+  
+</div>
+
+
+
+<footer class="footer">
             
-<div class="nav-header">
-  <button class="button menu" title="显示侧边栏">
-    <i class="fa fa-navicon"></i>   
-  </button>
+  <p class="copyright">
+    © 2017-2020 <a href="https://lpgph.github.io/" title="诗和远方">诗和远方</a>
+  </p>
+  <p id="sitetime"></p>
+  <p>
+    Powered by
+    <a href="https://hexo.io/" target="_blank">Hugo</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+        Hosted by
+    <a  href="https://github.com/" target="_blank">GitHub</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    CDN by
+    <a  href="https://www.jsdelivr.com/" target="_blank">jsDelivr</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    Theme
+    <a  href="https://github.com/lpgph/hugo-theme-typography" target="_blank">hugo-theme-typography</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    UV<span id="busuanzi_value_site_uv"></span>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    PV<span id="busuanzi_value_site_pv"></span>
+  </p>
+</footer>
 
-  <div class="blog-title animated lightSpeedIn">
-    <a href="https://lpgph.github.io/">
-      <span class="title">Dreamcatcher</span>
-    </a>
-  </div>
 
-  <button class="button search">
-    <i class="fa fa-search" aria-hidden="true"></i>
-  </button>
 
-</div>
 
-<div class="nav-panel" id="header-nav-panel">
-   <div class="search-box">
-      <form method="get" action="https://www.google.com/search">
-        <input type="text" id="search" name="q" placeholder="搜索">
-        <button type="button">
-          <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
-      </form>
-   </div>
-</div>
+
         </header>
-        <main class="app-main">
-            <aside class="app-sidebar" id="app-sidebar">
-                
- 
- 
- 
-<div class="blog-info scrollbar">
-  
-  <div class="avatar">
-    <a href="https://lpgph.github.io/"  data-pjax>
-      <img src="https://lpgph.github.io/img/avatar.jpg" alt="lpgph" title="lpgph"/>
+        <div class="main-container" id="main-container">
+            <main class="main-content">
+            
+<section class="main-post">
+  <h1>
+    <a href="https://lpgph.github.io/posts/java_spring_quartz/" title="Quartz与Spring整合">
+      Quartz与Spring整合
     </a>
-  </div>
-  
-  <div class="motto"  >
-    <small class="content" id="blog-motto"></small>
-    <script>
-     
-      binft(document.getElementById('blog-motto'),["青青陵上柏，磊磊涧中石","勿以恶小而为之，勿以善小而不为","勿以时穷而忘节，勿以势起而乱性","人生天地间，忽如远行客","斗酒相娱乐，聊厚不为薄","驱车策驽马，游戏宛与洛","洛中何郁郁，冠带自相索","长衢罗夹巷，王侯多第宅","两宫遥相望，双阙百余尺","极宴娱心意，戚戚何所迫？"]);
+  </h1>
+  <p class="list-tags">
+    <span>
+      <i class="fa fa-user-o"></i><span><a href="https://lpgph.github.io/about" title="作者">焚琴</a></span>
+    </span>
+    <span>
+      <i class="fa fa-clock-o" aria-hidden="true"></i><span><time datetime="2018-03-24 19:01:56 &#43;0000 UTC">2018-03-24</time></span>
+    </span>
+    <span title="字数统计">
+      <i class="fa fa-keyboard-o"></i><span>3287 字</span>
+    </span>
+    <span title="阅读时长">
+      <i class="fa fa-hourglass-half"></i><span>7 分钟</span>
+    </span>
+    <span>
+      <i class="fa fa-eye"></i><span id="busuanzi_value_page_pv" title="阅读次数">0</span>
+    </span>
     
-    </script>
-  </div>
-  <nav class="menu">
-  <ul class="nav">
+    <span>
+      <i class="fa fa-folder" aria-hidden="true"></i><span><a href="https://lpgph.github.io/categories/java">Java</a></span>
+    </span>
     
-      <li class="line"></li>
-      
-      <li>
-        
-          <a href="/" data-pjax target="_self" title="主页">
-            <div class="row-box flex">
-              <i class='fa fa-home' aria-hidden='true'></i><span class="title">主页</span>
-            </div>
-          </a>
-        
-      </li>
-      
-      <li>
-        
-          <a href="/posts/" data-pjax target="_self" title="归档">
-            <div class="row-box flex">
-              <i class='fa fa-archive' aria-hidden='true'></i><span class="title">归档</span>
-            </div>
-          </a>
-        
-      </li>
-      
-      <li>
-        
-          <a href="/note/" data-pjax target="_self" title="短笺">
-            <div class="row-box flex">
-              <i class='fa fa-sticky-note' aria-hidden='true'></i><span class="title">短笺</span>
-            </div>
-          </a>
-        
-      </li>
-      
-      <li>
-        
-          <a href="/photo/" data-pjax target="_self" title="相册">
-            <div class="row-box flex">
-              <i class='fa fa-photo' aria-hidden='true'></i><span class="title">相册</span>
-            </div>
-          </a>
-        
-      </li>
-      
-      <li>
-        
-          <a href="/about/" data-pjax target="_self" title="关于我">
-            <div class="row-box flex">
-              <i class='fa fa-user' aria-hidden='true'></i><span class="title">关于我</span>
-            </div>
-          </a>
-        
-      </li>
-      
     
-    <li class="line"></li>
-    <li>
-      <div class="row-box flex">
-        <i class="fa fa-th-large" aria-hidden="true"></i><span class="title">随笔分类</span><i class="angle fa fa-angle-right" aria-hidden="true"></i>
-      </div>
-      <ul class="nav nav-sub animated fadeIn">
-        
-        <li>
-          <a href="https://lpgph.github.io/categories/java/" data-pjax target="_self" title="Java">
-            <div class="row-box flex">
-              Java<span class="bubble">2</span>
-            </div>
-          </a>
-        </li>
-        
-        <li>
-          <a href="https://lpgph.github.io/categories/mysql/" data-pjax target="_self" title="MySql">
-            <div class="row-box flex">
-              MySql<span class="bubble">8</span>
-            </div>
-          </a>
-        </li>
-        
-        <li>
-          <a href="https://lpgph.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-pjax target="_self" title="设计模式">
-            <div class="row-box flex">
-              设计模式<span class="bubble">1</span>
-            </div>
-          </a>
-        </li>
-        
-      </ul>
-    </li>
-    <li>
-      <div class="row-box flex">
-        <i class="fa fa-tag" aria-hidden="true"></i><span class="title">我的标签</span><i class="angle fa fa-angle-right" aria-hidden="true"></i>
-      </div>
-      <nav class="nav nav-sub block-box tags animated fadeIn">
-      
-      <a href="https://lpgph.github.io/tags/java/" data-pjax target="_self" title="Java">
-        <span class="bubble font-zoom">Java<sup>(3)</sup></span>
-      </a>
-      
-      <a href="https://lpgph.github.io/tags/mysql/" data-pjax target="_self" title="MySql">
-        <span class="bubble font-zoom">MySql<sup>(8)</sup></span>
-      </a>
-      
-      <a href="https://lpgph.github.io/tags/quartz/" data-pjax target="_self" title="Quartz">
-        <span class="bubble font-zoom">Quartz<sup>(2)</sup></span>
-      </a>
-      
-      <a href="https://lpgph.github.io/tags/spring/" data-pjax target="_self" title="Spring">
-        <span class="bubble font-zoom">Spring<sup>(2)</sup></span>
-      </a>
-      
-      <a href="https://lpgph.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-pjax target="_self" title="设计模式">
-        <span class="bubble font-zoom">设计模式<sup>(1)</sup></span>
-      </a>
-      
-      </nav>
-    </li>
-  </ul>
-</nav>
-
-
-</div>
-
-
-
-
-
-
-  <div class="social">
-    <div class="list">
-      
-      
-      
-        <a href="https://github.com/lpgph" target="_blank" title="github"><i class="fa fa-github" aria-hidden="true"></i></a>
-      
-      
-      
-      
-    </div>
-  </div>
-  
-
-            </aside>
-            <div style="display: contents;" id="main-contents">
-                <div class="main-container scrollbar" id="main-container">
-                    <main>
-                        <div class="main-content" data-pjax>
-                        
-  <header class="main-header">
-    <h1 itemprop="name" class="title">
-  <a href="https://lpgph.github.io/posts/java_spring_quartz/" title="Quartz与Spring整合" itemprop="url">Quartz与Spring整合</a>
-</h1>
-<ul class="info">
-  <li>
-    <i class="fa fa-user-o"></i><a href="https://lpgph.github.io/about" title="lpgph">lpgph</a>
-  </li>
-  <li>
-    <i class="fa fa-clock-o"></i><time datetime="2018-03-24 19:01:56 &#43;0000 UTC">2018-03-24</time>
-  </li>
-  <li>
-    <i class="fa fa-keyboard-o"></i>字数统计:<span>3341</span>字
-  </li>
-  <li>
-    <i class="fa fa-hourglass-half"></i>阅读时长 ≈ <span>7</span>分钟
-  </li>
-  <li>
-    <i class="fa fa-eye"></i><span id="busuanzi_value_page_pv">0</span>
-  </li>
-  <li>
-    <a href="https://lpgph.github.io/posts/java_spring_quartz/#comment-container"><i class="fa fa-comment-o"></i><span id="comment_value_page_count">0</span></a>
-  </li>
-  
-  <li>
-    <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+    <span>
+      <i class="fa fa-tag" aria-hidden="true"></i><span><a href="https://lpgph.github.io/tags/quartz">Quartz</a></span><span><a href="https://lpgph.github.io/tags/spring">Spring</a></span><span><a href="https://lpgph.github.io/tags/java">Java</a></span>
+    </span>
     
-      <a href="https://lpgph.github.io/categories/java">Java</a>
-    
-  </li>
-  
-</ul> 
-  </header>
-  <div class="main-content-container">
-    
-
-<section class="article-content box-style box-other">
-  <article>
-  <p>以下基本是在配置中遇到或考虑到的问题  末尾附代码</p>
+  </p>
+  <article class="post-content"><p>以下基本是在配置中遇到或考虑到的问题  末尾附代码</p>
 <p><strong>做之前先考虑好Quartz的Job,JobGroud,Trigger,TriggerGroup之间的关系</strong></p>
 <blockquote>
 <p>Job与Trigger之间是一对多的关系
 Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的</p>
 </blockquote>
-<h2 id="service">执行任务无法注入Service接口</h2>
-<h3 id="heading">方式一:</h3>
+<h2 id="执行任务无法注入service接口">执行任务无法注入Service接口</h2>
+<h3 id="方式一">方式一:</h3>
 <p>通过Spring的ClassPathXmlApplicationContext获取配置文件来得到bean</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">Object</span> <span class="nf">getBean</span><span class="o">(</span><span class="n">String</span> <span class="n">beanName</span><span class="o">)</span> <span class="o">{</span>
-	<span class="k">return</span> <span class="k">new</span> <span class="n">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">&#34;spring.xml&#34;</span><span class="o">,</span> <span class="s">&#34;spring-mybatis.xml&#34;</span><span class="o">)</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="n">beanName</span><span class="o">)</span><span class="o">;</span>
+	<span class="k">return</span> <span class="k">new</span> <span class="n">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">&#34;spring.xml&#34;</span><span class="o">,</span> <span class="s">&#34;spring-mybatis.xml&#34;</span><span class="o">).</span><span class="na">getBean</span><span class="o">(</span><span class="n">beanName</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre></div><p>调用:</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// testService必须在bean中扫描有
-</span><span class="c1"></span><span class="n">TestService</span> <span class="n">testService</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&#34;testService&#34;</span><span class="o">)</span><span class="o">;</span>	
-</code></pre></div><h3 id="heading-1">方式二:</h3>
+</span><span class="c1"></span><span class="n">TestService</span> <span class="n">testService</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&#34;testService&#34;</span><span class="o">);</span>	
+</code></pre></div><h3 id="方式二">方式二:</h3>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.quartz.spi.TriggerFiredBundle</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.slf4j.Logger</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.slf4j.LoggerFactory</span><span class="o">;</span>
@@ -350,7 +218,7 @@ Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的</p>
     <span class="cm">/**
 </span><span class="cm">     * slf4j日志记录
 </span><span class="cm">     */</span>
-    <span class="kd">protected</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getClass</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+    <span class="kd">protected</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span>
 
     <span class="nd">@Autowired</span>
     <span class="kd">private</span> <span class="n">AutowireCapableBeanFactory</span> <span class="n">capableBeanFactory</span><span class="o">;</span>
@@ -364,22 +232,22 @@ Job与JobGroud,Trigger与TriggerGroup组合在一起是唯一的</p>
     <span class="nd">@Override</span>
     <span class="kd">protected</span> <span class="n">Object</span> <span class="nf">createJobInstance</span><span class="o">(</span><span class="n">TriggerFiredBundle</span> <span class="n">bundle</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
         <span class="c1">//调用父类的方法
-</span><span class="c1"></span>        <span class="n">Object</span> <span class="n">jobInstance</span> <span class="o">=</span> <span class="kd">super</span><span class="o">.</span><span class="na">createJobInstance</span><span class="o">(</span><span class="n">bundle</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">&#34;SpringBeanJobFactory 开始注入==============================================&#34;</span><span class="o">)</span><span class="o">;</span>
+</span><span class="c1"></span>        <span class="n">Object</span> <span class="n">jobInstance</span> <span class="o">=</span> <span class="kd">super</span><span class="o">.</span><span class="na">createJobInstance</span><span class="o">(</span><span class="n">bundle</span><span class="o">);</span>
+        <span class="n">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">&#34;SpringBeanJobFactory 开始注入==============================================&#34;</span><span class="o">);</span>
         <span class="c1">//进行注入
-</span><span class="c1"></span>        <span class="n">capableBeanFactory</span><span class="o">.</span><span class="na">autowireBean</span><span class="o">(</span><span class="n">jobInstance</span><span class="o">)</span><span class="o">;</span>
+</span><span class="c1"></span>        <span class="n">capableBeanFactory</span><span class="o">.</span><span class="na">autowireBean</span><span class="o">(</span><span class="n">jobInstance</span><span class="o">);</span>
         <span class="k">return</span> <span class="n">jobInstance</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><p>在XML中配置,执行任务中直接调用注解即可</p>
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;scheduler&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.scheduling.quartz.SchedulerFactoryBean&#34;</span> <span class="na">lazy-init=</span><span class="s">&#34;false&#34;</span> <span class="na">autowire=</span><span class="s">&#34;no&#34;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;jobFactory&#34;</span><span class="nt">&gt;</span>
-        <span class="c">&lt;!--</span><span class="c"> 在job定时任务中调用service注解无效解决方案 </span><span class="c">--&gt;</span>
+        <span class="c">&lt;!-- 在job定时任务中调用service注解无效解决方案 --&gt;</span>
         <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&#34;com.refill.base.job.CustomJobFactory&#34;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/property&gt;</span>
 <span class="nt">&lt;/bean&gt;</span>
-</code></pre></div><h2 id="quartzspring">Quartz如何交给Spring托管</h2>
-<h3 id="quartz">Quartz的配置</h3>
+</code></pre></div><h2 id="quartz如何交给spring托管">Quartz如何交给Spring托管</h2>
+<h3 id="quartz的配置">Quartz的配置</h3>
 <pre><code class="language-properties" data-lang="properties">##配置见：http://www.quartz-scheduler.org/documentation/quartz-2.2.x/configuration/ConfigJDBCJobStoreClustering.html
 #============================================================================
 # Configure Main Scheduler Properties
@@ -452,28 +320,28 @@ org.quartz.plugin.shutdownHook.class: org.quartz.plugins.management.ShutdownHook
 org.quartz.plugin.shutdownHook.cleanShutdown: true
 #记录trigger历史的日志插件
 #org.quartz.plugin.triggHistory.class: org.quartz.plugins.history.LoggingJobHistoryPlugin
-</code></pre><h3 id="spring">Spring配置</h3>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!--</span><span class="c"> 定时任务配置 start </span><span class="c">--&gt;</span>
+</code></pre><h3 id="spring配置">Spring配置</h3>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- 定时任务配置 start --&gt;</span>
 <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;scheduler&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.scheduling.quartz.SchedulerFactoryBean&#34;</span> <span class="na">lazy-init=</span><span class="s">&#34;false&#34;</span> <span class="na">autowire=</span><span class="s">&#34;no&#34;</span><span class="nt">&gt;</span>
-    <span class="c">&lt;!--</span><span class="c"> 获取quartz配置文件 </span><span class="c">--&gt;</span>
+    <span class="c">&lt;!-- 获取quartz配置文件 --&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;configLocation&#34;</span> <span class="na">value=</span><span class="s">&#34;classpath:spring-quartz.properties&#34;</span> <span class="nt">/&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;jobFactory&#34;</span><span class="nt">&gt;</span>
-        <span class="c">&lt;!--</span><span class="c"> 在job定时任务中调用service注解无效解决方案 </span><span class="c">--&gt;</span>
+        <span class="c">&lt;!-- 在job定时任务中调用service注解无效解决方案 --&gt;</span>
         <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&#34;com.refill.base.job.CustomJobFactory&#34;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/property&gt;</span>
-    <span class="c">&lt;!--</span><span class="c"> scheduler的名称 </span><span class="c">--&gt;</span>
+    <span class="c">&lt;!-- scheduler的名称 --&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;schedulerName&#34;</span> <span class="na">value=</span><span class="s">&#34;scheduler&#34;</span><span class="nt">/&gt;</span>
-    <span class="c">&lt;!--</span><span class="c">使用配置的数据源</span><span class="c">--&gt;</span>
+    <span class="c">&lt;!--使用配置的数据源--&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;dataSource&#34;</span> <span class="na">ref=</span><span class="s">&#34;dataSource&#34;</span><span class="nt">/&gt;</span>
-    <span class="c">&lt;!--</span><span class="c">使用spring的事务管理</span><span class="c">--&gt;</span>
+    <span class="c">&lt;!--使用spring的事务管理--&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;transactionManager&#34;</span> <span class="na">ref=</span><span class="s">&#34;txManager&#34;</span><span class="nt">/&gt;</span>
-    <span class="c">&lt;!--</span><span class="c">可选，QuartzScheduler 启动时更新己存在的Job，这样就不用每次修改targetObject后删除qrtz_job_details表对应记录了</span><span class="c">--&gt;</span>
+    <span class="c">&lt;!--可选，QuartzScheduler 启动时更新己存在的Job，这样就不用每次修改targetObject后删除qrtz_job_details表对应记录了--&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;overwriteExistingJobs&#34;</span> <span class="na">value=</span><span class="s">&#34;true&#34;</span> <span class="nt">/&gt;</span>
-    <span class="c">&lt;!--</span><span class="c"> 必须的，QuartzScheduler 延时启动，应用启动完后 QuartzScheduler 再启动  </span><span class="c">--&gt;</span>
+    <span class="c">&lt;!-- 必须的，QuartzScheduler 延时启动，应用启动完后 QuartzScheduler 再启动  --&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;startupDelay&#34;</span> <span class="na">value=</span><span class="s">&#34;5&#34;</span> <span class="nt">/&gt;</span>
-    <span class="c">&lt;!--</span><span class="c"> 设置自动启动  </span><span class="c">--&gt;</span>
+    <span class="c">&lt;!-- 设置自动启动  --&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;autoStartup&#34;</span> <span class="na">value=</span><span class="s">&#34;true&#34;</span> <span class="nt">/&gt;</span>
-    <span class="c">&lt;!--</span><span class="c"> 把spring上下 文以key/value的方式存放在了quartz的上下文中了 </span><span class="c">--&gt;</span>
+    <span class="c">&lt;!-- 把spring上下 文以key/value的方式存放在了quartz的上下文中了 --&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;applicationContextSchedulerContextKey&#34;</span> <span class="na">value=</span><span class="s">&#34;applicationContextKey&#34;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/bean&gt;</span>
 </code></pre></div><p><strong>注意！！！！！！</strong>
@@ -484,14 +352,14 @@ org.quartz.plugin.shutdownHook.cleanShutdown: true
 <span class="kd">private</span> <span class="n">Scheduler</span> <span class="n">scheduler</span><span class="o">;</span>
 </code></pre></div><p>方式二:
 如果是在Spring中扫描不到的类中,那么在Spring添加bean进行引入即可</p>
-<div class="highlight"><pre class="chroma"><code class="language-XML" data-lang="XML"><span class="c">&lt;!--</span><span class="c"> 配置scheduler </span><span class="c">--&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-XML" data-lang="XML"><span class="c">&lt;!-- 配置scheduler --&gt;</span>
 <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&#34;com.refill.basic.bean.JobBeanUtil&#34;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;scheduler&#34;</span> <span class="na">ref=</span><span class="s">&#34;scheduler&#34;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/bean&gt;</span>
 </code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">JobBeanUtil</span> <span class="o">{</span>
 
 <span class="c1">//    @Autowired
-</span><span class="c1"></span><span class="c1">//    private Scheduler scheduler;
+</span><span class="c1">//    private Scheduler scheduler;
 </span><span class="c1"></span>
     <span class="c1">//静态
 </span><span class="c1"></span>    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Scheduler</span> <span class="n">scheduler</span><span class="o">;</span>
@@ -499,9 +367,9 @@ org.quartz.plugin.shutdownHook.cleanShutdown: true
         <span class="n">JobBeanUtil</span><span class="o">.</span><span class="na">scheduler</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h2 id="quartz-1">如何对Quartz进行管理</h2>
+</code></pre></div><h2 id="如何对quartz进行管理">如何对Quartz进行管理</h2>
 <p>主要有中考虑,如果公司中使用的定时器数量较少,且短时间内不会有很多定时器任务的考虑,可以使用第一种,如果长远考虑,方便后期的管理和维护</p>
-<h3 id="heading-2">短期</h3>
+<h3 id="短期">短期</h3>
 <p>直接对quartz的表进行操作,可以进行基本的添删改查,但是,仅适用于定时器任务不复杂的情况,该方法会将所有的任务一次性全部查询出来
 仅需要添加job名和执行类名,一级cron表达式,jobGroup和triggerGroup采取默认,triggerName使用jobName.
 大约只需要3个类文件,一张bean做实体,一张工具类做与bean相关的方法(也可放到Service层),一个Controller提供给页面</p>
@@ -512,23 +380,23 @@ org.quartz.plugin.shutdownHook.cleanShutdown: true
 </span><span class="cm"> * @return list
 </span><span class="cm"> * @throws SchedulerException
 </span><span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">JobBean</span><span class="o">&gt;</span> <span class="nf">getAllJobs</span><span class="o">(</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SchedulerException</span> <span class="o">{</span>
-    <span class="n">GroupMatcher</span><span class="o">&lt;</span><span class="n">JobKey</span><span class="o">&gt;</span> <span class="n">matcher</span> <span class="o">=</span> <span class="n">GroupMatcher</span><span class="o">.</span><span class="na">anyJobGroup</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-    <span class="n">Set</span><span class="o">&lt;</span><span class="n">JobKey</span><span class="o">&gt;</span> <span class="n">jobKeys</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="na">getJobKeys</span><span class="o">(</span><span class="n">matcher</span><span class="o">)</span><span class="o">;</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">JobBean</span><span class="o">&gt;</span> <span class="n">jobList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="o">&gt;</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">JobBean</span><span class="o">&gt;</span> <span class="nf">getAllJobs</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">SchedulerException</span> <span class="o">{</span>
+    <span class="n">GroupMatcher</span><span class="o">&lt;</span><span class="n">JobKey</span><span class="o">&gt;</span> <span class="n">matcher</span> <span class="o">=</span> <span class="n">GroupMatcher</span><span class="o">.</span><span class="na">anyJobGroup</span><span class="o">();</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">JobKey</span><span class="o">&gt;</span> <span class="n">jobKeys</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="na">getJobKeys</span><span class="o">(</span><span class="n">matcher</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">JobBean</span><span class="o">&gt;</span> <span class="n">jobList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
     <span class="c1">//一个任务可以有多个触发器
 </span><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="n">JobKey</span> <span class="n">jobKey</span> <span class="o">:</span> <span class="n">jobKeys</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="o">?</span> <span class="kd">extends</span> <span class="n">Trigger</span><span class="o">&gt;</span> <span class="n">triggers</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="na">getTriggersOfJob</span><span class="o">(</span><span class="n">jobKey</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Trigger</span><span class="o">&gt;</span> <span class="n">triggers</span> <span class="o">=</span> <span class="n">scheduler</span><span class="o">.</span><span class="na">getTriggersOfJob</span><span class="o">(</span><span class="n">jobKey</span><span class="o">);</span>
         <span class="k">for</span> <span class="o">(</span><span class="n">Trigger</span> <span class="n">trigger</span> <span class="o">:</span> <span class="n">triggers</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">jobList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">getJobBean</span><span class="o">(</span> <span class="n">jobKey</span><span class="o">,</span> <span class="n">trigger</span><span class="o">.</span><span class="na">getKey</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
+            <span class="n">jobList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">getJobBean</span><span class="o">(</span> <span class="n">jobKey</span><span class="o">,</span> <span class="n">trigger</span><span class="o">.</span><span class="na">getKey</span><span class="o">()));</span>
         <span class="o">}</span>
     <span class="o">}</span>
     <span class="k">return</span> <span class="n">jobList</span><span class="o">;</span>
 <span class="o">}</span>
 
-</code></pre></div><h3 id="heading-3">长远</h3>
+</code></pre></div><h3 id="长远">长远</h3>
 <p>适用于定时任务复杂,数量较多.  如实现卖家自定义商品限时抢购,定义限时限价等等,这就意味这对jobGroup,trigger进行更多的使用,所以这里的思路是在数据库中建立三张表,一张job,一张trigger,一张group,方便后期拓展,如控制到用户,对job添加多个trigger.</p>
-<h2 id="quartzspringquartz">将Quartz持久到数据库时,Spring无法管理Quartz事务</h2>
+<h2 id="将quartz持久到数据库时spring无法管理quartz事务">将Quartz持久到数据库时,Spring无法管理Quartz事务</h2>
 <p>这里我到现在还不是很明白,因为我在Spring配置文件中SchedulerFactoryBean中已经将quartz托管给Spring了,但还是当我在service中一个方法内添加完quartz后再插入到另一张表报错时,quartz竟然没有回滚,后来没办法只能修改类的事务的传播行为为REQUIRES_NEW,  才可以正常回滚.
 ###方案一</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
@@ -545,27 +413,27 @@ org.quartz.plugin.shutdownHook.cleanShutdown: true
 </span><span class="cm"> * @return ResultJsonBean
 </span><span class="cm"> */</span>
 <span class="nd">@Override</span>
-<span class="kd">public</span> <span class="n">ResultJsonBean</span> <span class="nf">saveEntity</span><span class="o">(</span><span class="n">JobEntity</span> <span class="n">jobEntity</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">paramMap</span><span class="o">)</span><span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">jobDao</span><span class="o">.</span><span class="na">getEntityByJobName</span><span class="o">(</span><span class="n">jobEntity</span><span class="o">.</span><span class="na">getJobName</span><span class="o">(</span><span class="o">)</span><span class="o">)</span> <span class="o">!</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="s">&#34;任务名称已经存在,不要重复添加!!!!&#34;</span><span class="o">)</span><span class="o">;</span>
+<span class="kd">public</span> <span class="n">ResultJsonBean</span> <span class="nf">saveEntity</span><span class="o">(</span><span class="n">JobEntity</span> <span class="n">jobEntity</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">paramMap</span><span class="o">){</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">jobDao</span><span class="o">.</span><span class="na">getEntityByJobName</span><span class="o">(</span><span class="n">jobEntity</span><span class="o">.</span><span class="na">getJobName</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="s">&#34;任务名称已经存在,不要重复添加!!!!&#34;</span><span class="o">);</span>
     <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">jobDao</span><span class="o">.</span><span class="na">getEntityByTriggerName</span><span class="o">(</span><span class="n">jobEntity</span><span class="o">.</span><span class="na">getJobTriggerName</span><span class="o">(</span><span class="o">)</span><span class="o">)</span> <span class="o">!</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="s">&#34;触发器名称已经存在,不要重复添加!!!!&#34;</span><span class="o">)</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">jobDao</span><span class="o">.</span><span class="na">getEntityByTriggerName</span><span class="o">(</span><span class="n">jobEntity</span><span class="o">.</span><span class="na">getJobTriggerName</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="s">&#34;触发器名称已经存在,不要重复添加!!!!&#34;</span><span class="o">);</span>
     <span class="o">}</span>
-    <span class="n">DefaultTransactionDefinition</span> <span class="n">def</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultTransactionDefinition</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
-    <span class="n">def</span><span class="o">.</span><span class="na">setPropagationBehavior</span><span class="o">(</span><span class="n">TransactionDefinition</span><span class="o">.</span><span class="na">PROPAGATION_REQUIRES_NEW</span><span class="o">)</span><span class="o">;</span> <span class="c1">// 事物隔离级别，开启新事务，这样会比较安全些。
-</span><span class="c1"></span>    <span class="n">TransactionStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">transactionManager</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">(</span><span class="n">def</span><span class="o">)</span><span class="o">;</span> <span class="c1">// 获得事务状态
+    <span class="n">DefaultTransactionDefinition</span> <span class="n">def</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultTransactionDefinition</span><span class="o">();</span>
+    <span class="n">def</span><span class="o">.</span><span class="na">setPropagationBehavior</span><span class="o">(</span><span class="n">TransactionDefinition</span><span class="o">.</span><span class="na">PROPAGATION_REQUIRES_NEW</span><span class="o">);</span> <span class="c1">// 事物隔离级别，开启新事务，这样会比较安全些。
+</span><span class="c1"></span>    <span class="n">TransactionStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">transactionManager</span><span class="o">.</span><span class="na">getTransaction</span><span class="o">(</span><span class="n">def</span><span class="o">);</span> <span class="c1">// 获得事务状态
 </span><span class="c1"></span>    <span class="k">try</span> <span class="o">{</span>
-        <span class="n">jobEntity</span><span class="o">.</span><span class="na">setJobTriggerStatus</span><span class="o">(</span><span class="n">JobTriggerStatusEnum</span><span class="o">.</span><span class="na">OPEN</span><span class="o">.</span><span class="na">toInt</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">QuartzUtil</span><span class="o">.</span><span class="na">addJob</span><span class="o">(</span><span class="n">scheduler</span><span class="o">,</span> <span class="n">jobEntity</span><span class="o">,</span> <span class="n">paramMap</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">jobDao</span><span class="o">.</span><span class="na">saveEntity</span><span class="o">(</span><span class="n">jobEntity</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">transactionManager</span><span class="o">.</span><span class="na">commit</span><span class="o">(</span><span class="n">status</span><span class="o">)</span><span class="o">;</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="n">jobEntity</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">jobEntity</span><span class="o">.</span><span class="na">setJobTriggerStatus</span><span class="o">(</span><span class="n">JobTriggerStatusEnum</span><span class="o">.</span><span class="na">OPEN</span><span class="o">.</span><span class="na">toInt</span><span class="o">());</span>
+        <span class="n">QuartzUtil</span><span class="o">.</span><span class="na">addJob</span><span class="o">(</span><span class="n">scheduler</span><span class="o">,</span> <span class="n">jobEntity</span><span class="o">,</span> <span class="n">paramMap</span><span class="o">);</span>
+        <span class="n">jobDao</span><span class="o">.</span><span class="na">saveEntity</span><span class="o">(</span><span class="n">jobEntity</span><span class="o">);</span>
+        <span class="n">transactionManager</span><span class="o">.</span><span class="na">commit</span><span class="o">(</span><span class="n">status</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="n">jobEntity</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">QuartzUtil</span><span class="o">.</span><span class="na">shutdownJobs</span><span class="o">(</span><span class="n">scheduler</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">transactionManager</span><span class="o">.</span><span class="na">rollback</span><span class="o">(</span><span class="n">status</span><span class="o">)</span><span class="o">;</span>
-        <span class="n">QuartzUtil</span><span class="o">.</span><span class="na">startJobs</span><span class="o">(</span><span class="n">scheduler</span><span class="o">)</span><span class="o">;</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="s">&#34;添加计划任务失败,程序异常,请连续管理员!!!&#34;</span><span class="o">)</span><span class="o">;</span>
+        <span class="n">QuartzUtil</span><span class="o">.</span><span class="na">shutdownJobs</span><span class="o">(</span><span class="n">scheduler</span><span class="o">);</span>
+        <span class="n">transactionManager</span><span class="o">.</span><span class="na">rollback</span><span class="o">(</span><span class="n">status</span><span class="o">);</span>
+        <span class="n">QuartzUtil</span><span class="o">.</span><span class="na">startJobs</span><span class="o">(</span><span class="n">scheduler</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="s">&#34;添加计划任务失败,程序异常,请连续管理员!!!&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><p>###方案二
@@ -580,352 +448,154 @@ org.quartz.plugin.shutdownHook.cleanShutdown: true
 </span><span class="cm"> */</span>
 <span class="nd">@Override</span>
 <span class="nd">@Transactional</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;txManager&#34;</span><span class="o">,</span><span class="n">propagation</span> <span class="o">=</span><span class="n">Propagation</span><span class="o">.</span><span class="na">REQUIRES_NEW</span><span class="o">)</span>
-<span class="kd">public</span> <span class="n">ResultJsonBean</span> <span class="nf">saveEntity</span><span class="o">(</span><span class="n">JobEntity</span> <span class="n">jobEntity</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">paramMap</span><span class="o">)</span><span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">jobDao</span><span class="o">.</span><span class="na">getEntityByJobName</span><span class="o">(</span><span class="n">jobEntity</span><span class="o">.</span><span class="na">getJobName</span><span class="o">(</span><span class="o">)</span><span class="o">)</span> <span class="o">!</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="s">&#34;任务名称已经存在,不要重复添加!!!!&#34;</span><span class="o">)</span><span class="o">;</span>
+<span class="kd">public</span> <span class="n">ResultJsonBean</span> <span class="nf">saveEntity</span><span class="o">(</span><span class="n">JobEntity</span> <span class="n">jobEntity</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">paramMap</span><span class="o">){</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">jobDao</span><span class="o">.</span><span class="na">getEntityByJobName</span><span class="o">(</span><span class="n">jobEntity</span><span class="o">.</span><span class="na">getJobName</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="s">&#34;任务名称已经存在,不要重复添加!!!!&#34;</span><span class="o">);</span>
     <span class="o">}</span>
 
-    <span class="k">if</span> <span class="o">(</span><span class="n">jobDao</span><span class="o">.</span><span class="na">getEntityByTriggerName</span><span class="o">(</span><span class="n">jobEntity</span><span class="o">.</span><span class="na">getJobTriggerName</span><span class="o">(</span><span class="o">)</span><span class="o">)</span> <span class="o">!</span><span class="o">=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="s">&#34;触发器名称已经存在,不要重复添加!!!!&#34;</span><span class="o">)</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">jobDao</span><span class="o">.</span><span class="na">getEntityByTriggerName</span><span class="o">(</span><span class="n">jobEntity</span><span class="o">.</span><span class="na">getJobTriggerName</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="s">&#34;触发器名称已经存在,不要重复添加!!!!&#34;</span><span class="o">);</span>
     <span class="o">}</span>
-    <span class="n">QuartzUtil</span><span class="o">.</span><span class="na">addJob</span><span class="o">(</span><span class="n">scheduler</span><span class="o">,</span> <span class="n">jobEntity</span><span class="o">,</span> <span class="n">paramMap</span><span class="o">)</span><span class="o">;</span>
-    <span class="n">jobEntity</span><span class="o">.</span><span class="na">setJobTriggerStatus</span><span class="o">(</span><span class="n">JobTriggerStatusEnum</span><span class="o">.</span><span class="na">OPEN</span><span class="o">.</span><span class="na">toInt</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
-    <span class="n">jobDao</span><span class="o">.</span><span class="na">saveEntity</span><span class="o">(</span><span class="n">jobEntity</span><span class="o">)</span><span class="o">;</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="n">jobEntity</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span><span class="o">;</span>
+    <span class="n">QuartzUtil</span><span class="o">.</span><span class="na">addJob</span><span class="o">(</span><span class="n">scheduler</span><span class="o">,</span> <span class="n">jobEntity</span><span class="o">,</span> <span class="n">paramMap</span><span class="o">);</span>
+    <span class="n">jobEntity</span><span class="o">.</span><span class="na">setJobTriggerStatus</span><span class="o">(</span><span class="n">JobTriggerStatusEnum</span><span class="o">.</span><span class="na">OPEN</span><span class="o">.</span><span class="na">toInt</span><span class="o">());</span>
+    <span class="n">jobDao</span><span class="o">.</span><span class="na">saveEntity</span><span class="o">(</span><span class="n">jobEntity</span><span class="o">);</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">ResultJsonBean</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="n">jobEntity</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
 <span class="o">}</span>
-</code></pre></div>
-  </article>
-  
-  <footer class="article-footer">
-    <ul>
-       
-        <li>
-          上一篇: <a class="previous" href="https://lpgph.github.io/posts/mysql_procedure_function_trigger_view/"> MySql之存储过程,函数,触发器,视图</a>
-        </li>
-        
-        
-        <li>
-          下一篇: <a class="next" href="https://lpgph.github.io/posts/design_pattern_principle/"> 设计模式六大原则</a>
-        </li>
-        
-        
-        
-        
-        <li>
-          <h3>See Also</h3>
-          <ul>
-            
-            <li><a href="/test/java_spring_quartz/">Quartz与Spring整合</a></li>
-            
-          </ul>
-        </li>
-        
-    </ul>
-  </footer>
-
+</code></pre></div></article>
 </section>
 
+<footer class="post-footer">
+  
+  <p>
+    上一篇 &nbsp;<a class="previous" href="https://lpgph.github.io/posts/mysql_procedure_function_trigger_view/">MySql之存储过程,函数,触发器,视图</a>
+  </p>
+  
+  
+  <p>
+    下一篇 &nbsp;<a class="next" href="https://lpgph.github.io/posts/design_pattern_principle/">设计模式六大原则</a>
+  </p>
+  
+  
+  
+  
+</footer>
+
+
+<div class="main-comment">
+    
  
 
-
-    
-
-
-  <section class="comment-container">
-    <div class="comment-content box-style box-other" id="comment-container" >
-
-    </div>
+  <section class="comment-container" id="comment-container">
+ 
   </section>
+
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  
 
   <script>
     $(function () {
       
-      initGtalk();
-      gitPostComments(window.location.pathname);
+      var gitalk = new Gitalk({
+        language: 'zh-CN' ,
+        clientID: '86c61da5bfaea99e9f10',
+        clientSecret: '3c0524cd32fbe175601f5b964c6a34b6d31b0975',
+        repo: 'lpgph.github.io',
+        owner: 'lpgph',
+        admin: ["lpgph"],
+        createIssueManually: true,
+        perPage: 1,
+        id: window.location.pathname,      
+        distractionFreeMode: false  
+      });
+      gitalk.render('comment-container');
       
     })
   </script>
 
+</div>
 
-  </div>
 
-
-                        </div>
-                        <aside class="main-sidebar scrollbar-none"  data-pjax>
-                        
-  <section>
-  <div class="nav-tabs">
-    <ul>
-      <li>
-        <span class="font-zoom active" data-tab="#tab-top-post">
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
-        </span>
-      </li>
-      <li>
-        <span class="font-zoom" data-tab="#tab-comments"><i class="fa fa-comments-o" aria-hidden="true"></i></span>
-      </li>
-      <li>
-        <span class="font-zoom" data-tab="#tab-host-post"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
-      </li>
-    </ul>
-  </div>
-  <div class="tab-content sidebar-box">
-    <div id="tab-top-post" class="tab-top animated fadeIn active">
-      <h2 class="title">置顶文章</h2>
-      <ul>
-        
-        
-          <li>
-              <a href="https://lpgph.github.io/note/2020010301/" title="2020010301">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>2020010301</span>
-                </div>
-              </a>
-          </li>
-        
-          <li>
-              <a href="https://lpgph.github.io/posts/design_pattern_principle/" title="设计模式六大原则">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>设计模式六大原则</span>
-                </div>
-              </a>
-          </li>
-        
-          <li>
-              <a href="https://lpgph.github.io/posts/java_spring_quartz/" title="Quartz与Spring整合">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>Quartz与Spring整合</span>
-                </div>
-              </a>
-          </li>
-        
-          <li>
-              <a href="https://lpgph.github.io/posts/mysql_procedure_function_trigger_view/" title="MySql之存储过程,函数,触发器,视图">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>MySql之存储过程,函数,触发器,视图</span>
-                </div>
-              </a>
-          </li>
-        
-          <li>
-              <a href="https://lpgph.github.io/posts/mysql_table/" title="MySql操作之表篇">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>MySql操作之表篇</span>
-                </div>
-              </a>
-          </li>
-        
-      </ul>
-    </div>
-    <div id="tab-comments" class="tab-comments animated fadeIn">
-      <h2 class="title">最新评论</h2>
-      <ul>
-        <li>暂无评论<li>
-      </ul>
-    </div>
-    <div id="tab-host-post" class="tab-top animated fadeIn">
-      <h2 class="title">热门文章</h2>
-      <ul>
-        <li>暂无热门文章</li>
-      </ul>
-    </div>
-  </div>
-</section>
-<section class="sidebar-box">
-  <h2 class="title">访客信息</h2>
-  <div class="visitors-info box-shadow-wrap-normal" id="visitors-info">
+            </main>
+            <footer class="footer">
+            
+  <p class="copyright">
+    © 2017-2020 <a href="https://lpgph.github.io/" title="诗和远方">诗和远方</a>
+  </p>
+  <p id="sitetime"></p>
+  <p>
+    Powered by
+    <a href="https://hexo.io/" target="_blank">Hugo</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+        Hosted by
+    <a  href="https://github.com/" target="_blank">GitHub</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    CDN by
+    <a  href="https://www.jsdelivr.com/" target="_blank">jsDelivr</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    Theme
+    <a  href="https://github.com/lpgph/hugo-theme-typography" target="_blank">hugo-theme-typography</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    UV<span id="busuanzi_value_site_uv"></span>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    PV<span id="busuanzi_value_site_pv"></span>
+  </p>
+</footer>
+             <ul class="fixed-panel" id="fixed-panel"> 
   
-  </div>
-</section>
-
-<section class="sidebar-box">
-  <h2 class="title">博客信息</h2>
-  <ul class="list-group box-shadow-wrap-normal">
-    <li>
-      <div class="row-box flex">
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        <span class="title">文章数目</span>
-        
-        
-        <span class="bubble">10</span>
-      </div>
-    </li>
-     <li>
-      <div class="row-box flex">
-        <i class="fa fa-comment-o" aria-hidden="true"></i>
-        <span class="title">评论数目</span>
-        <span class="bubble" id="comment-total">0</span>
-      </div>
-    </li>
-     <li>
-      <div class="row-box flex">
-        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-        <span class="title">运行天数</span>
-        <span class="bubble" id="siteDate"></span>
-      </div>
-    </li>
-     <li>
-      <div class="row-box flex">
-        <i class="fa fa-heartbeat" aria-hidden="true"></i>
-        <span class="title">最后活动</span>
-        <span class="bubble" id="lastActive"></span>
-      </div>
-    </li>
-  </ul>
-</section>
-<section class="sidebar-box">
-  <h2 class="title">文章标签</h2>
-  <div class="tags">
-      
-        
-          <a href="https://lpgph.github.io/tags/quartz" data-pjax title="Quartz">
-            <span class="bubble font-zoom">Quartz</span>
-          </a>
-        
-          <a href="https://lpgph.github.io/tags/spring" data-pjax title="Spring">
-            <span class="bubble font-zoom">Spring</span>
-          </a>
-        
-          <a href="https://lpgph.github.io/tags/java" data-pjax title="Java">
-            <span class="bubble font-zoom">Java</span>
-          </a>
-        
-      
-  </div>
-</section>
-
-
-<section class="article-toc sidebar-box">
-  <h2 class="toc-title">文章目录</h2>
-  <div class="table-of-contents"  id="panel-article-toc">
-    <nav id="TableOfContents">
+  <li>
+    <div class="toc-panel">
+      <button onclick="showToc()" title="文章目录" >
+        <i class="fa fa-expand"></i>
+      </button>
+      <aside class="article-toc">
+        <h2 class="toc-title">文章目录</h2>
+        <div class="table-of-contents" id="article-toc">
+          <nav id="TableOfContents">
   <ul>
-    <li><a href="#service">执行任务无法注入Service接口</a>
+    <li><a href="#执行任务无法注入service接口">执行任务无法注入Service接口</a>
       <ul>
-        <li><a href="#heading">方式一:</a></li>
-        <li><a href="#heading-1">方式二:</a></li>
+        <li><a href="#方式一">方式一:</a></li>
+        <li><a href="#方式二">方式二:</a></li>
       </ul>
     </li>
-    <li><a href="#quartzspring">Quartz如何交给Spring托管</a>
+    <li><a href="#quartz如何交给spring托管">Quartz如何交给Spring托管</a>
       <ul>
-        <li><a href="#quartz">Quartz的配置</a></li>
-        <li><a href="#spring">Spring配置</a></li>
+        <li><a href="#quartz的配置">Quartz的配置</a></li>
+        <li><a href="#spring配置">Spring配置</a></li>
       </ul>
     </li>
-    <li><a href="#quartz-1">如何对Quartz进行管理</a>
+    <li><a href="#如何对quartz进行管理">如何对Quartz进行管理</a>
       <ul>
-        <li><a href="#heading-2">短期</a></li>
-        <li><a href="#heading-3">长远</a></li>
+        <li><a href="#短期">短期</a></li>
+        <li><a href="#长远">长远</a></li>
       </ul>
     </li>
-    <li><a href="#quartzspringquartz">将Quartz持久到数据库时,Spring无法管理Quartz事务</a></li>
+    <li><a href="#将quartz持久到数据库时spring无法管理quartz事务">将Quartz持久到数据库时,Spring无法管理Quartz事务</a></li>
   </ul>
 </nav>
-  </div>
-</section>
+        </div>
+      </aside>
+    </div>
+  </li>
+  
 
-
-                        </aside>
-                    </main>
-                    <footer class="app-footer">
-                          <div class="footer" >
-    <p class="copyright">
-      Copyright © 2017-2020 <a href="https://lpgph.github.io/" title="Dreamcatcher">Dreamcatcher</a>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <span id="sitetime"></span>
-    </p>
-    <br/>
-    <ul class="github-badge">
-      <li>
-        <a  rel="license" href="https://hexo.io/" target="_blank" title="由 Hugo 强力驱动">
-        <span class="badge-subject">Powered</span><span class="badge-value bg-blue">Hugo</span></a>
-      </li>
-      <li>
-        <a  rel="license" href="https://github.com/" target="_blank" title="静态网页托管于 GitHub Pages 和 Coding Pages">
-        <span class="badge-subject">Hosted</span><span class="badge-value bg-brightgreen">GitHub &amp; Coding</span></a>
-      </li>
-      
-      
-      <li>
-        <a rel="license" href="https://github.com/lpgph/hugo-theme-young" target="_blank" title="站点使用 hugo-theme-young 主题">
-        <span class="badge-subject">Theme</span><span class="badge-value bg-blue">hugo-theme-young</span></a>
-      </li>
-      <li>
-        <a  rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="本站点采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可">
-        <span class="badge-subject"><i class="fa fa-copyright"></i></span><span class="badge-value bg-lightgray">BY-NC-SA 4.0</span></a>
-      </li>
-      <li>
-        <a rel="license" href="https://996.icu/" target="_blank" title="支持 996.ICU">
-        <span class="badge-subject">Link</span><span class="badge-value bg-red">996.ICU</span></a>
-      </li>
-      <li>
-        <span class="badge-subject">UV</span><span class="badge-value bg-orange" id="busuanzi_value_site_uv"></span>
-      </li>
-      <li>
-        <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
-      </li>
-      
-    </ul>
-  </div>
-                    </footer>
-                </div>
-                <ul class="fixed-panel" id="fixed-panel">
-                    
-<li>
-  <div class="toc-panel">
-    <button onclick="showToc()" title="文章目录" >
-      <i class="fa fa-expand"></i>
+  <li>
+    <button title="分享">
+      <i class="fa fa-share-alt"></i>
     </button>
-    <aside class="article-toc">
-      <h2 class="toc-title">文章目录</h2>
-      <div class="table-of-contents" id="article-toc">
-        <nav id="TableOfContents">
-  <ul>
-    <li><a href="#service">执行任务无法注入Service接口</a>
-      <ul>
-        <li><a href="#heading">方式一:</a></li>
-        <li><a href="#heading-1">方式二:</a></li>
-      </ul>
-    </li>
-    <li><a href="#quartzspring">Quartz如何交给Spring托管</a>
-      <ul>
-        <li><a href="#quartz">Quartz的配置</a></li>
-        <li><a href="#spring">Spring配置</a></li>
-      </ul>
-    </li>
-    <li><a href="#quartz-1">如何对Quartz进行管理</a>
-      <ul>
-        <li><a href="#heading-2">短期</a></li>
-        <li><a href="#heading-3">长远</a></li>
-      </ul>
-    </li>
-    <li><a href="#quartzspringquartz">将Quartz持久到数据库时,Spring无法管理Quartz事务</a></li>
-  </ul>
-</nav>
-      </div>
-    </aside>
-  </div>
-</li>
-
-
-<li>
-  <button title="分享">
-    <i class="fa fa-share-alt"></i>
-  </button>
-</li>
-<li>
-  <button onclick="backToTop()" id="backToTop" title="返回顶部" style="display: none;">
-    <i class="fa fa-arrow-up"></i>
-  </button>
-</li>
-                </ul>
-            </div>
-        </main>
+  </li>
+  <li>
+    <button onclick="backToTop()" id="backToTop" title="返回顶部" style="display: none;">
+      <i class="fa fa-arrow-up"></i>
+    </button>
+  </li>
+</ul>
+        </div>
     </div>
       <div id="aplayer"></div> 
   
@@ -964,15 +634,15 @@ org.quartz.plugin.shutdownHook.cleanShutdown: true
   </script>
     
 
-<script type="text/javascript" src="/js/main.7f7fc64a9f49ec7d40ba4b92fb47cf5408480332be71d709aa43eaaed1d15907.js" integrity="sha256-f3/GSp9J7H1AukuS&#43;0fPVAhIAzK&#43;cdcJqkPqrtHRWQc=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.23cb4b632334269c5e1cded63e7c14f48de5b24601e0a2e0c207fbc0279b3ccb.js" integrity="sha256-I8tLYyM0JpxeHN7WPnwU9I3lskYB4KLgwgf7wCebPMs=" crossorigin="anonymous"></script>
   <script src="https://lpgph.github.io/js/nav-scroll.js"></script>
 <link rel="stylesheet" href="https://lpgph.github.io/lib/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="https://lpgph.github.io/lib/fancybox/jquery.fancybox.js"></script>
 
 <script>
     $(function() {
-        $(document).pjax('[data-pjax] a, a[data-pjax]', '#main-contents', {
-            fragment: '#main-contents',
+        $(document).pjax('[data-pjax] a, a[data-pjax]', '#main-container', {
+            fragment: '#main-container',
             timeout: 5000,
             cache: false
         }).on('pjax:send',function () {
@@ -988,8 +658,9 @@ org.quartz.plugin.shutdownHook.cleanShutdown: true
 
 
 <script src="https://lpgph.github.io/lib/live2d-widget/js/L2Dwidget.min.js"></script>
-<script>
 
+
+<script>
   $(function () {
           
       L2Dwidget
@@ -997,35 +668,35 @@ org.quartz.plugin.shutdownHook.cleanShutdown: true
         console.log('%c EVENT ' + '%c -> ' + name, 'background: #222; color: yellow', 'background: #fff; color: #000')
       })
       .init({
-        "name":{
-          "canvas": 'live2dcanvas', 
+        name:{
+          canvas: 'live2dcanvas', 
           div : 'live2d-widget' 
         },
-        "dev":{
+        dev:{
           border: false 
         },
-        "model": {
-            "jsonPath": "http:\/\/localhost:1313\/lib\/live2d-widget\/model\/kesyoban\/kesyoban.model.json", 
-            "scale": 1 
+        model: {
+            jsonPath: "https:\/\/lpgph.github.io\/lib\/live2d-widget\/model\/kesyoban\/kesyoban.model.json", 
+            scale: 1 
         },
-        "display": {
-            "superSample": 2, 
-            "position": "right", 
-            "width": 200,  
-            "height": 400, 
-            "hOffset": 0, 
-            "vOffset": -20 
+        display: {
+            superSample: 2, 
+            position: "right", 
+            width: 200,  
+            height: 400, 
+            hOffset: 0, 
+            vOffset: -20 
         },
-        "mobile": {
-            "show": false,  
-            "scale": 0.5  
+        mobile: {
+            show:   false ,  
+            scale:   0.5   
         },
-        "react": {
-            "opacity": 1  
+        react: {
+            opacity: 1  
         },
         dialog: {
           
-          enable: true,
+          enable:  true ,
           script: {
             
             'every idle 10s': '$hitokoto$',
@@ -1045,29 +716,16 @@ org.quartz.plugin.shutdownHook.cleanShutdown: true
 
 
 
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-<script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
   function pjaxInitPage() {
-    initMotto();
-    getIp();
     initScroll();
-    lastActiveTime(new Date('2020-01-02 05:40:06'));
     siteTime(new Date('2017-01-07T00:00:00Z'));
     $.getScript("https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
-
-    
-    initGitIssues();
-    
-    initMainSidebar();
     initFacybox();
   }
   function initFacybox() {
-    $('#main-content article figure img').each(function(){
+    $('article figure img').each(function(){
         if ($(this).parent().attr('data-fancybox="images"')) return;
         var alt = this.alt;
         
@@ -1090,182 +748,15 @@ org.quartz.plugin.shutdownHook.cleanShutdown: true
     }
   }
 
-
-  function initGitIssues() {
-    var time = 3600000;
-    window.setTimeout(()=>{
-      initGitIssues();
-    }, time);
-    
-    var key = "initGitalk";
-    var objStr = localStorage.getItem(key);
-    var nowGmt = new Date();
-    if (objStr) {
-      var obj = JSON.parse(objStr);
-      var lastGmt = new Date(obj.date);
-      if (parseInt(nowGmt.getTime()-lastGmt.getTime()) < time) {
-        initGitComment(obj.gitComment);
-        return;
-      }
-    }
-    getGitComment().then((rs)=>{
-      
-      if (!rs.isSuceess && objStr) {
-        rs = JSON.parse(objStr);
-      }
-      initGitComment(rs);
-      var gitStorage = {
-        "date": nowGmt,
-        "gitComment": rs
-      }
-      localStorage.setItem(key,JSON.stringify(gitStorage))
-    });
-  }
-
-  async function getGitComment() {
-    var issuesUrl = "https://api.github.com/repos/lpgph/lpgph.github.io/issues";
-    var hostPosts = [];
-
-    var newCommentList= [];
-    var totalComment = 0;
-    var isSuceess = true;
-
-    try {
-      const issueResult = async function (url) {
-        return await axios.get(url);
-      }
-      const newCommentsResult=  await axios.get(issuesUrl+"/comments?per_page=10&sort=update");
-      newCommentsResult.data.forEach(item => {
-        var commentMap = {
-          "title":"",
-          "url":"",
-          "content": item.body,
-          "date":item.updated_at,
-          "user":{
-            "name":item.user.login,
-            "url":item.user.url,
-            "avatar_url":item.user.avatar_url
-          }
-        };
-        issueResult(item.issue_url).then((rs)=>{
-          const data = rs.data;
-          commentMap.title = data.title;
-          data.labels.some((label, index) => {
-            if (label.name !== "Gitalk") {
-              commentMap.url = label.name;
-              return true;
-            }
-          });
-          newCommentList.push(commentMap)
-        })
-      });
-      const getTotalCount = await axios.get(issuesUrl+"/comments");
-      totalComment = getTotalCount.data.length;
-      const getHotPost = await axios.get(issuesUrl+"?per_page=10&sort=comments");
-      getHotPost.data.forEach(item=>{
-        var postMap = {
-          "title":item.title,
-          "url":"",
-          "comment_count": item.comments
-        };
-        item.labels.some((label, index) => {
-          if (label.name !== "Gitalk") {
-            postMap.url = label.name;
-            return true;
-          }
-        });
-        hostPosts.push(postMap);
-      });
-    } catch (error) {
-      console.log(error)
-      isSuceess = false;
-    }
-    return{
-      isSuceess: isSuceess,
-      newComments: newCommentList,
-      total: totalComment,
-      hostPosts: hostPosts
-    };
-  }
-
-  function initGitComment(issue) {
-    var commentListHtml = "";
-    if (issue.newComments && issue.newComments.length>0) {
-      issue.newComments.forEach(item => {
-          commentListHtml+='<li>\n'+
-              '<a href="https:\/\/lpgph.github.io\/'+item.url+'#comment-container" title="'+item.title+'">'+
-                '<div class="container font-zoom">'+
-                  '<img src="'+item.user.avatar_url+'" class="avatar" alt="'+item.user.name+'" title="'+item.user.name+'"/>'+
-                  '<div>'+
-                    '<p>'+item.user.name+'</p>'+
-                    '<p>'+item.content+'</p>'+
-                  '</div>'+
-                '</div>'+
-              '</a>'+
-          '</li>\n';
-      });
-    }else{
-      commentListHtml = '<li><small>暂无评论</small></li>'
-    }
-    $("#tab-comments ul").html(commentListHtml);
-    
-    var hostPostHtml = "";
-     if (issue.hostPosts && issue.hostPosts.length>0) {
-      issue.hostPosts.forEach(item => {
-          hostPostHtml+='<li>\n'+
-              '<a href="https:\/\/lpgph.github.io\/'+item.url+'" title="'+item.title+'">'+
-                '<div class="container font-zoom">'+
-                  '<i class="fa fa-heart" aria-hidden="true"></i>'+
-                  '<div>'+
-                    '<p>'+item.title+'</p>'+
-                    '<p><i class="fa fa-comment-o" aria-hidden="true"></i>'+item.comment_count+'</p>'+
-                  '</div>'+
-                '</div>'+
-              '</a>'+
-          '</li>\n';
-      });
-    }else{
-      hostPostHtml = '<li><small>暂无热门文章</small></li>'
-    }
-    $("#tab-host-post ul").html(hostPostHtml);
-    $("#comment-total").text(issue.total);
-  }
-
-  async function gitPostComments(path) {
-    var issuesUrl = "https://api.github.com/repos/lpgph/lpgph.github.io/issues";
-    const getComments = await axios.get(issuesUrl+"?per_page=10&sort=comments");
-    var count = 0;
-    if(getComments.status === 200){
-      count = getComments.data[0].comments;
-    }
-    $("#comment_value_page_count").text(count);
-  }
-
-    function initGtalk() {
-      var gitalk = new Gitalk({
-      language: 'zh-CN' ,
-      clientID: '86c61da5bfaea99e9f10',
-      clientSecret: '3c0524cd32fbe175601f5b964c6a34b6d31b0975',
-      repo: 'lpgph.github.io',
-      owner: 'lpgph',
-      admin: ["lpgph"],
-      createIssueManually: true,
-      perPage: 1,
-      id: window.location.pathname,      
-      distractionFreeMode: false  
-    });
-    
-    gitalk.render('comment-container');
-  }
-
-
-
-
- function initMotto() {
-  
-  hitokoto()
-  
+function siteTime(t1) {
+  window.setTimeout(()=>{
+   siteTime(t1)
+  }, 1000);
+  var diff = getSiteTime(t1);
+  $("#sitetime").text("本站已勉强存活  "+(diff.years>0 ? diff.years+" 年 ":"")+diff.days+" 天 "+diff.hours+" 时 "+diff.minutes+" 分 "+diff.seconds+" 秒")
+  $("#siteDate").text((diff.years>0 ? diff.years+"年":"")+diff.days+"天");
 }
+
 </script>
 
 

@@ -2,12 +2,12 @@
 <html lang="en-us">
 <head>
   <meta charset="UTF-8">
-  <title>设计模式六大原则 - Dreamcatcher</title>
+  <title>设计模式六大原则 - 诗和远方</title>
 
   
   <meta name="description" content="遵循设计原则是为了建立稳定、灵活、健壮的设计,而开闭原则又是重中之重,是最基础的原则,是其他五大原则的精神领袖">
   
-  <meta itemprop="name" content="设计模式六大原则 - Dreamcatcher">
+  <meta itemprop="name" content="设计模式六大原则 - 诗和远方">
   <meta itemprop="description" content="遵循设计原则是为了建立稳定、灵活、健壮的设计,而开闭原则又是重中之重,是最基础的原则,是其他五大原则的精神领袖">
   
   <meta itemprop="image" content="https://lpgph.github.io/img/avatar.jpg">
@@ -20,7 +20,7 @@
 
   
   
-  <meta name="twitter:description" content="君子如器">
+  <meta name="twitter:description" content="勿以时穷而忘节，勿以势起而乱性">
 
   
   
@@ -30,21 +30,22 @@
 
   
   
-  <link rel="stylesheet" href="https://lpgph.github.io/font/hack/css/hack.min.css">
+  
   <link rel="stylesheet" href="https://lpgph.github.io/font/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://lpgph.github.io/font/playball/playball.css">
 
-  <link rel="stylesheet" href="https://lpgph.github.io/lib/animate/animate.min.css">
+  
+
+  
 
   
   
-  <link rel="stylesheet" href="/sass/style.min.dc252023e1d044c43100d79b21900e0670083b7c413152daed69e3457ec5de79.css" integrity="sha256-3CUgI&#43;HQRMQxANebIZAOBnAIO3xBMVLa7WnjRX7F3nk=" media="screen" crossorigin="anonymous">
+  <link rel="stylesheet" href="/sass/index.min.f2838a043a0903d455931098cd2df75190ca124c7cceff466d41393981ccec61.css" integrity="sha256-8oOKBDoJA9RVkxCYzS33UZDKEkx8zv9GbUE5OYHM7GE=" media="screen" crossorigin="anonymous">
   
 
   <script src="https://lpgph.github.io/js/jquery-3.3.1.min.js"></script>
 
   
-  <script src="https://lpgph.github.io/js/motto-show.js"></script>
+  
 
   
   
@@ -54,10 +55,8 @@
 
   
   
-  <script type="text/javascript" src="https://lpgph.github.io/js/click_show_text.js"></script>
-  
 
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  
   
   <script type="text/javascript" src="https://lpgph.github.io/js/jquery.pjax.js"></script>
   
@@ -66,247 +65,116 @@
 
 </head>
 <body>
-    <div id="app" class="app" >
-        <header class="app-header" id="app-header">
+    <div class="react-container" >
+        <header class="header-container">
+            <div class="title vertical-text">
+  <a href="https://lpgph.github.io/" target="_self" data-pjax >
+    <h3>勿以时穷而忘节，勿以势起而乱性</h3>
+    <h1>诗和远方</h1>
+  </a>
+</div>
+
+<ul class="nav">
+  
+  <li><a href="/" target="_self" data-pjax title="主页">主页</a></li>
+  
+  <li><a href="/posts/" target="_self" data-pjax title="归档">归档</a></li>
+  
+  <li><a href="/notes/" target="_self" data-pjax title="短笺">短笺</a></li>
+  
+  <li><a href="/photos/" target="_self" data-pjax title="相册">相册</a></li>
+  
+  <li><a href="/categories/" target="_self" data-pjax title="分类">分类</a></li>
+  
+  <li><a href="/tags/" target="_self" data-pjax title="标签云">标签云</a></li>
+  
+  <li><a href="/about/" target="_self" data-pjax title="关于我">关于我</a></li>
+  
+</ul>
+
+<div class="social" >
+  
+  
+  
+    <a href="https://github.com/lpgph" target="_blank" title="github"><i class="fa fa-github" aria-hidden="true"></i></a>
+  
+  
+  
+  
+</div>
+
+
+
+<footer class="footer">
             
-<div class="nav-header">
-  <button class="button menu" title="显示侧边栏">
-    <i class="fa fa-navicon"></i>   
-  </button>
+  <p class="copyright">
+    © 2017-2020 <a href="https://lpgph.github.io/" title="诗和远方">诗和远方</a>
+  </p>
+  <p id="sitetime"></p>
+  <p>
+    Powered by
+    <a href="https://hexo.io/" target="_blank">Hugo</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+        Hosted by
+    <a  href="https://github.com/" target="_blank">GitHub</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    CDN by
+    <a  href="https://www.jsdelivr.com/" target="_blank">jsDelivr</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    Theme
+    <a  href="https://github.com/lpgph/hugo-theme-typography" target="_blank">hugo-theme-typography</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    UV<span id="busuanzi_value_site_uv"></span>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    PV<span id="busuanzi_value_site_pv"></span>
+  </p>
+</footer>
 
-  <div class="blog-title animated lightSpeedIn">
-    <a href="https://lpgph.github.io/">
-      <span class="title">Dreamcatcher</span>
-    </a>
-  </div>
 
-  <button class="button search">
-    <i class="fa fa-search" aria-hidden="true"></i>
-  </button>
 
-</div>
 
-<div class="nav-panel" id="header-nav-panel">
-   <div class="search-box">
-      <form method="get" action="https://www.google.com/search">
-        <input type="text" id="search" name="q" placeholder="搜索">
-        <button type="button">
-          <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
-      </form>
-   </div>
-</div>
+
         </header>
-        <main class="app-main">
-            <aside class="app-sidebar" id="app-sidebar">
-                
- 
- 
- 
-<div class="blog-info scrollbar">
-  
-  <div class="avatar">
-    <a href="https://lpgph.github.io/"  data-pjax>
-      <img src="https://lpgph.github.io/img/avatar.jpg" alt="lpgph" title="lpgph"/>
+        <div class="main-container" id="main-container">
+            <main class="main-content">
+            
+<section class="main-post">
+  <h1>
+    <a href="https://lpgph.github.io/posts/design_pattern_principle/" title="设计模式六大原则">
+      设计模式六大原则
     </a>
-  </div>
-  
-  <div class="motto"  >
-    <small class="content" id="blog-motto"></small>
-    <script>
-     
-      binft(document.getElementById('blog-motto'),["青青陵上柏，磊磊涧中石","勿以恶小而为之，勿以善小而不为","勿以时穷而忘节，勿以势起而乱性","人生天地间，忽如远行客","斗酒相娱乐，聊厚不为薄","驱车策驽马，游戏宛与洛","洛中何郁郁，冠带自相索","长衢罗夹巷，王侯多第宅","两宫遥相望，双阙百余尺","极宴娱心意，戚戚何所迫？"]);
+  </h1>
+  <p class="list-tags">
+    <span>
+      <i class="fa fa-user-o"></i><span><a href="https://lpgph.github.io/about" title="作者">焚琴</a></span>
+    </span>
+    <span>
+      <i class="fa fa-clock-o" aria-hidden="true"></i><span><time datetime="2018-05-01 09:48:13 &#43;0000 UTC">2018-05-01</time></span>
+    </span>
+    <span title="字数统计">
+      <i class="fa fa-keyboard-o"></i><span>3649 字</span>
+    </span>
+    <span title="阅读时长">
+      <i class="fa fa-hourglass-half"></i><span>8 分钟</span>
+    </span>
+    <span>
+      <i class="fa fa-eye"></i><span id="busuanzi_value_page_pv" title="阅读次数">0</span>
+    </span>
     
-    </script>
-  </div>
-  <nav class="menu">
-  <ul class="nav">
+    <span>
+      <i class="fa fa-folder" aria-hidden="true"></i><span><a href="https://lpgph.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a></span>
+    </span>
     
-      <li class="line"></li>
-      
-      <li>
-        
-          <a href="/" data-pjax target="_self" title="主页">
-            <div class="row-box flex">
-              <i class='fa fa-home' aria-hidden='true'></i><span class="title">主页</span>
-            </div>
-          </a>
-        
-      </li>
-      
-      <li>
-        
-          <a href="/posts/" data-pjax target="_self" title="归档">
-            <div class="row-box flex">
-              <i class='fa fa-archive' aria-hidden='true'></i><span class="title">归档</span>
-            </div>
-          </a>
-        
-      </li>
-      
-      <li>
-        
-          <a href="/note/" data-pjax target="_self" title="短笺">
-            <div class="row-box flex">
-              <i class='fa fa-sticky-note' aria-hidden='true'></i><span class="title">短笺</span>
-            </div>
-          </a>
-        
-      </li>
-      
-      <li>
-        
-          <a href="/photo/" data-pjax target="_self" title="相册">
-            <div class="row-box flex">
-              <i class='fa fa-photo' aria-hidden='true'></i><span class="title">相册</span>
-            </div>
-          </a>
-        
-      </li>
-      
-      <li>
-        
-          <a href="/about/" data-pjax target="_self" title="关于我">
-            <div class="row-box flex">
-              <i class='fa fa-user' aria-hidden='true'></i><span class="title">关于我</span>
-            </div>
-          </a>
-        
-      </li>
-      
     
-    <li class="line"></li>
-    <li>
-      <div class="row-box flex">
-        <i class="fa fa-th-large" aria-hidden="true"></i><span class="title">随笔分类</span><i class="angle fa fa-angle-right" aria-hidden="true"></i>
-      </div>
-      <ul class="nav nav-sub animated fadeIn">
-        
-        <li>
-          <a href="https://lpgph.github.io/categories/java/" data-pjax target="_self" title="Java">
-            <div class="row-box flex">
-              Java<span class="bubble">2</span>
-            </div>
-          </a>
-        </li>
-        
-        <li>
-          <a href="https://lpgph.github.io/categories/mysql/" data-pjax target="_self" title="MySql">
-            <div class="row-box flex">
-              MySql<span class="bubble">8</span>
-            </div>
-          </a>
-        </li>
-        
-        <li>
-          <a href="https://lpgph.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-pjax target="_self" title="设计模式">
-            <div class="row-box flex">
-              设计模式<span class="bubble">1</span>
-            </div>
-          </a>
-        </li>
-        
-      </ul>
-    </li>
-    <li>
-      <div class="row-box flex">
-        <i class="fa fa-tag" aria-hidden="true"></i><span class="title">我的标签</span><i class="angle fa fa-angle-right" aria-hidden="true"></i>
-      </div>
-      <nav class="nav nav-sub block-box tags animated fadeIn">
-      
-      <a href="https://lpgph.github.io/tags/java/" data-pjax target="_self" title="Java">
-        <span class="bubble font-zoom">Java<sup>(3)</sup></span>
-      </a>
-      
-      <a href="https://lpgph.github.io/tags/mysql/" data-pjax target="_self" title="MySql">
-        <span class="bubble font-zoom">MySql<sup>(8)</sup></span>
-      </a>
-      
-      <a href="https://lpgph.github.io/tags/quartz/" data-pjax target="_self" title="Quartz">
-        <span class="bubble font-zoom">Quartz<sup>(2)</sup></span>
-      </a>
-      
-      <a href="https://lpgph.github.io/tags/spring/" data-pjax target="_self" title="Spring">
-        <span class="bubble font-zoom">Spring<sup>(2)</sup></span>
-      </a>
-      
-      <a href="https://lpgph.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-pjax target="_self" title="设计模式">
-        <span class="bubble font-zoom">设计模式<sup>(1)</sup></span>
-      </a>
-      
-      </nav>
-    </li>
-  </ul>
-</nav>
-
-
-</div>
-
-
-
-
-
-
-  <div class="social">
-    <div class="list">
-      
-      
-      
-        <a href="https://github.com/lpgph" target="_blank" title="github"><i class="fa fa-github" aria-hidden="true"></i></a>
-      
-      
-      
-      
-    </div>
-  </div>
-  
-
-            </aside>
-            <div style="display: contents;" id="main-contents">
-                <div class="main-container scrollbar" id="main-container">
-                    <main>
-                        <div class="main-content" data-pjax>
-                        
-  <header class="main-header">
-    <h1 itemprop="name" class="title">
-  <a href="https://lpgph.github.io/posts/design_pattern_principle/" title="设计模式六大原则" itemprop="url">设计模式六大原则</a>
-</h1>
-<ul class="info">
-  <li>
-    <i class="fa fa-user-o"></i><a href="https://lpgph.github.io/about" title="lpgph">lpgph</a>
-  </li>
-  <li>
-    <i class="fa fa-clock-o"></i><time datetime="2018-05-01 09:48:13 &#43;0000 UTC">2018-05-01</time>
-  </li>
-  <li>
-    <i class="fa fa-keyboard-o"></i>字数统计:<span>3649</span>字
-  </li>
-  <li>
-    <i class="fa fa-hourglass-half"></i>阅读时长 ≈ <span>8</span>分钟
-  </li>
-  <li>
-    <i class="fa fa-eye"></i><span id="busuanzi_value_page_pv">0</span>
-  </li>
-  <li>
-    <a href="https://lpgph.github.io/posts/design_pattern_principle/#comment-container"><i class="fa fa-comment-o"></i><span id="comment_value_page_count">0</span></a>
-  </li>
-  
-  <li>
-    <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+    <span>
+      <i class="fa fa-tag" aria-hidden="true"></i><span><a href="https://lpgph.github.io/tags/java">Java</a></span><span><a href="https://lpgph.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a></span>
+    </span>
     
-      <a href="https://lpgph.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a>
-    
-  </li>
-  
-</ul> 
-  </header>
-  <div class="main-content-container">
-    
-
-<section class="article-content box-style box-other">
-  <article>
-  <p>遵循设计原则是为了建立稳定、灵活、健壮的设计,而开闭原则又是重中之重,是最基础的原则,是其他五大原则的精神领袖</p>
-<h2 id="single-responsibility-principle-srp">单一职责(Single Responsibility Principle, SRP)</h2>
+  </p>
+  <article class="post-content"><p>遵循设计原则是为了建立稳定、灵活、健壮的设计,而开闭原则又是重中之重,是最基础的原则,是其他五大原则的精神领袖</p>
+<h2 id="单一职责single-responsibility-principle-srp">单一职责(Single Responsibility Principle, SRP)</h2>
 <h3 id="what">What</h3>
 <p>应该有且仅有一个原因引起类的变更,即一个接口或类只有一个原因引起变化,一个接口或类只有一个职责,它就负责一件事情</p>
 <h3 id="why">Why</h3>
@@ -318,9 +186,9 @@
 </ul>
 <h3 id="how">How</h3>
 <p>接口一定要做到单一职责,类的设计尽量做到只有一个原因引起变化</p>
-<h3 id="heading">注意</h3>
+<h3 id="注意">注意</h3>
 <p>单一职责原则提出一个编写程序的标准,用“职责”或“变化原因”来衡量接口或类设计得是否优良, 但是“职责”或“变化原因”都是不可度量的,所以因项目而异,因环境而异.适用于接口、类,同时也适用于方法,接口一定要做到单一职责,类的设计尽量做到只有一个原因引起变化,一个方法尽可能做一件事情.</p>
-<h2 id="liskov-substitution-principle-lsp">里氏代换原则（Liskov Substitution Principle, LSP）</h2>
+<h2 id="里氏代换原则liskov-substitution-principle-lsp">里氏代换原则（Liskov Substitution Principle, LSP）</h2>
 <h3 id="what-1">What</h3>
 <ul>
 <li>第一种定义,也是最正宗的定义: 如果对每一个类型为S的对象o1,都有类型为T的对象o2,使得以T定义的所有程序P在所有的对象o1都代换成o2时,程序P的行为没有发生变化,那么类型S就是类型T的子类型.</li>
@@ -342,7 +210,7 @@
 在类中调用其他类时务必使用父类或接口,如果不能使用父类或接口,则说明类的设计已经违背了LSP原则;
 如果子类不能完整地实现父类的方法,或者父类的某些方法在子类中已经发生&quot;畸变&rdquo;,则建议断开父子继承关系,采用依赖,聚集,组合等关系代替继承.</p>
 <p><a href="">关于继承</a></p>
-<h2 id="dependence-inversion-principle-dip">依赖倒转原则（Dependence Inversion Principle, DIP）</h2>
+<h2 id="依赖倒转原则dependence-inversion-principle-dip">依赖倒转原则（Dependence Inversion Principle, DIP）</h2>
 <h3 id="what-2">What</h3>
 <p>广义上</p>
 <ul>
@@ -375,7 +243,7 @@
 <li>setter方法传递依赖对象</li>
 <li>接口声明依赖对象(接口注入)</li>
 </ul>
-<h3 id="heading-1">规则</h3>
+<h3 id="规则">规则</h3>
 <ul>
 <li>每个类尽量都有接口或抽象类,或者接口抽象类两者都具备</li>
 <li>变量的表面类型尽量时接口或者抽象类</li>
@@ -383,7 +251,7 @@
 <li>尽量不要覆写基类的方法</li>
 <li>结合里氏替换原则使用</li>
 </ul>
-<h2 id="interface-segregation-principle">接口隔离原则（Interface Segregation Principle）</h2>
+<h2 id="接口隔离原则interface-segregation-principle">接口隔离原则（Interface Segregation Principle）</h2>
 <h3 id="what-3">What</h3>
 <ul>
 <li>实例接口, Java中声明一个类,然后用new关键字产生一个实例,它是对一个类型事物的描述,这是一个接口.</li>
@@ -402,7 +270,7 @@
 <li>定制服务, 只提供访问者需要的方法</li>
 <li>接口设计有限度的, 接口设计注意适度</li>
 </ul>
-<h3 id="heading-2">和单一原则区别</h3>
+<h3 id="和单一原则区别">和单一原则区别</h3>
 <p>审视角度不相同,单一职责要求的时类和接口职责单一,注重的是职责,这是业务逻辑上的划分,而接口隔离原则要求接口的方法尽量少</p>
 <h3 id="other-1">Other</h3>
 <p>接口隔离原则是对接口的定义,同时也是对类的定义,接口和类尽量使用原子接口或原子类来组装,如何划分原子?</p>
@@ -412,7 +280,7 @@
 <li>已经被污染了的接口,尽量去修改,若变更的风险较大,则采用适配器模式进行转化处理</li>
 <li>了解环境,拒绝盲从,每个项目或产品都有特定的环境因素,环境不同,接口拆分的标准就不同,需要深入了解业务逻辑</li>
 </ul>
-<h2 id="-law-of-demeterleast-knowledge-principle-lod">迪米特法则/最少知道原则 (Law Of Demeter/Least Knowledge Principle, LOD)</h2>
+<h2 id="迪米特法则最少知道原则-law-of-demeterleast-knowledge-principle-lod">迪米特法则/最少知道原则 (Law Of Demeter/Least Knowledge Principle, LOD)</h2>
 <h3 id="what-4">What</h3>
 <p>一个对象应该对其他对象有最少的了解. 通俗的说,一个类应该对自己需要耦合或调用的类知道得最少,你(被耦合或调用的类)的内部是如何复杂都和我没有关系,我只需要知道你提供哪些public方法,我就调用这些,其他的一概不关心</p>
 <h3 id="why-4">Why</h3>
@@ -424,7 +292,7 @@
 <li>是自己的就是自己的。如果一个方法放在本类中,即不增加类间关系,也不对本类产生负面影响,就放置在本类中</li>
 <li>谨慎使用Serializable</li>
 </ul>
-<h2 id="open-close-principle">开闭原则（Open-Close Principle）</h2>
+<h2 id="开闭原则open-close-principle">开闭原则（Open-Close Principle）</h2>
 <h3 id="what-5">What</h3>
 <p>一个软件实体如类、模块和函数对扩展开发,对修改关闭</p>
 <blockquote>
@@ -479,7 +347,7 @@
 <p>将相同的变化封装到一个接口或抽象类中
 将不同的变化封装到不同的接口或抽象类中,不应该有两个不同的变化出现在同一个接口或抽象类中.</p>
 </blockquote>
-<h3 id="heading-3">注意</h3>
+<h3 id="注意-1">注意</h3>
 <ul>
 <li>开闭原则也只是一个原则</li>
 </ul>
@@ -498,7 +366,7 @@
 <blockquote>
 <p>一旦发现有变化的可能,或者变化曾经发生过,则需要考虑现有的架构是否可以轻松地实现这一变化.设计一套优良的架构不仅要符合现有的需求,还需要适应可能发生的变化.</p>
 </blockquote>
-<h2 id="heading-4">其他原则</h2>
+<h2 id="其他原则">其他原则</h2>
 <ul>
 <li>面向接口编程</li>
 <li>优先使用组合,而非继承</li>
@@ -506,221 +374,114 @@
 <li>类之间应该零耦合,或者只有传导耦合,换句话说,类之间要么没有关系,要么只使用另一个类的接口提供的操作</li>
 <li>在水平方向上尽量可能统一地分布系统功能
 等等</li>
-</ul>
-  </article>
-  
-  <footer class="article-footer">
-    <ul>
-       
-        <li>
-          上一篇: <a class="previous" href="https://lpgph.github.io/posts/java_spring_quartz/"> Quartz与Spring整合</a>
-        </li>
-        
-        
-        
-        
-        
-        <li>
-          <h3>See Also</h3>
-          <ul>
-            
-            <li><a href="/test/java_spring_quartz/">Quartz与Spring整合</a></li>
-            
-            <li><a href="/posts/java_spring_quartz/">Quartz与Spring整合</a></li>
-            
-          </ul>
-        </li>
-        
-    </ul>
-  </footer>
-
+</ul></article>
 </section>
 
+<footer class="post-footer">
+  
+  <p>
+    上一篇 &nbsp;<a class="previous" href="https://lpgph.github.io/posts/java_spring_quartz/">Quartz与Spring整合</a>
+  </p>
+  
+  
+  
+  
+  
+  <h3>相关推荐</h3>
+  <ul class="see-also">
+    
+    <li><a href="/posts/java_spring_quartz/">Quartz与Spring整合</a></li>
+    
+  </ul>
+    
+</footer>
+
+
+<div class="main-comment">
+    
  
 
-
-    
-
-
-  <section class="comment-container">
-    <div class="comment-content box-style box-other" id="comment-container" >
-
-    </div>
+  <section class="comment-container" id="comment-container">
+ 
   </section>
+
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  
 
   <script>
     $(function () {
       
-      initGtalk();
-      gitPostComments(window.location.pathname);
+      var gitalk = new Gitalk({
+        language: 'zh-CN' ,
+        clientID: '86c61da5bfaea99e9f10',
+        clientSecret: '3c0524cd32fbe175601f5b964c6a34b6d31b0975',
+        repo: 'lpgph.github.io',
+        owner: 'lpgph',
+        admin: ["lpgph"],
+        createIssueManually: true,
+        perPage: 1,
+        id: window.location.pathname,      
+        distractionFreeMode: false  
+      });
+      gitalk.render('comment-container');
       
     })
   </script>
 
+</div>
 
-  </div>
 
-
-                        </div>
-                        <aside class="main-sidebar scrollbar-none"  data-pjax>
-                        
-  <section>
-  <div class="nav-tabs">
-    <ul>
-      <li>
-        <span class="font-zoom active" data-tab="#tab-top-post">
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
-        </span>
-      </li>
-      <li>
-        <span class="font-zoom" data-tab="#tab-comments"><i class="fa fa-comments-o" aria-hidden="true"></i></span>
-      </li>
-      <li>
-        <span class="font-zoom" data-tab="#tab-host-post"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
-      </li>
-    </ul>
-  </div>
-  <div class="tab-content sidebar-box">
-    <div id="tab-top-post" class="tab-top animated fadeIn active">
-      <h2 class="title">置顶文章</h2>
-      <ul>
-        
-        
-          <li>
-              <a href="https://lpgph.github.io/note/2020010301/" title="2020010301">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>2020010301</span>
-                </div>
-              </a>
-          </li>
-        
-          <li>
-              <a href="https://lpgph.github.io/posts/design_pattern_principle/" title="设计模式六大原则">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>设计模式六大原则</span>
-                </div>
-              </a>
-          </li>
-        
-          <li>
-              <a href="https://lpgph.github.io/posts/java_spring_quartz/" title="Quartz与Spring整合">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>Quartz与Spring整合</span>
-                </div>
-              </a>
-          </li>
-        
-          <li>
-              <a href="https://lpgph.github.io/posts/mysql_procedure_function_trigger_view/" title="MySql之存储过程,函数,触发器,视图">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>MySql之存储过程,函数,触发器,视图</span>
-                </div>
-              </a>
-          </li>
-        
-          <li>
-              <a href="https://lpgph.github.io/posts/mysql_table/" title="MySql操作之表篇">
-                <div class="container font-zoom">
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                  <span>MySql操作之表篇</span>
-                </div>
-              </a>
-          </li>
-        
-      </ul>
-    </div>
-    <div id="tab-comments" class="tab-comments animated fadeIn">
-      <h2 class="title">最新评论</h2>
-      <ul>
-        <li>暂无评论<li>
-      </ul>
-    </div>
-    <div id="tab-host-post" class="tab-top animated fadeIn">
-      <h2 class="title">热门文章</h2>
-      <ul>
-        <li>暂无热门文章</li>
-      </ul>
-    </div>
-  </div>
-</section>
-<section class="sidebar-box">
-  <h2 class="title">访客信息</h2>
-  <div class="visitors-info box-shadow-wrap-normal" id="visitors-info">
+            </main>
+            <footer class="footer">
+            
+  <p class="copyright">
+    © 2017-2020 <a href="https://lpgph.github.io/" title="诗和远方">诗和远方</a>
+  </p>
+  <p id="sitetime"></p>
+  <p>
+    Powered by
+    <a href="https://hexo.io/" target="_blank">Hugo</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+        Hosted by
+    <a  href="https://github.com/" target="_blank">GitHub</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    CDN by
+    <a  href="https://www.jsdelivr.com/" target="_blank">jsDelivr</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    Theme
+    <a  href="https://github.com/lpgph/hugo-theme-typography" target="_blank">hugo-theme-typography</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA 4.0</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    UV<span id="busuanzi_value_site_uv"></span>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+    PV<span id="busuanzi_value_site_pv"></span>
+  </p>
+</footer>
+             <ul class="fixed-panel" id="fixed-panel"> 
   
-  </div>
-</section>
-
-<section class="sidebar-box">
-  <h2 class="title">博客信息</h2>
-  <ul class="list-group box-shadow-wrap-normal">
-    <li>
-      <div class="row-box flex">
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        <span class="title">文章数目</span>
-        
-        
-        <span class="bubble">10</span>
-      </div>
-    </li>
-     <li>
-      <div class="row-box flex">
-        <i class="fa fa-comment-o" aria-hidden="true"></i>
-        <span class="title">评论数目</span>
-        <span class="bubble" id="comment-total">0</span>
-      </div>
-    </li>
-     <li>
-      <div class="row-box flex">
-        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-        <span class="title">运行天数</span>
-        <span class="bubble" id="siteDate"></span>
-      </div>
-    </li>
-     <li>
-      <div class="row-box flex">
-        <i class="fa fa-heartbeat" aria-hidden="true"></i>
-        <span class="title">最后活动</span>
-        <span class="bubble" id="lastActive"></span>
-      </div>
-    </li>
-  </ul>
-</section>
-<section class="sidebar-box">
-  <h2 class="title">文章标签</h2>
-  <div class="tags">
-      
-        
-          <a href="https://lpgph.github.io/tags/java" data-pjax title="Java">
-            <span class="bubble font-zoom">Java</span>
-          </a>
-        
-          <a href="https://lpgph.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" data-pjax title="设计模式">
-            <span class="bubble font-zoom">设计模式</span>
-          </a>
-        
-      
-  </div>
-</section>
-
-
-<section class="article-toc sidebar-box">
-  <h2 class="toc-title">文章目录</h2>
-  <div class="table-of-contents"  id="panel-article-toc">
-    <nav id="TableOfContents">
+  <li>
+    <div class="toc-panel">
+      <button onclick="showToc()" title="文章目录" >
+        <i class="fa fa-expand"></i>
+      </button>
+      <aside class="article-toc">
+        <h2 class="toc-title">文章目录</h2>
+        <div class="table-of-contents" id="article-toc">
+          <nav id="TableOfContents">
   <ul>
-    <li><a href="#single-responsibility-principle-srp">单一职责(Single Responsibility Principle, SRP)</a>
+    <li><a href="#单一职责single-responsibility-principle-srp">单一职责(Single Responsibility Principle, SRP)</a>
       <ul>
         <li><a href="#what">What</a></li>
         <li><a href="#why">Why</a></li>
         <li><a href="#how">How</a></li>
-        <li><a href="#heading">注意</a></li>
+        <li><a href="#注意">注意</a></li>
       </ul>
     </li>
-    <li><a href="#liskov-substitution-principle-lsp">里氏代换原则（Liskov Substitution Principle, LSP）</a>
+    <li><a href="#里氏代换原则liskov-substitution-principle-lsp">里氏代换原则（Liskov Substitution Principle, LSP）</a>
       <ul>
         <li><a href="#what-1">What</a></li>
         <li><a href="#why-1">Why</a></li>
@@ -728,171 +489,59 @@
         <li><a href="#other">Other</a></li>
       </ul>
     </li>
-    <li><a href="#dependence-inversion-principle-dip">依赖倒转原则（Dependence Inversion Principle, DIP）</a>
+    <li><a href="#依赖倒转原则dependence-inversion-principle-dip">依赖倒转原则（Dependence Inversion Principle, DIP）</a>
       <ul>
         <li><a href="#what-2">What</a></li>
         <li><a href="#why-2">Why</a></li>
         <li><a href="#how-2">How</a></li>
-        <li><a href="#heading-1">规则</a></li>
+        <li><a href="#规则">规则</a></li>
       </ul>
     </li>
-    <li><a href="#interface-segregation-principle">接口隔离原则（Interface Segregation Principle）</a>
+    <li><a href="#接口隔离原则interface-segregation-principle">接口隔离原则（Interface Segregation Principle）</a>
       <ul>
         <li><a href="#what-3">What</a></li>
         <li><a href="#why-3">Why</a></li>
         <li><a href="#how-3">How</a></li>
-        <li><a href="#heading-2">和单一原则区别</a></li>
+        <li><a href="#和单一原则区别">和单一原则区别</a></li>
         <li><a href="#other-1">Other</a></li>
       </ul>
     </li>
-    <li><a href="#-law-of-demeterleast-knowledge-principle-lod">迪米特法则/最少知道原则 (Law Of Demeter/Least Knowledge Principle, LOD)</a>
+    <li><a href="#迪米特法则最少知道原则-law-of-demeterleast-knowledge-principle-lod">迪米特法则/最少知道原则 (Law Of Demeter/Least Knowledge Principle, LOD)</a>
       <ul>
         <li><a href="#what-4">What</a></li>
         <li><a href="#why-4">Why</a></li>
         <li><a href="#how-4">How</a></li>
       </ul>
     </li>
-    <li><a href="#open-close-principle">开闭原则（Open-Close Principle）</a>
+    <li><a href="#开闭原则open-close-principle">开闭原则（Open-Close Principle）</a>
       <ul>
         <li><a href="#what-5">What</a></li>
         <li><a href="#why-5">Why</a></li>
         <li><a href="#how-5">How</a></li>
-        <li><a href="#heading-3">注意</a></li>
+        <li><a href="#注意-1">注意</a></li>
       </ul>
     </li>
-    <li><a href="#heading-4">其他原则</a></li>
+    <li><a href="#其他原则">其他原则</a></li>
   </ul>
 </nav>
-  </div>
-</section>
+        </div>
+      </aside>
+    </div>
+  </li>
+  
 
-
-                        </aside>
-                    </main>
-                    <footer class="app-footer">
-                          <div class="footer" >
-    <p class="copyright">
-      Copyright © 2017-2020 <a href="https://lpgph.github.io/" title="Dreamcatcher">Dreamcatcher</a>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <span id="sitetime"></span>
-    </p>
-    <br/>
-    <ul class="github-badge">
-      <li>
-        <a  rel="license" href="https://hexo.io/" target="_blank" title="由 Hugo 强力驱动">
-        <span class="badge-subject">Powered</span><span class="badge-value bg-blue">Hugo</span></a>
-      </li>
-      <li>
-        <a  rel="license" href="https://github.com/" target="_blank" title="静态网页托管于 GitHub Pages 和 Coding Pages">
-        <span class="badge-subject">Hosted</span><span class="badge-value bg-brightgreen">GitHub &amp; Coding</span></a>
-      </li>
-      
-      
-      <li>
-        <a rel="license" href="https://github.com/lpgph/hugo-theme-young" target="_blank" title="站点使用 hugo-theme-young 主题">
-        <span class="badge-subject">Theme</span><span class="badge-value bg-blue">hugo-theme-young</span></a>
-      </li>
-      <li>
-        <a  rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="本站点采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可">
-        <span class="badge-subject"><i class="fa fa-copyright"></i></span><span class="badge-value bg-lightgray">BY-NC-SA 4.0</span></a>
-      </li>
-      <li>
-        <a rel="license" href="https://996.icu/" target="_blank" title="支持 996.ICU">
-        <span class="badge-subject">Link</span><span class="badge-value bg-red">996.ICU</span></a>
-      </li>
-      <li>
-        <span class="badge-subject">UV</span><span class="badge-value bg-orange" id="busuanzi_value_site_uv"></span>
-      </li>
-      <li>
-        <span class="badge-subject">PV</span><span class="badge-value bg-brightgreen" id="busuanzi_value_site_pv"></span>
-      </li>
-      
-    </ul>
-  </div>
-                    </footer>
-                </div>
-                <ul class="fixed-panel" id="fixed-panel">
-                    
-<li>
-  <div class="toc-panel">
-    <button onclick="showToc()" title="文章目录" >
-      <i class="fa fa-expand"></i>
+  <li>
+    <button title="分享">
+      <i class="fa fa-share-alt"></i>
     </button>
-    <aside class="article-toc">
-      <h2 class="toc-title">文章目录</h2>
-      <div class="table-of-contents" id="article-toc">
-        <nav id="TableOfContents">
-  <ul>
-    <li><a href="#single-responsibility-principle-srp">单一职责(Single Responsibility Principle, SRP)</a>
-      <ul>
-        <li><a href="#what">What</a></li>
-        <li><a href="#why">Why</a></li>
-        <li><a href="#how">How</a></li>
-        <li><a href="#heading">注意</a></li>
-      </ul>
-    </li>
-    <li><a href="#liskov-substitution-principle-lsp">里氏代换原则（Liskov Substitution Principle, LSP）</a>
-      <ul>
-        <li><a href="#what-1">What</a></li>
-        <li><a href="#why-1">Why</a></li>
-        <li><a href="#how-1">How</a></li>
-        <li><a href="#other">Other</a></li>
-      </ul>
-    </li>
-    <li><a href="#dependence-inversion-principle-dip">依赖倒转原则（Dependence Inversion Principle, DIP）</a>
-      <ul>
-        <li><a href="#what-2">What</a></li>
-        <li><a href="#why-2">Why</a></li>
-        <li><a href="#how-2">How</a></li>
-        <li><a href="#heading-1">规则</a></li>
-      </ul>
-    </li>
-    <li><a href="#interface-segregation-principle">接口隔离原则（Interface Segregation Principle）</a>
-      <ul>
-        <li><a href="#what-3">What</a></li>
-        <li><a href="#why-3">Why</a></li>
-        <li><a href="#how-3">How</a></li>
-        <li><a href="#heading-2">和单一原则区别</a></li>
-        <li><a href="#other-1">Other</a></li>
-      </ul>
-    </li>
-    <li><a href="#-law-of-demeterleast-knowledge-principle-lod">迪米特法则/最少知道原则 (Law Of Demeter/Least Knowledge Principle, LOD)</a>
-      <ul>
-        <li><a href="#what-4">What</a></li>
-        <li><a href="#why-4">Why</a></li>
-        <li><a href="#how-4">How</a></li>
-      </ul>
-    </li>
-    <li><a href="#open-close-principle">开闭原则（Open-Close Principle）</a>
-      <ul>
-        <li><a href="#what-5">What</a></li>
-        <li><a href="#why-5">Why</a></li>
-        <li><a href="#how-5">How</a></li>
-        <li><a href="#heading-3">注意</a></li>
-      </ul>
-    </li>
-    <li><a href="#heading-4">其他原则</a></li>
-  </ul>
-</nav>
-      </div>
-    </aside>
-  </div>
-</li>
-
-
-<li>
-  <button title="分享">
-    <i class="fa fa-share-alt"></i>
-  </button>
-</li>
-<li>
-  <button onclick="backToTop()" id="backToTop" title="返回顶部" style="display: none;">
-    <i class="fa fa-arrow-up"></i>
-  </button>
-</li>
-                </ul>
-            </div>
-        </main>
+  </li>
+  <li>
+    <button onclick="backToTop()" id="backToTop" title="返回顶部" style="display: none;">
+      <i class="fa fa-arrow-up"></i>
+    </button>
+  </li>
+</ul>
+        </div>
     </div>
       <div id="aplayer"></div> 
   
@@ -931,15 +580,15 @@
   </script>
     
 
-<script type="text/javascript" src="/js/main.7f7fc64a9f49ec7d40ba4b92fb47cf5408480332be71d709aa43eaaed1d15907.js" integrity="sha256-f3/GSp9J7H1AukuS&#43;0fPVAhIAzK&#43;cdcJqkPqrtHRWQc=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.23cb4b632334269c5e1cded63e7c14f48de5b24601e0a2e0c207fbc0279b3ccb.js" integrity="sha256-I8tLYyM0JpxeHN7WPnwU9I3lskYB4KLgwgf7wCebPMs=" crossorigin="anonymous"></script>
   <script src="https://lpgph.github.io/js/nav-scroll.js"></script>
 <link rel="stylesheet" href="https://lpgph.github.io/lib/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="https://lpgph.github.io/lib/fancybox/jquery.fancybox.js"></script>
 
 <script>
     $(function() {
-        $(document).pjax('[data-pjax] a, a[data-pjax]', '#main-contents', {
-            fragment: '#main-contents',
+        $(document).pjax('[data-pjax] a, a[data-pjax]', '#main-container', {
+            fragment: '#main-container',
             timeout: 5000,
             cache: false
         }).on('pjax:send',function () {
@@ -955,8 +604,9 @@
 
 
 <script src="https://lpgph.github.io/lib/live2d-widget/js/L2Dwidget.min.js"></script>
-<script>
 
+
+<script>
   $(function () {
           
       L2Dwidget
@@ -964,35 +614,35 @@
         console.log('%c EVENT ' + '%c -> ' + name, 'background: #222; color: yellow', 'background: #fff; color: #000')
       })
       .init({
-        "name":{
-          "canvas": 'live2dcanvas', 
+        name:{
+          canvas: 'live2dcanvas', 
           div : 'live2d-widget' 
         },
-        "dev":{
+        dev:{
           border: false 
         },
-        "model": {
-            "jsonPath": "http:\/\/localhost:1313\/lib\/live2d-widget\/model\/kesyoban\/kesyoban.model.json", 
-            "scale": 1 
+        model: {
+            jsonPath: "https:\/\/lpgph.github.io\/lib\/live2d-widget\/model\/kesyoban\/kesyoban.model.json", 
+            scale: 1 
         },
-        "display": {
-            "superSample": 2, 
-            "position": "right", 
-            "width": 200,  
-            "height": 400, 
-            "hOffset": 0, 
-            "vOffset": -20 
+        display: {
+            superSample: 2, 
+            position: "right", 
+            width: 200,  
+            height: 400, 
+            hOffset: 0, 
+            vOffset: -20 
         },
-        "mobile": {
-            "show": false,  
-            "scale": 0.5  
+        mobile: {
+            show:   false ,  
+            scale:   0.5   
         },
-        "react": {
-            "opacity": 1  
+        react: {
+            opacity: 1  
         },
         dialog: {
           
-          enable: true,
+          enable:  true ,
           script: {
             
             'every idle 10s': '$hitokoto$',
@@ -1012,29 +662,16 @@
 
 
 
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-<script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
   function pjaxInitPage() {
-    initMotto();
-    getIp();
     initScroll();
-    lastActiveTime(new Date('2020-01-02 05:40:06'));
     siteTime(new Date('2017-01-07T00:00:00Z'));
     $.getScript("https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
-
-    
-    initGitIssues();
-    
-    initMainSidebar();
     initFacybox();
   }
   function initFacybox() {
-    $('#main-content article figure img').each(function(){
+    $('article figure img').each(function(){
         if ($(this).parent().attr('data-fancybox="images"')) return;
         var alt = this.alt;
         
@@ -1057,182 +694,15 @@
     }
   }
 
-
-  function initGitIssues() {
-    var time = 3600000;
-    window.setTimeout(()=>{
-      initGitIssues();
-    }, time);
-    
-    var key = "initGitalk";
-    var objStr = localStorage.getItem(key);
-    var nowGmt = new Date();
-    if (objStr) {
-      var obj = JSON.parse(objStr);
-      var lastGmt = new Date(obj.date);
-      if (parseInt(nowGmt.getTime()-lastGmt.getTime()) < time) {
-        initGitComment(obj.gitComment);
-        return;
-      }
-    }
-    getGitComment().then((rs)=>{
-      
-      if (!rs.isSuceess && objStr) {
-        rs = JSON.parse(objStr);
-      }
-      initGitComment(rs);
-      var gitStorage = {
-        "date": nowGmt,
-        "gitComment": rs
-      }
-      localStorage.setItem(key,JSON.stringify(gitStorage))
-    });
-  }
-
-  async function getGitComment() {
-    var issuesUrl = "https://api.github.com/repos/lpgph/lpgph.github.io/issues";
-    var hostPosts = [];
-
-    var newCommentList= [];
-    var totalComment = 0;
-    var isSuceess = true;
-
-    try {
-      const issueResult = async function (url) {
-        return await axios.get(url);
-      }
-      const newCommentsResult=  await axios.get(issuesUrl+"/comments?per_page=10&sort=update");
-      newCommentsResult.data.forEach(item => {
-        var commentMap = {
-          "title":"",
-          "url":"",
-          "content": item.body,
-          "date":item.updated_at,
-          "user":{
-            "name":item.user.login,
-            "url":item.user.url,
-            "avatar_url":item.user.avatar_url
-          }
-        };
-        issueResult(item.issue_url).then((rs)=>{
-          const data = rs.data;
-          commentMap.title = data.title;
-          data.labels.some((label, index) => {
-            if (label.name !== "Gitalk") {
-              commentMap.url = label.name;
-              return true;
-            }
-          });
-          newCommentList.push(commentMap)
-        })
-      });
-      const getTotalCount = await axios.get(issuesUrl+"/comments");
-      totalComment = getTotalCount.data.length;
-      const getHotPost = await axios.get(issuesUrl+"?per_page=10&sort=comments");
-      getHotPost.data.forEach(item=>{
-        var postMap = {
-          "title":item.title,
-          "url":"",
-          "comment_count": item.comments
-        };
-        item.labels.some((label, index) => {
-          if (label.name !== "Gitalk") {
-            postMap.url = label.name;
-            return true;
-          }
-        });
-        hostPosts.push(postMap);
-      });
-    } catch (error) {
-      console.log(error)
-      isSuceess = false;
-    }
-    return{
-      isSuceess: isSuceess,
-      newComments: newCommentList,
-      total: totalComment,
-      hostPosts: hostPosts
-    };
-  }
-
-  function initGitComment(issue) {
-    var commentListHtml = "";
-    if (issue.newComments && issue.newComments.length>0) {
-      issue.newComments.forEach(item => {
-          commentListHtml+='<li>\n'+
-              '<a href="https:\/\/lpgph.github.io\/'+item.url+'#comment-container" title="'+item.title+'">'+
-                '<div class="container font-zoom">'+
-                  '<img src="'+item.user.avatar_url+'" class="avatar" alt="'+item.user.name+'" title="'+item.user.name+'"/>'+
-                  '<div>'+
-                    '<p>'+item.user.name+'</p>'+
-                    '<p>'+item.content+'</p>'+
-                  '</div>'+
-                '</div>'+
-              '</a>'+
-          '</li>\n';
-      });
-    }else{
-      commentListHtml = '<li><small>暂无评论</small></li>'
-    }
-    $("#tab-comments ul").html(commentListHtml);
-    
-    var hostPostHtml = "";
-     if (issue.hostPosts && issue.hostPosts.length>0) {
-      issue.hostPosts.forEach(item => {
-          hostPostHtml+='<li>\n'+
-              '<a href="https:\/\/lpgph.github.io\/'+item.url+'" title="'+item.title+'">'+
-                '<div class="container font-zoom">'+
-                  '<i class="fa fa-heart" aria-hidden="true"></i>'+
-                  '<div>'+
-                    '<p>'+item.title+'</p>'+
-                    '<p><i class="fa fa-comment-o" aria-hidden="true"></i>'+item.comment_count+'</p>'+
-                  '</div>'+
-                '</div>'+
-              '</a>'+
-          '</li>\n';
-      });
-    }else{
-      hostPostHtml = '<li><small>暂无热门文章</small></li>'
-    }
-    $("#tab-host-post ul").html(hostPostHtml);
-    $("#comment-total").text(issue.total);
-  }
-
-  async function gitPostComments(path) {
-    var issuesUrl = "https://api.github.com/repos/lpgph/lpgph.github.io/issues";
-    const getComments = await axios.get(issuesUrl+"?per_page=10&sort=comments");
-    var count = 0;
-    if(getComments.status === 200){
-      count = getComments.data[0].comments;
-    }
-    $("#comment_value_page_count").text(count);
-  }
-
-    function initGtalk() {
-      var gitalk = new Gitalk({
-      language: 'zh-CN' ,
-      clientID: '86c61da5bfaea99e9f10',
-      clientSecret: '3c0524cd32fbe175601f5b964c6a34b6d31b0975',
-      repo: 'lpgph.github.io',
-      owner: 'lpgph',
-      admin: ["lpgph"],
-      createIssueManually: true,
-      perPage: 1,
-      id: window.location.pathname,      
-      distractionFreeMode: false  
-    });
-    
-    gitalk.render('comment-container');
-  }
-
-
-
-
- function initMotto() {
-  
-  hitokoto()
-  
+function siteTime(t1) {
+  window.setTimeout(()=>{
+   siteTime(t1)
+  }, 1000);
+  var diff = getSiteTime(t1);
+  $("#sitetime").text("本站已勉强存活  "+(diff.years>0 ? diff.years+" 年 ":"")+diff.days+" 天 "+diff.hours+" 时 "+diff.minutes+" 分 "+diff.seconds+" 秒")
+  $("#siteDate").text((diff.years>0 ? diff.years+"年":"")+diff.days+"天");
 }
+
 </script>
 
 
